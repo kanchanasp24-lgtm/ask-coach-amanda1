@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apply — The Metabolic Momentum Method™ | Ask Coach Amanda</title>
+<meta name="description" content="A short application for The Metabolic Momentum Method™, the 90-day pharmacist-led metabolic health coaching program from Dr. Amanda Romine-Nelson, PharmD, RPh.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/brand.css?v=20260921_v2">
+<link rel="stylesheet" href="assets/css/funnel.css?v=20260921_v2">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brandmark" href="index.html">
+      <img src="assets/img/dr-amanda-avatar.webp" alt="Dr. Amanda Romine-Nelson, PharmD" width="40" height="40" style="border-radius:50%;border:2px solid var(--teal);display:block;">
+      <span>
+        <span class="brandmark__name">Ask Coach Amanda</span>
+        <span class="brandmark__sub">Coaching application</span>
+      </span>
+    </a>
+    <span class="pill">Step 2 of 3</span>
+  </div>
+</header>
+
+<main id="main" class="section section--tight">
+  <div class="wrap quiz-shell">
+
+    <div class="center" style="margin-bottom:var(--s7)">
+      <p class="eyebrow">The Metabolic Momentum Method&trade;</p>
+      <h1 style="font-size:clamp(1.85rem,4vw,2.6rem)">Tell Amanda what she needs to know</h1>
+      <p class="lede">About four minutes. This is what makes your strategy call useful instead of a round of getting-to-know-you questions &mdash; Amanda reads every application before the call.</p>
+    </div>
+
+    <div class="note note--gold" style="margin-bottom:var(--s6)">
+      <strong>Applying doesn&rsquo;t commit you to anything.</strong> No payment is taken here. If Amanda doesn&rsquo;t think the program is right for you, she&rsquo;ll tell you on the call and point you somewhere more useful.
+    </div>
+
+    <form id="apply-form" name="coaching-application" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="quiz-card" novalidate>
+      <input type="hidden" name="form-name" value="coaching-application">
+      <input type="hidden" name="bot-field">
+      <input type="hidden" name="total_score" id="a-hidden-score">
+      <input type="hidden" name="score_tier" id="a-hidden-tier">
+      <input type="hidden" name="primary_concern" id="a-hidden-concern">
+      <input type="hidden" name="lead_source" id="a-hidden-source">
+
+      <h3>Your details</h3>
+      <div class="grid grid-2" style="gap:var(--s4)">
+        <div class="field">
+          <label for="a-first">First name</label>
+          <input class="input" type="text" id="a-first" name="first_name" autocomplete="given-name" required>
+          <p class="field-error" hidden>Please add your first name.</p>
+        </div>
+        <div class="field">
+          <label for="a-last">Last name</label>
+          <input class="input" type="text" id="a-last" name="last_name" autocomplete="family-name" required>
+          <p class="field-error" hidden>Please add your last name.</p>
+        </div>
+      </div>
+      <div class="grid grid-2" style="gap:var(--s4)">
+        <div class="field">
+          <label for="a-email">Email</label>
+          <input class="input" type="email" id="a-email" name="email" autocomplete="email" required>
+          <p class="field-error" hidden>Please enter a valid email address.</p>
+        </div>
+        <div class="field">
+          <label for="a-phone">Mobile number</label>
+          <input class="input" type="tel" id="a-phone" name="phone" autocomplete="tel" required>
+          <p class="field-error" hidden>Please add a number Amanda can reach you on.</p>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <h3>Where you are now</h3>
+
+      <div class="field">
+        <label for="a-goal">What would need to be different in 90 days for this to feel worth it?</label>
+        <p class="hint">In your own words. Specific beats polished.</p>
+        <textarea class="input" id="a-goal" name="primary_goal" required></textarea>
+        <p class="field-error" hidden>Please tell Amanda what you&rsquo;re hoping for.</p>
+      </div>
+
+      <div class="field">
+        <label for="a-tried">What have you already tried?</label>
+        <p class="hint">Diets, programs, supplements, apps, trainers &mdash; and roughly what happened.</p>
+        <textarea class="input" id="a-tried" name="already_tried" required></textarea>
+        <p class="field-error" hidden>Please share what you&rsquo;ve tried so far.</p>
+      </div>
+
+      <div class="field">
+        <label for="a-barrier">What&rsquo;s the biggest thing getting in the way right now?</label>
+        <textarea class="input" id="a-barrier" name="primary_barrier" required></textarea>
+        <p class="field-error" hidden>Please tell Amanda what&rsquo;s getting in the way.</p>
+      </div>
+
+      <hr class="rule">
+
+      <h3>Your care team</h3>
+
+      <div class="field">
+        <span class="label" id="lbl-care">Are you currently connected with a physician or healthcare provider?</span>
+        <p class="hint">Coaching works alongside your medical care &mdash; it never replaces it.</p>
+        <div class="choices" data-radio="care_team" aria-labelledby="lbl-care" role="radiogroup">
+          <button type="button" class="choice" data-value="yes" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">Yes &mdash; I see a provider regularly</span></button>
+          <button type="button" class="choice" data-value="occasionally" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">Occasionally &mdash; annual visits or as needed</span></button>
+          <button type="button" class="choice" data-value="no" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">Not currently</span></button>
+        </div>
+        <p class="field-error" hidden>Please choose one.</p>
+      </div>
+
+      <div class="field">
+        <label for="a-health">Anything about your health, medications or supplements Amanda should know before the call?</label>
+        <p class="hint">Optional, and only what you&rsquo;re comfortable sharing. She won&rsquo;t change any medication &mdash; that stays with your prescriber &mdash; but context helps her prepare.</p>
+        <textarea class="input" id="a-health" name="health_context"></textarea>
+      </div>
+
+      <hr class="rule">
+
+      <h3>Fit and readiness</h3>
+
+      <div class="field">
+        <span class="label" id="lbl-time">The program is two 45-minute sessions and two 15-minute check-ins a month, for 90 days. Can you protect that time?</span>
+        <div class="choices" data-radio="time_commitment" aria-labelledby="lbl-time" role="radiogroup">
+          <button type="button" class="choice" data-value="yes" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">Yes &mdash; I can make that work</span></button>
+          <button type="button" class="choice" data-value="tight" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">It&rsquo;ll be tight, but I want to try</span></button>
+          <button type="button" class="choice" data-value="no" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">Not in the next 90 days</span></button>
+        </div>
+        <p class="field-error" hidden>Please choose one.</p>
+      </div>
+
+      <div class="field">
+        <span class="label" id="lbl-invest">The program is $1,997 paid in full, or 3 payments of $697. If it&rsquo;s a fit, are you in a position to invest?</span>
+        <p class="hint">Asked up front so nobody&rsquo;s time gets wasted. There&rsquo;s no payment on this page.</p>
+        <div class="choices" data-radio="investment" aria-labelledby="lbl-invest" role="radiogroup">
+          <button type="button" class="choice" data-value="full" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">Yes &mdash; paid in full</span></button>
+          <button type="button" class="choice" data-value="plan" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">Yes &mdash; I&rsquo;d want the payment plan</span></button>
+          <button type="button" class="choice" data-value="unsure" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">I&rsquo;d want to understand the value first</span></button>
+          <button type="button" class="choice" data-value="no" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">Not right now</span></button>
+        </div>
+        <p class="field-error" hidden>Please choose one.</p>
+      </div>
+
+      <div class="field">
+        <span class="label" id="lbl-expect">Which is closest to how you see this?</span>
+        <div class="choices" data-radio="expectations" aria-labelledby="lbl-expect" role="radiogroup">
+          <button type="button" class="choice" data-value="sustainable" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">I want to understand my body and build something sustainable
+            <span class="choice__sub">Even if that&rsquo;s slower than a crash approach.</span></span></button>
+          <button type="button" class="choice" data-value="both" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">Honestly, I want results fairly quickly &mdash; but I don&rsquo;t want to yo-yo again</span></button>
+          <button type="button" class="choice" data-value="fast" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span>
+            <span class="choice__text">I&rsquo;m mainly looking for fast weight loss</span></button>
+        </div>
+        <p class="field-error" hidden>Please choose one.</p>
+      </div>
+
+      <hr class="rule">
+
+      <div class="field">
+        <span class="label" id="lbl-contact">Best way to reach you</span>
+        <div class="choices" data-radio="preferred_contact" aria-labelledby="lbl-contact" role="radiogroup">
+          <button type="button" class="choice" data-value="email" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span><span class="choice__text">Email</span></button>
+          <button type="button" class="choice" data-value="text" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span><span class="choice__text">Text</span></button>
+          <button type="button" class="choice" data-value="phone" aria-pressed="false">
+            <span class="choice__box" aria-hidden="true"></span><span class="choice__text">Phone call</span></button>
+        </div>
+        <p class="field-error" hidden>Please choose one.</p>
+      </div>
+
+      <div class="field consent-field">
+        <label class="consent">
+          <input type="checkbox" name="consent" value="yes" required>
+          <span>I understand this is health and wellness coaching, not medical care, and that Ask Coach Amanda does not diagnose conditions or change prescriptions. I agree to be contacted about this application.</span>
+        </label>
+        <p class="field-error" hidden>Please confirm to submit your application.</p>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--lg btn--block">Submit application &amp; pick a call time</button>
+      <p class="cta-note" style="justify-content:center">You&rsquo;ll go straight to Amanda&rsquo;s calendar on the next page.</p>
+    </form>
+
+  </div>
+</main>
+
+<footer class="site-footer" style="margin-top:var(--s8)">
+  <div class="wrap">
+    <p class="disclaimer" style="margin-top:0;border-top:0;padding-top:0">
+      <strong>Medical disclaimer.</strong> Ask Coach Amanda provides health and wellness coaching and education. Nothing here is intended to diagnose, treat, cure or prevent any disease, and no specific outcome is promised. Consult your own physician before changing your medications, treatment or health plan. In an emergency, call 911.
+      <br><br>&copy; <span data-year>2026</span> Ask Coach Amanda. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js?v=20260921c"></script>
+<script src="assets/js/app.js?v=20260921c"></script>
+<script src="assets/js/apply.js?v=20260921c"></script>
+</body>
+</html>

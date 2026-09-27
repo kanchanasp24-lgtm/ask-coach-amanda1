@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funnel Interactive Preview | Metabolic Momentum Method™</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal-ink: #143A3D;
+  --teal-deep: #22585C;
+  --teal: #347C81;
+  --mint: #72B7A6;
+  --mint-tint: #EDF6F3;
+  --gold: #E6BF5A;
+  --cream: #FAF8F4;
+  --line: #E2E8E6;
+  --white: #FFFFFF;
+  --ink: #23292A;
+  --ink-muted: #6B7280;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --display: 'Playfair Display', Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--sans);
+  background: #0D2426;
+  color: var(--white);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* --- Top Header & Toolbar --- */
+.preview-header {
+  background: #112F32;
+  border-bottom: 1px solid rgba(114, 183, 166, 0.2);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  z-index: 50;
+}
+
+.preview-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.preview-brand img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--mint);
+  object-fit: cover;
+}
+.preview-brand-text h1 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.preview-brand-text p {
+  font-size: 0.75rem;
+  color: var(--mint);
+  font-weight: 500;
+}
+
+/* --- Steps Navigation Pills --- */
+.step-nav {
+  display: flex;
+  background: rgba(0,0,0,0.25);
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  gap: 4px;
+}
+.step-btn {
+  background: transparent;
+  border: none;
+  color: #B2D1CF;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+.step-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+.step-btn.active {
+  background: var(--teal);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.step-btn .badge {
+  font-size: 0.72rem;
+  opacity: 0.8;
+}
+
+/* --- Device & Action Tools --- */
+.preview-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.device-toggle {
+  display: flex;
+  background: rgba(0,0,0,0.25);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.device-btn {
+  background: transparent;
+  border: none;
+  color: #9FBCBB;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+.device-btn:hover { color: #fff; }
+.device-btn.active {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-weight: 600;
+}
+.action-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 7px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+.action-btn:hover {
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* --- Quick Info Banner --- */
+.preview-status-bar {
+  background: #0B1C1E;
+  padding: 7px 20px;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #9FBCBB;
+}
+.status-pill-list {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34D399;
+  box-shadow: 0 0 6px #34D399;
+}
+
+/* --- Main Frame Area --- */
+.frame-stage {
+  flex: 1;
+  background: #081719;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  position: relative;
+}
+
+.viewport-wrapper {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+  overflow: hidden;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.viewport-wrapper.desktop {
+  width: 100%;
+  max-width: 1400px;
+  height: 100%;
+  min-height: calc(100vh - 125px);
+}
+.viewport-wrapper.tablet {
+  width: 768px;
+  height: 100%;
+  min-height: calc(100vh - 125px);
+}
+.viewport-wrapper.mobile {
+  width: 390px;
+  height: 844px;
+  border-radius: 36px;
+  border: 10px solid #1E293B;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background: #fff;
+  flex: 1;
+}
+
+@media (max-width: 1024px) {
+  .step-nav { order: 3; width: 100%; overflow-x: auto; justify-content: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="preview-header">
+  <div class="preview-brand">
+    <img src="assets/img/dr-amanda-avatar.webp" alt="Dr. Amanda Romine-Nelson">
+    <div class="preview-brand-text">
+      <h1>Metabolic Momentum Method™ Funnel</h1>
+      <p>Interactive Live Preview Studio &bull; Dr. Amanda Romine-Nelson</p>
+    </div>
+  </div>
+
+  <!-- Step Navigation Pills -->
+  <nav class="step-nav" aria-label="Funnel Steps">
+    <button type="button" class="step-btn active" data-url="index.html" data-step="landing">
+      <span>1. Landing Page</span>
+    </button>
+    <button type="button" class="step-btn" data-url="assessment.html" data-step="assessment">
+      <span>2. Assessment Quiz</span>
+    </button>
+    <button type="button" class="step-btn" data-url="apply.html" data-step="apply">
+      <span>3. Application</span>
+    </button>
+    <button type="button" class="step-btn" data-url="book.html" data-step="book">
+      <span>4. Call Booking</span>
+    </button>
+    <button type="button" class="step-btn" data-url="thank-you.html?path=booked" data-step="thankyou">
+      <span>5. Thank You</span>
+    </button>
+  </nav>
+
+  <!-- Device Switcher & External Actions -->
+  <div class="preview-tools">
+    <div class="device-toggle" aria-label="Device Viewport">
+      <button type="button" class="device-btn active" data-device="desktop" title="Desktop view">🖥️ Desktop</button>
+      <button type="button" class="device-btn" data-device="tablet" title="Tablet view (768px)">📱 Tablet</button>
+      <button type="button" class="device-btn" data-device="mobile" title="Mobile view (390px)">📱 Mobile</button>
+    </div>
+
+    <button type="button" class="action-btn" id="reload-btn" title="Reload active page">
+      🔄 Reload
+    </button>
+    <button type="button" class="action-btn" id="reset-lead-btn" title="Reset test answers/lead data">
+      🧹 Reset Lead
+    </button>
+    <a href="https://calendly.com/beagoodday-com/20-min-call-with-dr-amanda" target="_blank" rel="noopener" class="action-btn" title="Open Dr. Amanda's live Calendly page directly" style="background:var(--gold);color:var(--teal-ink);border-color:var(--gold);font-weight:700">
+      📅 Live Calendly
+    </a>
+    <a href="index.html" target="_blank" rel="noopener" class="action-btn" id="open-tab-btn" title="Open active page in standalone browser tab" style="background:var(--teal);border-color:var(--teal)">
+      ↗️ Open Standalone
+    </a>
+  </div>
+</header>
+
+<!-- Sub-header Status Bar -->
+<div class="preview-status-bar">
+  <div class="status-pill-list">
+    <span class="status-pill"><span class="status-dot"></span> Founder Photo: Upright "About Pic" + Credibility Card (No Whitespace Void)</span>
+    <span class="status-pill"><span class="status-dot"></span> Video: Welcome Video Embedded (`welcome.mp4`)</span>
+    <span class="status-pill"><span class="status-dot"></span> Booking: Dual Direct Booking + Verified Calendly (`beagoodday-com`)</span>
+    <span class="status-pill"><span class="status-dot"></span> Lead Routing: Gmail &amp; WhatsApp Configured</span>
+  </div>
+  <div style="font-family:monospace;font-size:0.75rem;color:#72B7A6">
+    Active Route: <strong id="active-route-label">index.html</strong>
+  </div>
+</div>
+
+<!-- Main Interactive Frame Stage -->
+<main class="frame-stage">
+  <div class="viewport-wrapper desktop" id="viewport-wrap">
+    <iframe class="preview-iframe" id="preview-frame" src="index.html" title="Funnel Live Preview"></iframe>
+  </div>
+</main>
+
+<script>
+(function () {
+  var frame = document.getElementById("preview-frame");
+  var wrapper = document.getElementById("viewport-wrap");
+  var routeLabel = document.getElementById("active-route-label");
+  var openTabBtn = document.getElementById("open-tab-btn");
+  var reloadBtn = document.getElementById("reload-btn");
+  var resetBtn = document.getElementById("reset-lead-btn");
+  var stepBtns = document.querySelectorAll(".step-btn");
+  var deviceBtns = document.querySelectorAll(".device-btn");
+
+  // Step Switcher
+  stepBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      stepBtns.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      var url = btn.getAttribute("data-url");
+      var cacheBuster = (url.indexOf("?") === -1 ? "?" : "&") + "t=" + Date.now();
+      frame.src = url + cacheBuster;
+      routeLabel.textContent = url;
+      openTabBtn.href = url;
+    });
+  });
+
+  // Device Switcher
+  deviceBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      deviceBtns.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      var device = btn.getAttribute("data-device");
+      wrapper.className = "viewport-wrapper " + device;
+    });
+  });
+
+  // Reload
+  reloadBtn.addEventListener("click", function () {
+    frame.src = frame.src;
+  });
+
+  // Reset Lead Data
+  resetBtn.addEventListener("click", function () {
+    try {
+      localStorage.removeItem("aca_lead");
+      sessionStorage.clear();
+      alert("Lead data reset! You can now test the funnel from a fresh lead perspective.");
+      frame.src = frame.src;
+    } catch (e) {
+      console.log(e);
+    }
+  });
+
+  // Keep Navigation Tabs in Sync with iframe internal navigation
+  frame.addEventListener("load", function () {
+    try {
+      var currentPath = frame.contentWindow.location.pathname.split("/").pop() || "index.html";
+      var currentSearch = frame.contentWindow.location.search || "";
+      var fullCurrent = currentPath + currentSearch;
+      
+      routeLabel.textContent = fullCurrent;
+      openTabBtn.href = fullCurrent;
+
+      stepBtns.forEach(function (btn) {
+        var btnUrl = btn.getAttribute("data-url");
+        if (btnUrl.indexOf(currentPath) !== -1) {
+          stepBtns.forEach(function (b) { b.classList.remove("active"); });
+          btn.classList.add("active");
+        }
+      });
+    } catch (err) {
+      // Cross-origin fallback if any
+    }
+  });
+
+  // URL Query Param Support for direct step deep-linking (e.g. ?step=book)
+  var params = new URLSearchParams(window.location.search);
+  var initialStep = params.get("step");
+  if (initialStep) {
+    var targetBtn = document.querySelector('.step-btn[data-step="' + initialStep + '"]');
+    if (targetBtn) targetBtn.click();
+  }
+})();
+</script>
+
+</body>
+</html>

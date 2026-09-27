@@ -1,0 +1,14 @@
+# Local browser profiles used for screenshots
+temp_chrome*/
+
+# Working screenshots
+*_shot.png
+*_test.png
+hero_desktop_view.png
+hero_mobile_view.png
+about_section_crop.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/

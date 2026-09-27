@@ -1,0 +1,80 @@
+# ============================================================
+# NETLIFY CONFIGURATION — ASK COACH AMANDA FUNNEL
+# ============================================================
+
+[build]
+  publish = "."
+
+# ------------------------------------------------------------
+# REDIRECTS & CLEAN URLS
+# ------------------------------------------------------------
+[[redirects]]
+  from = "/assessment"
+  to = "/assessment.html"
+  status = 200
+
+[[redirects]]
+  from = "/apply"
+  to = "/apply.html"
+  status = 200
+
+[[redirects]]
+  from = "/book"
+  to = "/book.html"
+  status = 200
+
+[[redirects]]
+  from = "/thank-you"
+  to = "/thank-you.html"
+  status = 200
+
+[[redirects]]
+  from = "/guide"
+  to = "/assets/docs/Quick-Start-Guide.pdf"
+  status = 302
+
+[[redirects]]
+  from = "/schedule"
+  to = "/book.html"
+  status = 302
+
+[[redirects]]
+  from = "/call"
+  to = "https://calendly.com/beagoodday-com/20-min-call-with-dr-amanda"
+  status = 302
+
+[[redirects]]
+  from = "/whatsapp"
+  to = "https://wa.me/19784003320"
+  status = 302
+
+# ------------------------------------------------------------
+# SECURITY & CACHE HEADERS
+# ------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"

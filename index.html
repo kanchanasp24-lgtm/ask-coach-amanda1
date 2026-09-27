@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metabolic Health Coaching for Women 40–65 | Ask Coach Amanda</title>
+<meta name="description" content="Are you doing all the right things but your body stopped responding? Pharmacist-led metabolic health coaching by Dr. Amanda Romine-Nelson, PharmD, RPh for women 40–65. Connect the dots between nutrition, sleep, stress, and medications.">
+<link rel="canonical" href="https://askcoachamanda.com/metabolic/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Are You Doing All The Right Things, But Your Body Stopped Responding?">
+<meta property="og:description" content="Pharmacist-led metabolic health coaching for women 40–65. Connect the dots between nutrition, sleep, stress, movement and medications to build wellness that sticks.">
+<meta property="og:url" content="https://askcoachamanda.com/metabolic/">
+<meta property="og:site_name" content="Ask Coach Amanda">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:video" content="assets/video/welcome.mp4">
+<meta property="og:video:type" content="video/mp4">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Metabolic Health Coaching for Women 40–65 | Dr. Amanda Romine-Nelson">
+<meta name="twitter:description" content="Are you doing all the right things but your body stopped responding? Connect the dots with Dr. Amanda, PharmD.">
+<meta name="twitter:image" content="assets/img/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/brand.css?v=20260921_v2">
+<link rel="stylesheet" href="assets/css/funnel.css?v=20260927_hero2">
+<style>
+/* Match header width to the wider hero on this page */
+.site-header__inner { max-width: 1280px; }
+/* ============================================================
+   FOUNDER SECTION: BULLETPROOF RESPONSIVE 2-COLUMN LAYOUT
+   Guaranteed side-by-side on all screens down to 768px,
+   symmetrically centered on mobile (<768px). Zero empty void.
+   ============================================================ */
+.founder-section-wrap {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .founder-section-wrap {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .founder-col-photo {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+.founder-photo-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(10, 32, 34, 0.45), 0 0 0 1px rgba(114, 183, 166, 0.25);
+  background: var(--teal-ink, #143A3D);
+}
+
+.founder-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.founder-photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(13, 38, 41, 0.75) 40%, rgba(13, 38, 41, 0.96) 100%);
+  padding: 24px 16px 12px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.founder-caption-name {
+  display: block;
+  font-family: var(--display, 'Playfair Display', serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.founder-caption-title {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--mint, #72B7A6);
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+
+.founder-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+  justify-content: center;
+}
+
+.founder-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(114, 183, 166, 0.12);
+  border: 1px solid rgba(114, 183, 166, 0.28);
+  color: #D6ECE7;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.founder-heading {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  line-height: 1.22;
+  margin-bottom: 16px;
+  color: #FFFFFF;
+}
+
+.founder-quote {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+  border-left: 4px solid var(--mint, #72B7A6);
+  padding: 18px 20px;
+  border-radius: 0 14px 14px 0;
+  margin: 0 0 24px;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  font-style: italic;
+}
+
+.founder-quote cite {
+  color: #9FBCBB;
+  margin-top: 8px;
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.cred-panel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(114, 183, 166, 0.2);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .cred-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.cred-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: #D6E8E6;
+}
+
+.cred-item strong {
+  display: block;
+  color: #FFFFFF;
+  font-size: 0.92rem;
+  margin-bottom: 2px;
+}
+
+.cred-item span {
+  font-size: 0.82rem;
+  color: #A4C5C2;
+}
+
+.cred-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--mint, #72B7A6);
+  color: var(--teal-ink, #143A3D);
+  font-weight: 800;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.founder-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brandmark" href="index.html">
+      <img src="assets/img/dr-amanda-avatar.webp" alt="Dr. Amanda Romine-Nelson, PharmD" width="40" height="40" style="border-radius:50%;border:2px solid var(--teal);display:block;">
+      <span>
+        <span class="brandmark__name">Ask Coach Amanda</span>
+        <span class="brandmark__sub">Dr. Amanda Romine-Nelson, PharmD, RPh</span>
+      </span>
+    </a>
+    <a class="btn btn--primary" href="assessment.html"
+       data-track="cta_click" data-track-loc="header">Take the assessment</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================
+       HERO  +  CLIENT VIDEO SLOT
+       ============================================================ -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+
+      <div>
+        <div class="credential-strip">
+          <span class="pill">PharmD, RPh</span>
+          <span class="pill">Fellowship in Medication Safety</span>
+          <span class="pill">Pharmacogenomics Trained</span>
+          <span class="pill">Health &amp; Wellness Coach</span>
+        </div>
+
+        <h1>Are you doing &ldquo;all the right things&rdquo;&hellip; but your body still isn&rsquo;t <span class="underline-gold">responding</span> like it used to?</h1>
+
+        <p class="lede">You&rsquo;re eating healthier, cutting back, and exercising &mdash; yet the weight is stubborn around your waist, energy crashes at 3&nbsp;p.m., and cravings won&rsquo;t budge. We connect the dots between nutrition, blood sugar, sleep, stress, movement, and your medications to build sustainable momentum that lasts.</p>
+
+        <div class="btn-row">
+          <a class="btn btn--primary btn--lg" href="assessment.html"
+             data-track="cta_click" data-track-loc="hero-primary">Take the 3-minute scorecard</a>
+          <a class="btn btn--ghost" href="#method"
+             data-track="cta_click" data-track-loc="hero-secondary">See how it works</a>
+        </div>
+        <p class="cta-note">Free &middot; 10 Questions &middot; No diagnosis, no lecture &middot; Instant results &amp; 7-day action guide</p>
+      </div>
+
+      <!-- Video Slot with Real Client Video -->
+      <div class="video-slot">
+        <div class="video-frame" id="video-frame">
+          <video controls playsinline preload="metadata" poster="assets/img/video-poster.webp" width="960" height="540">
+            <source src="assets/video/welcome.mp4" type="video/mp4">
+            <p>Your browser does not support HTML5 video. <a href="assets/video/welcome.mp4">Download the video directly</a>.</p>
+          </video>
+        </div>
+        <p class="video-caption">Meet Dr. Amanda &mdash; 3-minute welcome &amp; method overview</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div data-sticky-after aria-hidden="true"></div>
+
+  <!-- ============================================================
+       RECOGNIZE — PAIN POINTS
+       ============================================================ -->
+  <section class="section section--cream">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">Sound familiar?</p>
+        <h2>Do Any of These Sound Like What You&rsquo;re Experiencing?</h2>
+        <p class="lede">You don&rsquo;t need to &ldquo;try harder&rdquo; on advice that wasn&rsquo;t built for your body. If these sound familiar, your body is giving you clues that your metabolic health deserves a closer look.</p>
+      </div>
+
+      <div class="symptom-grid">
+        <div class="symptom"><span class="symptom__dot"></span><span>Gaining weight &mdash; especially around your waist &mdash; even though you don&rsquo;t feel like you&rsquo;re eating much differently than you used to.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>The things that used to help you lose weight have stopped working, leaving you wondering, <em>&ldquo;What changed?&rdquo;</em></span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>Experiencing an afternoon energy crash, feeling tired after meals, or relying on caffeine or something sweet to keep going.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>Craving sugar or carbohydrates, feeling hungry shortly after eating, or wondering why you never seem completely satisfied.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>Blood sugar, A1C, cholesterol, triglycerides, or blood pressure numbers have started moving in a concerning direction.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>Frustrated because you&rsquo;re genuinely trying to make healthy choices, but your body doesn&rsquo;t seem to be responding.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>Overwhelmed by conflicting advice on fasting, carbs, protein, supplements, hormones, and medications &mdash; unsure what actually makes sense for you.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>Taking a prescription medication and quietly wondering what lifestyle tools can safely complement your care.</span></div>
+      </div>
+
+      <div class="note mt7" style="max-width:820px;margin-left:auto;margin-right:auto">
+        <strong>What if these aren&rsquo;t separate problems?</strong> Your weight, waistline, hunger, cravings, energy, sleep, and blood sugar don&rsquo;t operate independently. They are all clues about how well your body is managing and using energy &mdash; and that&rsquo;s where metabolic flexibility begins.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPLAIN — CONNECT THE DOTS
+       ============================================================ -->
+  <section class="section">
+    <div class="wrap grid grid-2" style="align-items:center;gap:var(--s9)">
+      <div>
+        <p class="eyebrow">The core idea</p>
+        <h2>Health rarely comes down to one isolated factor.</h2>
+        <div class="rule--short"></div>
+        <p>Weight is not just about weight. Energy is not just about sleep. Cravings are not simply a lack of willpower. Blood sugar doesn&rsquo;t exist independently from what you eat, how you move, how you sleep, how stressed you are, and what you take.</p>
+        <p>Most health advice hands you one piece at a time. Drink more water. Walk more. Eat less. Take this. What almost nobody does is sit down and look at how the pieces interact <em>in your life</em> &mdash; and then help you decide what deserves attention first.</p>
+        <p><strong>That&rsquo;s the whole job.</strong> Connect the dots before you overhaul.</p>
+        <div class="btn-row mt6">
+          <a class="btn btn--primary" href="assessment.html"
+             data-track="cta_click" data-track-loc="explain">Find your starting point</a>
+        </div>
+      </div>
+
+      <div class="dots-figure">
+        <svg viewBox="0 0 520 440" role="img" aria-labelledby="dots-title dots-desc">
+          <title id="dots-title">Connect the dots</title>
+          <desc id="dots-desc">Eight interacting health factors — sleep, stress, movement, hydration, habits, medications, blood sugar and nutrition — all linked to a central hub.</desc>
+          <circle class="dots-ring" cx="260" cy="220" r="160"></circle>
+          <g class="dots-link">
+            <line x1="260" y1="220" x2="260" y2="60"></line>
+            <line x1="260" y1="220" x2="373" y2="107"></line>
+            <line x1="260" y1="220" x2="420" y2="220"></line>
+            <line x1="260" y1="220" x2="373" y2="333"></line>
+            <line x1="260" y1="220" x2="260" y2="380"></line>
+            <line x1="260" y1="220" x2="147" y2="333"></line>
+            <line x1="260" y1="220" x2="100" y2="220"></line>
+            <line x1="260" y1="220" x2="147" y2="107"></line>
+          </g>
+          <g class="dots-node" text-anchor="middle" dominant-baseline="middle">
+            <g><rect x="222" y="44"  width="76"  height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="260" y="61">Sleep</text></g>
+            <g><rect x="333" y="91"  width="80"  height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="373" y="108">Stress</text></g>
+            <g><rect x="366" y="204" width="108" height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="420" y="221">Movement</text></g>
+            <g><rect x="321" y="317" width="104" height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="373" y="334">Hydration</text></g>
+            <g><rect x="220" y="364" width="80"  height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="260" y="381">Habits</text></g>
+            <g><rect x="85"  y="317" width="124" height="32" rx="16" fill="#FBF3DF" stroke="#F0E2BE"></rect><text x="147" y="334">Medications</text></g>
+            <g><rect x="42"  y="204" width="116" height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="100" y="221">Blood sugar</text></g>
+            <g><rect x="97"  y="91"  width="100" height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="147" y="108">Nutrition</text></g>
+          </g>
+          <g class="dots-hub">
+            <circle cx="260" cy="220" r="58" fill="#347C81"></circle>
+            <text x="260" y="212" text-anchor="middle" font-size="17">Connect</text>
+            <text x="260" y="234" text-anchor="middle" font-size="17">the dots</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY DR. AMANDA — FOUNDER SPOTLIGHT
+       ============================================================ -->
+  <section class="section section--teal" id="about">
+    <div class="wrap">
+      <div class="founder-section-wrap">
+        
+        <!-- Founder Photo Showcase (Left Column) -->
+        <div class="founder-col-photo">
+          <div class="founder-photo-card">
+            <picture>
+              <source srcset="assets/img/dr-amanda.webp" type="image/webp">
+              <img src="assets/img/dr-amanda.jpg" alt="Dr. Amanda Romine-Nelson, PharmD, RPh - Pharmacist and Metabolic Health Coach" width="380" height="570" loading="lazy" decoding="async" class="founder-photo">
+            </picture>
+            <div class="founder-photo-caption">
+              <span class="founder-caption-name">Dr. Amanda Romine-Nelson</span>
+              <span class="founder-caption-title">PharmD, RPh &bull; Founder &amp; Coach</span>
+            </div>
+          </div>
+
+          <!-- Quick Credibility Badges under photo -->
+          <div class="founder-badges-row">
+            <span class="founder-badge">🩺 Licensed Pharmacist</span>
+            <span class="founder-badge">🔬 Postdoc Fellow</span>
+            <span class="founder-badge">🧬 Pharmacogenomics</span>
+            <span class="founder-badge">🌿 Lifestyle Educator</span>
+          </div>
+        </div>
+
+        <!-- Founder Story & Content (Right Column) -->
+        <div class="founder-col-content">
+          <p class="eyebrow eyebrow--on-dark">Why a pharmacist coach?</p>
+          <h2 class="founder-heading">
+            Most coaches can&rsquo;t talk about your medications. Most prescribers don&rsquo;t have 45 minutes to talk about your habits.
+          </h2>
+          <p class="lede" style="margin-bottom:var(--s4);color:#D2E8E5">
+            Dr. Amanda Romine-Nelson sits in that gap. She trained on the medication and clinical side of healthcare &mdash; then spent years learning how to translate science into realistic daily habits a busy woman can actually maintain.
+          </p>
+          
+          <blockquote class="founder-quote">
+            &ldquo;Medication can be an important tool. Lifestyle can be an important tool. The question isn&rsquo;t which side you&rsquo;re on &mdash; it&rsquo;s what combination of appropriate tools best supports your health.&rdquo;
+            <cite>&mdash; Dr. Amanda Romine-Nelson, PharmD, RPh</cite>
+          </blockquote>
+
+          <!-- Credentials 2-Column Grid -->
+          <div class="cred-panel">
+            <h4 style="color:var(--mint);margin-bottom:var(--s4);font-weight:700;letter-spacing:.1em;font-size:0.8rem;text-transform:uppercase">Clinical Training &amp; Qualifications</h4>
+            <div class="cred-grid">
+              <div class="cred-item">
+                <span class="cred-icon">✓</span>
+                <div>
+                  <strong>Doctor of Pharmacy (PharmD)</strong>
+                  <span>Licensed Registered Pharmacist (RPh)</span>
+                </div>
+              </div>
+              <div class="cred-item">
+                <span class="cred-icon">✓</span>
+                <div>
+                  <strong>2-Year Postdoctoral Fellowship</strong>
+                  <span>Medication safety, quality &amp; informatics</span>
+                </div>
+              </div>
+              <div class="cred-item">
+                <span class="cred-icon">✓</span>
+                <div>
+                  <strong>Pharmacogenomics Certified</strong>
+                  <span>Advanced personalized medication education</span>
+                </div>
+              </div>
+              <div class="cred-item">
+                <span class="cred-icon">✓</span>
+                <div>
+                  <strong>Adjunct Professor &amp; Clinical Educator</strong>
+                  <span>Former pharmacy &amp; nursing faculty</span>
+                </div>
+              </div>
+              <div class="cred-item">
+                <span class="cred-icon">✓</span>
+                <div>
+                  <strong>Dual Undergraduate Degrees</strong>
+                  <span>Chemical Engineering &amp; Economics</span>
+                </div>
+              </div>
+              <div class="cred-item">
+                <span class="cred-icon">✓</span>
+                <div>
+                  <strong>Metabolic Health Educator</strong>
+                  <span>Translating clinical science into sustainable momentum</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct CTA buttons -->
+          <div class="founder-cta-row">
+            <a href="assessment.html" class="btn btn--primary" style="padding:14px 28px;font-size:1rem;font-weight:600">Take the 3-minute scorecard &rarr;</a>
+            <a href="book.html" class="btn btn--outline" style="color:var(--white);border-color:rgba(255,255,255,.45);padding:14px 24px">Or book a 20-min strategy call &rarr;</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE METHOD
+       ============================================================ -->
+  <section class="section" id="method">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">The Metabolic Momentum Method&trade;</p>
+        <h2>Six moves, ninety days, one plan that fits your actual life</h2>
+        <p class="lede">Not a protocol you follow until you fall off it. A sequence you and Amanda build together and adjust as real life happens.</p>
+      </div>
+
+      <div class="path">
+        <div class="path__item path__item--active">
+          <p class="path__k">01 &middot; Understand</p>
+          <h3>See the whole picture</h3>
+          <p>Baseline, patterns, what you&rsquo;ve already tried, what your body is telling you. Before anything gets added or removed.</p>
+        </div>
+        <div class="path__item path__item--active">
+          <p class="path__k">02 &middot; Personalize</p>
+          <h3>Decide what matters first</h3>
+          <p>Two people with the same goal often need different strategies. We pick the one or two changes most likely to move you &mdash; not fifteen.</p>
+        </div>
+        <div class="path__item">
+          <p class="path__k">03 &middot; Act</p>
+          <h3>Run it in a real week</h3>
+          <p>Workdays, restaurants, travel, family, the stressful stretch. If it can&rsquo;t survive those, it isn&rsquo;t the plan.</p>
+        </div>
+        <div class="path__item">
+          <p class="path__k">04 &middot; Adjust</p>
+          <h3>Treat setbacks as data</h3>
+          <p>A hard weekend doesn&rsquo;t erase a good week. We look at what happened, learn from it, and change the approach.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-2 mt7" style="gap:var(--s6)">
+        <div class="card card--mint">
+          <h3>05 &middot; Build momentum</h3>
+          <p class="mb0">Progress shows up in more than the scale &mdash; waist, energy, cravings, satiety, sleep, consistency, confidence, and the markers your care team already tracks.</p>
+        </div>
+        <div class="card card--gold">
+          <h3>06 &middot; Thrive</h3>
+          <p class="mb0">You finish knowing what works for you, why it works, and how to get back on track when life goes sideways &mdash; without starting over from zero.</p>
+        </div>
+      </div>
+
+      <div class="center mt7">
+        <p class="arrow-path" style="justify-content:center">
+          <span>Understand</span><span>Personalize</span><span>Act</span><span>Adjust</span><span>Momentum</span><span>Thrive</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROGRAM + INVESTMENT
+       ============================================================ -->
+  <section class="section section--cream" id="program">
+    <div class="wrap">
+      <div class="program-card">
+        <div class="program-card__head">
+          <p class="eyebrow eyebrow--on-dark" style="margin-bottom:10px">90-day coaching program</p>
+          <h3>The Metabolic Momentum Method&trade;</h3>
+          <p>Personalized metabolic health coaching for women approximately 40&ndash;65 who feel metabolically stuck.</p>
+        </div>
+
+        <div class="program-card__body">
+          <div>
+            <h4 style="margin-bottom:var(--s5)">What&rsquo;s included every month</h4>
+            <ul class="includes">
+              <li>
+                <span class="ico" aria-hidden="true">2&times;</span>
+                <span><b>45-minute coaching sessions</b><span>Virtual, one-to-one with Dr. Amanda. Where the strategy gets built and adjusted.</span></span>
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true">2&times;</span>
+                <span><b>15-minute check-in calls</b><span>Short, specific course corrections between sessions &mdash; so a bad week doesn&rsquo;t become a lost month.</span></span>
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true">4&times;</span>
+                <span><b>Text or voice-message support</b><span>For the questions that come up in a grocery aisle or a restaurant, not in a scheduled call.</span></span>
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true">&#9733;</span>
+                <span><b>Medication &amp; supplement education</b><span>Within a pharmacist&rsquo;s scope: understanding what you take, what to ask your prescriber, and whether a supplement has a reasonable purpose for you.</span></span>
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true">&#9636;</span>
+                <span><b>A personalized plan you keep</b><span>Written, specific, and revised as you go &mdash; not a generic handout.</span></span>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="invest">
+            <p class="eyebrow" style="margin-bottom:var(--s3)">Program investment</p>
+            <p class="invest__price">$1,997<small>Paid in full &middot; 90-day program</small></p>
+            <p class="invest__alt">A 3-payment plan of <strong>$697</strong> is available on request.</p>
+            <a class="btn btn--primary btn--block" href="assessment.html"
+               data-track="cta_click" data-track-loc="pricing">Start with the assessment</a>
+            <p class="cta-note" style="justify-content:center;text-align:center">Assessment &rarr; results &rarr; short application &rarr; strategy call. Enrollment only happens after Amanda confirms it&rsquo;s a fit.</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IS / IS NOT
+       ============================================================ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">Straight answers</p>
+        <h2>What this is &mdash; and what it isn&rsquo;t</h2>
+        <p class="lede">Being clear about this up front saves everyone a call.</p>
+      </div>
+
+      <div class="compare">
+        <div class="compare__col compare__col--yes">
+          <h3>This is</h3>
+          <ul class="ticks">
+            <li>Pharmacist-guided health and wellness coaching</li>
+            <li>Metabolic health education you can actually use</li>
+            <li>A personalized strategy, adjusted as you go</li>
+            <li>Nutrition, blood sugar, sleep, stress, movement and habit support</li>
+            <li>Medication and supplement <em>education</em>, within professional scope</li>
+            <li>Collaborative &mdash; it encourages you to stay connected with your physician</li>
+            <li>A place to ask questions and understand the why</li>
+          </ul>
+        </div>
+        <div class="compare__col compare__col--no">
+          <h3>This is not</h3>
+          <ul class="crosses">
+            <li>Medical care, diagnosis, or a replacement for your physician</li>
+            <li>Prescribing &mdash; and never a promise you&rsquo;ll come off a medication</li>
+            <li>A restrictive diet or a quick-fix weight-loss program</li>
+            <li>A one-size-fits-all protocol</li>
+            <li>Anti-medication or anti-conventional-medicine</li>
+            <li>A promise to cure, fix or reverse a medical condition</li>
+            <li>A place where you get shamed, blamed or lectured</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note note--gold mt7" style="max-width:840px;margin-left:auto;margin-right:auto">
+        <strong>The positioning principle:</strong> use the right tools, for the right person, for the right reasons. Any medication change belongs with your prescribing healthcare professional &mdash; coaching helps you walk into that conversation better informed.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+       ============================================================ -->
+  <section class="section section--mint">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">In their words</p>
+        <h2>What clients say changed</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="quote-card">
+          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>Effectively and consistently create wins&hellip;</blockquote>
+          <div class="quote-card__who"><b>Lauren Martinez</b><span>Wife, mother and engineer</span></div>
+        </div>
+        <div class="quote-card">
+          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>I went from an &lsquo;I can&rsquo;t&rsquo; girl, to an &lsquo;I can&rsquo; girl&hellip;</blockquote>
+          <div class="quote-card__who"><b>Jessie Stephenson</b><span>Business owner and grandmother &middot; 90-day coaching</span></div>
+        </div>
+        <div class="quote-card">
+          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>She understands me and I trust her.</blockquote>
+          <div class="quote-card__who"><b>Kim Walker</b><span>Small business owner</span></div>
+        </div>
+      </div>
+      <p class="center small muted mt6">Individual experiences vary. Coaching outcomes depend on personal circumstances and participation, and no specific result is guaranteed.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FIT / NOT A FIT
+       ============================================================ -->
+  <section class="section">
+    <div class="wrap wrap--narrow">
+      <div class="section-head center">
+        <p class="eyebrow">Before you apply</p>
+        <h2>Is this a fit for you?</h2>
+        <p class="lede">Not every person who wants help is a good fit for this program, and saying so protects your time as much as Amanda&rsquo;s.</p>
+      </div>
+
+      <div class="card card--raised">
+        <h3>This is likely a strong fit if you</h3>
+        <ul class="ticks">
+          <li>Want to improve your metabolic health, not just drop weight this month</li>
+          <li>Are willing to look honestly at your nutrition, sleep, stress and movement patterns</li>
+          <li>Understand coaching requires your participation &mdash; and want accountability for it</li>
+          <li>Value personalization over a program someone else already wrote</li>
+          <li>Will stay appropriately connected with your physician and care team</li>
+          <li>Are ready to invest real time and attention for 90 days</li>
+        </ul>
+
+        <hr class="rule">
+
+        <h3>This is probably not the right fit if you</h3>
+        <ul class="crosses">
+          <li>Want guaranteed weight loss or a quick-fix diet</li>
+          <li>Want a medical diagnosis, treatment, or medication changes through coaching</li>
+          <li>Need medical evaluation or urgent care &mdash; please contact your provider</li>
+          <li>Aren&rsquo;t in a season where you can give this time and attention</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+       ============================================================ -->
+  <section class="section section--cream">
+    <div class="wrap wrap--narrow">
+      <div class="section-head center">
+        <p class="eyebrow">Questions</p>
+        <h2>The things people ask first</h2>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Will you tell me to stop taking my medications?</summary>
+          <div>
+            <p>No. Starting, stopping or changing a prescription is a decision for you and your prescribing healthcare professional &mdash; never something that happens inside a coaching relationship.</p>
+            <p>What a pharmacist&rsquo;s perspective does add: helping you understand why a medication may be used, what considerations could affect your health goals, and what questions are worth bringing to your next appointment. Many clients find they participate in those conversations with a lot more confidence.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Is this another diet?</summary>
+          <div><p>No. There is no meal plan you follow until you fall off it. We look at meal composition, protein, fiber, carbohydrates, timing, hunger and satiety &mdash; and build eating patterns that hold up at a restaurant, on a work trip and during a stressful week.</p></div>
+        </details>
+        <details>
+          <summary>I&rsquo;m already taking medication for blood sugar, blood pressure or cholesterol. Is this still relevant?</summary>
+          <div><p>Often, yes. Medication and lifestyle aren&rsquo;t opposing sides. Coaching focuses on the factors you can influence day to day &mdash; nutrition, movement, sleep, stress, hydration, habits &mdash; alongside whatever your care team has prescribed, and helps you stay a better-informed participant in your own care.</p></div>
+        </details>
+        <details>
+          <summary>Do I need lab work or a specific diagnosis to start?</summary>
+          <div><p>No. Bring whatever health information you already have and are comfortable sharing. Coaching does not diagnose conditions or interpret labs as a medical service, and nothing here replaces appropriate medical evaluation.</p></div>
+        </details>
+        <details>
+          <summary>How much time does this actually take?</summary>
+          <div><p>Two 45-minute sessions and two 15-minute check-ins per month, plus message support. The daily work is deliberately small &mdash; the goal is one or two changes at a time that you can genuinely maintain, not fifteen you abandon by week three.</p></div>
+        </details>
+        <details>
+          <summary>What happens on the strategy call?</summary>
+          <div><p>A real conversation, not a pitch. Amanda reviews your assessment and application, asks about what you&rsquo;ve already tried, what&rsquo;s getting in the way, and what you want to be different in 90 days. By the end you&rsquo;ll know whether this is a fit, what working together would look like, and what would be expected of you. If it isn&rsquo;t a fit, she&rsquo;ll say so and point you somewhere more useful.</p></div>
+        </details>
+        <details>
+          <summary>What does it cost?</summary>
+          <div><p>The Metabolic Momentum Method&trade; is $1,997 for the 90-day program, with a 3-payment plan of $697 available on request. Enrollment happens only after the strategy call confirms it&rsquo;s a genuine fit.</p></div>
+        </details>
+        <details>
+          <summary>Is this medical advice?</summary>
+          <div><p>No. Ask Coach Amanda provides health and wellness coaching and education. Nothing on this page or in the coaching relationship is intended to diagnose, treat, cure or prevent any disease, and it does not replace care from your physician or other treating healthcare professional. If you are experiencing new or concerning symptoms, please contact your healthcare provider &mdash; and if it is an emergency, call 911.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       A PERSONAL NOTE FROM DR. AMANDA
+       ============================================================ -->
+  <section class="section">
+    <div class="wrap wrap--narrow">
+      <div class="personal-note-card">
+        <div class="personal-note-header">
+          <img src="assets/img/dr-amanda-avatar.webp" alt="Dr. Amanda Romine-Nelson, PharmD" width="68" height="68" class="personal-note-avatar">
+          <div class="personal-note-title">
+            <h3>A Personal Note from Dr. Amanda</h3>
+            <p>Pharmacist &amp; Health Coach &middot; Founder, Ask Coach Amanda</p>
+          </div>
+        </div>
+
+        <p><strong>You don&rsquo;t need more random health tips. You need to know which ones matter for YOU.</strong></p>
+        <p>If you&rsquo;ve made it this far, you probably already know quite a bit about being healthy. And chances are, you&rsquo;ve tried more than a few things: cut calories, cut carbs, tried fasting, bought supplements, followed meal plans, and promised yourself you&rsquo;d &ldquo;get serious Monday.&rdquo;</p>
+        <p>And yet you&rsquo;re still wondering: <em>&ldquo;Why isn&rsquo;t my body responding the way it used to?&rdquo;</em></p>
+        <p>That&rsquo;s the exact question I care about. Because your weight, waistline, cravings, energy, sleep, stress, blood sugar, medications, and everyday habits don&rsquo;t exist in separate silos &mdash; they are all connected. Sometimes the breakthrough isn&rsquo;t finding another random thing to try; it&rsquo;s having someone help you connect the dots and determine which changes make sense for your unique physiology.</p>
+        <p>As a pharmacist and coach, I know people don&rsquo;t need someone telling them everything they&rsquo;re doing wrong. They need someone who listens, translates complicated health science into practical steps, and helps them turn what they know into consistent daily momentum. You don&rsquo;t have to keep piecing this together alone.</p>
+        <p style="margin-top:var(--s4);font-weight:600;color:var(--teal-ink);">&mdash; Dr. Amanda Romine-Nelson, PharmD, RPh</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA
+       ============================================================ -->
+  <section class="section section--teal">
+    <div class="wrap wrap--narrow center">
+      <p class="eyebrow eyebrow--on-dark">Your next step</p>
+      <h2>Start by finding out where your dots aren&rsquo;t connecting</h2>
+      <p class="lede">Take the 10-Question Metabolic Health &amp; Flexibility Scorecard. In about three minutes, you&rsquo;ll get an instant breakdown of your metabolic patterns, your personalized score out of 30, and your free 7-Day Quick-Start Action Guide PDF.</p>
+      <div class="btn-row center mt6">
+        <a class="btn btn--gold btn--lg" href="assessment.html"
+           data-track="cta_click" data-track-loc="footer-cta">Take the 10-question scorecard</a>
+        <a class="btn btn--ghost-on-dark" href="book.html"
+           data-track="cta_click" data-track-loc="footer-cta-book">Or book a strategy call</a>
+      </div>
+      <p class="cta-note cta-note--on-dark" style="justify-content:center">Prefer to just ask a question? Email <a href="mailto:contact@AskCoachAmanda.com" style="color:#DCEDE7">contact@AskCoachAmanda.com</a></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p style="font-family:var(--display);font-size:1.25rem;color:#fff;margin-bottom:10px">Ask Coach Amanda</p>
+        <p style="max-width:44ch">Pharmacist-led health and wellness coaching, education and consulting. Founded by Dr. Amanda Romine-Nelson, PharmD, RPh.</p>
+        <p style="margin-top:var(--s4)"><em>Connect the dots. Create momentum. Build wellness that sticks.</em></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-list">
+          <li><a href="tel:+19784003320">978-400-3320</a></li>
+          <li><a href="mailto:contact@AskCoachAmanda.com">contact@AskCoachAmanda.com</a></li>
+          <li><a href="https://wa.me/19784003320" target="_blank" rel="noopener">WhatsApp Chat</a></li>
+          <li><a href="book.html">Book a strategy call</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect &amp; More</h4>
+        <ul class="footer-list">
+          <li><a href="https://askcoachamanda.com/" target="_blank" rel="noopener">Main website</a></li>
+          <li><a href="https://www.youtube.com/channel/UCBv82ApWEK8eegISUryBG9Q" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.facebook.com/askcoachamanda" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.instagram.com/AskCoachAmanda/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/amandarominenelson/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="assets/docs/Quick-Start-Guide.pdf" download>Quick-Start Guide (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      <strong>Medical disclaimer.</strong> Statements on this page should not be taken as medical advice. Ask Coach Amanda provides health and wellness coaching and education and is not primary, urgent or emergency medical care. Nothing here is intended to diagnose, treat, cure or prevent any disease, and no specific health or weight outcome is promised or guaranteed. Always consult your own physician or qualified healthcare professional before making changes to your medications, treatment or health plan. If you are experiencing a medical emergency, call 911.
+      <br><br>&copy; <span data-year>2026</span> Ask Coach Amanda. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta">
+  <a class="btn btn--primary btn--block" href="assessment.html"
+     data-track="cta_click" data-track-loc="sticky-mobile">Take the 3-minute scorecard</a>
+</div>
+
+<!-- ============================================================
+     STRUCTURED DATA
+     Includes Person, Organization, Service, VideoObject, and FAQPage
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://askcoachamanda.com/#amanda",
+      "name": "Dr. Amanda Romine-Nelson",
+      "honorificSuffix": "PharmD, RPh",
+      "jobTitle": "Pharmacist, Health & Wellness Coach, Metabolic Health Educator",
+      "image": "https://askcoachamanda.com/assets/img/dr-amanda.jpg",
+      "worksFor": { "@id": "https://askcoachamanda.com/#org" },
+      "knowsAbout": ["Metabolic health", "Medication education", "Blood sugar", "Behavior change", "Health coaching"]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://askcoachamanda.com/#org",
+      "name": "Ask Coach Amanda",
+      "url": "https://askcoachamanda.com/",
+      "logo": "https://askcoachamanda.com/assets/img/dr-amanda-avatar.jpg",
+      "founder": { "@id": "https://askcoachamanda.com/#amanda" },
+      "telephone": "+1-978-400-3320",
+      "email": "contact@AskCoachAmanda.com",
+      "sameAs": [
+        "https://www.youtube.com/channel/UCBv82ApWEK8eegISUryBG9Q",
+        "https://www.linkedin.com/in/amandarominenelson/",
+        "https://www.facebook.com/askcoachamanda",
+        "https://www.instagram.com/AskCoachAmanda/",
+        "https://twitter.com/AskCoachAmanda"
+      ],
+      "slogan": "Connect the dots. Create momentum. Build wellness that sticks."
+    },
+    {
+      "@type": "VideoObject",
+      "name": "Welcome to The Metabolic Momentum Method with Dr. Amanda Romine-Nelson",
+      "description": "Dr. Amanda Romine-Nelson, PharmD, RPh explains why your body stops responding to conventional diet advice and how pharmacist-led metabolic health coaching helps women 40-65 connect the dots.",
+      "thumbnailUrl": [
+        "https://askcoachamanda.com/assets/img/video-poster.jpg"
+      ],
+      "uploadDate": "2026-09-08T20:38:00+00:00",
+      "duration": "PT3M22S",
+      "contentUrl": "https://askcoachamanda.com/assets/video/welcome.mp4",
+      "embedUrl": "https://askcoachamanda.com/assets/video/welcome.mp4"
+    },
+    {
+      "@type": "Service",
+      "name": "The Metabolic Momentum Method",
+      "serviceType": "Metabolic health coaching",
+      "provider": { "@id": "https://askcoachamanda.com/#org" },
+      "description": "A 90-day personalized metabolic health coaching program for women approximately 40-65 who feel metabolically stuck. Includes two 45-minute coaching sessions and two 15-minute check-ins per month plus message support.",
+      "audience": { "@type": "PeopleAudience", "suggestedMinAge": 40, "suggestedMaxAge": 65, "suggestedGender": "female" },
+      "offers": {
+        "@type": "Offer",
+        "price": "1997",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/LimitedAvailability"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Will you tell me to stop taking my medications?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Starting, stopping or changing a prescription is a decision for you and your prescribing healthcare professional. Coaching adds education about why a medication may be used and what questions to bring to your next appointment." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this another diet?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. There is no meal plan to fall off. Coaching looks at meal composition, protein, fiber, carbohydrates, timing, hunger and satiety, and builds eating patterns that hold up in real life." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much time does the program take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Two 45-minute sessions and two 15-minute check-ins per month, plus message support. Daily work is intentionally small: one or two changes at a time that can genuinely be maintained." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the Metabolic Momentum Method cost?",
+          "acceptedAnswer": { "@type": "Answer", "text": "$1,997 for the 90-day program, with a 3-payment plan of $697 available on request. Enrollment happens only after a strategy call confirms it is a genuine fit." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this medical advice?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Ask Coach Amanda provides health and wellness coaching and education. It is not intended to diagnose, treat, cure or prevent any disease and does not replace care from your physician." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<script src="assets/js/config.js?v=20260921c"></script>
+<script src="assets/js/app.js?v=20260921c"></script>
+</body>
+</html>
+

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metabolic Health &amp; Flexibility Scorecard | Ask Coach Amanda</title>
+<meta name="description" content="A free, educational 10-question scorecard from Dr. Amanda Romine-Nelson, PharmD, RPh. Discover how well your body is managing energy and download your 7-day action guide.">
+<meta name="robots" content="noindex, follow">
+<meta property="og:title" content="Metabolic Health &amp; Flexibility Scorecard | Ask Coach Amanda">
+<meta property="og:description" content="Discover your metabolic health score and get Dr. Amanda's 7-day action guide.">
+<meta property="og:image" content="assets/img/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/brand.css?v=20260921_v2">
+<link rel="stylesheet" href="assets/css/funnel.css?v=20260921_v2">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brandmark" href="index.html">
+      <img src="assets/img/dr-amanda-avatar.webp" alt="Dr. Amanda Romine-Nelson, PharmD" width="40" height="40" style="border-radius:50%;border:2px solid var(--teal);display:block;">
+      <span>
+        <span class="brandmark__name">Ask Coach Amanda</span>
+        <span class="brandmark__sub">Metabolic Health Scorecard</span>
+      </span>
+    </a>
+    <span class="pill">Educational, not diagnostic</span>
+  </div>
+</header>
+
+<main id="main" class="section section--tight">
+  <div class="wrap quiz-shell">
+
+    <div class="center" id="quiz-intro" style="margin-bottom:var(--s7)">
+      <p class="eyebrow">Metabolic Health &amp; Flexibility Scorecard</p>
+      <h1 style="font-size:clamp(1.9rem,4vw,2.7rem)">How well is your body managing energy?</h1>
+      <p class="lede">Ten straightforward questions based on your past 4 weeks. You&rsquo;ll see your score out of 30, identify your top opportunities, and get your complimentary 7-Day Quick-Start Guide PDF.</p>
+    </div>
+
+    <div class="progress" id="progress-wrap">
+      <div class="progress__meta">
+        <span id="progress-now">Question 1 of 10</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress__track"><div class="progress__bar" id="progress-bar"></div></div>
+    </div>
+
+    <!-- ========================================================
+         STEP 1 — QUESTIONS
+         ======================================================== -->
+    <section id="step-questions" class="quiz-card">
+      <h2 class="quiz-q" id="q-text" tabindex="-1">&nbsp;</h2>
+      <p class="quiz-help" id="q-help" hidden></p>
+      <div class="choices" id="q-choices"></div>
+      <div class="quiz-nav">
+        <button type="button" class="link-btn" id="q-back" hidden>&larr; Back</button>
+        <button type="button" class="btn btn--primary" id="q-next" hidden>Continue</button>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         STEP 2 — RESULTS GATE
+         ======================================================== -->
+    <section id="step-gate" class="quiz-card" hidden>
+      <p class="eyebrow">Last step</p>
+      <h2 class="quiz-q">Where should we send your results?</h2>
+      <p class="quiz-help">
+        Your answers point to <strong id="gate-preview">&nbsp;</strong> as the area most likely worth your attention first.
+        Enter your details to see the full read-out &mdash; it appears on the next screen straight away, and a copy goes to your inbox.
+      </p>
+
+      <form id="gate-form" name="lead-assessment" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="lead-assessment">
+        <input type="hidden" name="bot-field">
+        <input type="hidden" name="total_score" id="f-total-score">
+        <input type="hidden" name="score_tier" id="f-score-tier">
+        <input type="hidden" name="primary_concern" id="f-primary-concern">
+        <input type="hidden" name="secondary_concern" id="f-secondary-concern">
+        <input type="hidden" name="red_flag" id="f-red-flag">
+        <input type="hidden" name="lead_source" id="f-lead-source">
+
+        <div class="grid grid-2" style="gap:var(--s4)">
+          <div class="field">
+            <label for="lead-first">First name</label>
+            <input class="input" type="text" id="lead-first" name="first_name" autocomplete="given-name" required>
+            <p class="field-error" hidden>Please add your first name.</p>
+          </div>
+          <div class="field">
+            <label for="lead-last">Last name</label>
+            <input class="input" type="text" id="lead-last" name="last_name" autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="lead-email">Email</label>
+          <input class="input" type="email" id="lead-email" name="email" autocomplete="email" required>
+          <p class="field-error" hidden>Please enter a valid email address.</p>
+        </div>
+
+        <div class="field">
+          <label for="lead-phone">Mobile number <span class="muted" style="font-weight:400">(optional)</span></label>
+          <p class="hint">Only used if you ask for a call or a text reminder.</p>
+          <input class="input" type="tel" id="lead-phone" name="phone" autocomplete="tel">
+        </div>
+
+        <div class="field consent-field">
+          <label class="consent">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span data-aca="consent.smsText">I agree to receive occasional emails and texts from Ask Coach Amanda about my request.</span>
+          </label>
+          <p class="field-error" hidden>Please tick the box so we can send your results.</p>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg btn--block">Show my results</button>
+        <p class="cta-note" style="justify-content:center">We don&rsquo;t sell or share your information. Unsubscribe any time.</p>
+      </form>
+    </section>
+
+    <!-- ========================================================
+         STEP 3 — RESULTS
+         ======================================================== -->
+    <section id="step-results" hidden>
+
+      <div class="result-hero">
+        <p class="eyebrow eyebrow--on-dark">Your Scorecard Results</p>
+        <h2 id="r-name">Here&rsquo;s what stood out</h2>
+        <div id="r-score-wrap" style="margin-top:var(--s4);margin-bottom:var(--s4)">
+          <div style="font-size:1.1rem;opacity:.9">Total Metabolic Score:</div>
+          <div style="font-size:2.6rem;font-weight:700;font-family:var(--display);color:#fff;line-height:1.1" id="r-total-score">-- / 30</div>
+          <div id="r-tier-badge" class="score-tier-badge">Calculating...</div>
+        </div>
+        <p id="r-headline">&nbsp;</p>
+      </div>
+
+      <div class="note note--alert" id="r-alert" hidden>
+        <strong>Please read this first.</strong> You indicated you&rsquo;re experiencing new or concerning symptoms you haven&rsquo;t discussed with a healthcare provider. Please contact your provider about those &mdash; coaching is not medical care and cannot evaluate symptoms. If this is an emergency, call 911. Everything below is general education only.
+      </div>
+
+      <!-- FREE LEAD MAGNET DOWNLOAD CARD -->
+      <div class="lead-magnet-card">
+        <div class="lead-magnet-card__content">
+          <span class="lead-magnet-card__tag">Your Free 7-Day Guide Included</span>
+          <h3 class="lead-magnet-card__title">The Metabolic Momentum Quick-Start Guide</h3>
+          <p class="lead-magnet-card__desc">7 Simple Ways to Support Your Metabolic Health &mdash; Starting Today. Includes your 7-Day Action Plan and daily habit tracker.</p>
+        </div>
+        <a class="btn btn--primary lead-magnet-card__btn" href="assets/docs/Quick-Start-Guide.pdf" download="Metabolic-Momentum-Quick-Start-Guide.pdf" data-track="cta_click" data-track-loc="assessment-results-download">
+          Download Guide (PDF) &darr;
+        </a>
+      </div>
+
+      <div class="quiz-card mt5">
+        <h3>Where your answers point</h3>
+        <p class="small muted">Higher means more room for improvement in that area right now &mdash; not a score, a grade, or a diagnosis.</p>
+        <div class="score-bars mt5" id="r-bars"></div>
+      </div>
+
+      <div class="quiz-card mt5">
+        <h3>What that means</h3>
+        <p id="r-what">&nbsp;</p>
+
+        <h4 class="mt6">Worth looking at</h4>
+        <ul class="ticks" id="r-look"></ul>
+
+        <div class="note note--gold mt6">
+          <strong>One place to start this week.</strong>
+          <span id="r-first">&nbsp;</span>
+        </div>
+
+        <div id="r-notes"></div>
+      </div>
+
+      <div class="quiz-card mt5" id="r-second-block">
+        <h3>Your second area: <span id="r-second-label"></span></h3>
+        <p id="r-second-text" class="mb0">&nbsp;</p>
+        <p class="small muted mt4 mb0">These interact. Which one to work on first &mdash; and in what order &mdash; is exactly the kind of thing a strategy call sorts out.</p>
+      </div>
+
+      <div class="quiz-card card--mint mt5 center" id="r-cta"></div>
+
+
+      <p class="small muted center mt6" style="max-width:60ch;margin-left:auto;margin-right:auto">
+        This assessment is educational and is not a medical evaluation, diagnosis, or treatment recommendation. It does not assess or interpret any medical condition, laboratory value, or medication. Always consult your physician or qualified healthcare professional about your health and before changing any medication.
+      </p>
+
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer" style="margin-top:var(--s8)">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p style="font-family:var(--display);font-size:1.25rem;color:#fff;margin-bottom:10px">Ask Coach Amanda</p>
+        <p style="max-width:44ch">Pharmacist-led health and wellness coaching and education. Dr. Amanda Romine-Nelson, PharmD, RPh.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-list">
+          <li><a href="tel:+19784003320">978-400-3320</a></li>
+          <li><a href="mailto:contact@AskCoachAmanda.com">contact@AskCoachAmanda.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul class="footer-list">
+          <li><a href="index.html">About the program</a></li>
+          <li><a href="https://askcoachamanda.com/">Main website</a></li>
+          <li><a href="https://askcoachamanda.com/privacy-policy/">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">
+      <strong>Medical disclaimer.</strong> Ask Coach Amanda provides health and wellness coaching and education. Nothing here is intended to diagnose, treat, cure or prevent any disease, and no specific outcome is promised. Consult your own physician before changing your medications, treatment or health plan. In an emergency, call 911.
+      <br><br>&copy; <span data-year>2026</span> Ask Coach Amanda. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js?v=20260921c"></script>
+<script src="assets/js/app.js?v=20260921c"></script>
+<script src="assets/js/assessment.js?v=20260921c"></script>
+</body>
+</html>

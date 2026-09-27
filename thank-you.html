@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You're All Set | Ask Coach Amanda</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/brand.css?v=20260921_v2">
+<link rel="stylesheet" href="assets/css/funnel.css?v=20260921_v2">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brandmark" href="index.html">
+      <img src="assets/img/dr-amanda-avatar.webp" alt="Dr. Amanda Romine-Nelson, PharmD" width="40" height="40" style="border-radius:50%;border:2px solid var(--teal);display:block;">
+      <span>
+        <span class="brandmark__name">Ask Coach Amanda</span>
+        <span class="brandmark__sub">Connect the dots. Create momentum.</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<main id="main" class="section">
+  <div class="wrap wrap--narrow">
+
+    <div class="center">
+      <p class="eyebrow" id="ty-eyebrow">Confirmed</p>
+      <h1 id="ty-title">You&rsquo;re all set</h1>
+      <p class="lede" id="ty-sub">&nbsp;</p>
+    </div>
+
+    <!-- Lead Magnet Download Card -->
+    <div class="lead-magnet-card mt6">
+      <div class="lead-magnet-card__content">
+        <span class="lead-magnet-card__tag">Free Gift &middot; Action Plan Included</span>
+        <h3 class="lead-magnet-card__title">The Metabolic Momentum Quick-Start Guide</h3>
+        <p class="lead-magnet-card__desc">7 Simple Ways to Support Your Metabolic Health &mdash; Starting Today. Includes your 7-Day Action Plan and daily habit tracker.</p>
+      </div>
+      <a class="btn btn--primary lead-magnet-card__btn" href="assets/docs/Quick-Start-Guide.pdf" download="Metabolic-Momentum-Quick-Start-Guide.pdf" data-track="cta_click" data-track-loc="thank-you-download">
+        Download Guide (PDF) &darr;
+      </a>
+    </div>
+
+    <div class="quiz-card mt6">
+      <h3 id="ty-next-title">What happens next</h3>
+      <ol class="stack" id="ty-next" style="padding-left:22px;margin:0"></ol>
+    </div>
+
+    <div class="note mt6" id="ty-note"></div>
+
+    <!-- WhatsApp Direct Connection Card -->
+    <div class="card card--mint mt6 center">
+      <h3 style="margin-bottom:8px">Have a question right now?</h3>
+      <p class="small mb3">Dr. Amanda is available directly via WhatsApp for quick questions regarding your scorecard or consultation.</p>
+      <a class="btn btn--primary" id="ty-whatsapp-btn" href="https://wa.me/19784003320" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px">
+        <span>💬 Chat with Dr. Amanda on WhatsApp</span>
+      </a>
+    </div>
+
+    <div class="center mt7">
+      <p class="small muted">Something come up? Reply to any email from Amanda, or reach her directly at
+        <a href="mailto:contact@AskCoachAmanda.com">contact@AskCoachAmanda.com</a> &middot;
+        <a href="tel:+19784003320">978-400-3320</a> &middot;
+        <a href="https://wa.me/19784003320" target="_blank" rel="noopener">WhatsApp</a>.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer" style="margin-top:var(--s8)">
+  <div class="wrap">
+    <p class="disclaimer" style="margin-top:0;border-top:0;padding-top:0">
+      <strong>Medical disclaimer.</strong> Ask Coach Amanda provides health and wellness coaching and education. Nothing here is intended to diagnose, treat, cure or prevent any disease, and no specific outcome is promised. Consult your own physician before changing your medications, treatment or health plan. In an emergency, call 911.
+      <br><br>&copy; <span data-year>2026</span> Ask Coach Amanda. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js?v=20260921c"></script>
+<script src="assets/js/app.js?v=20260921c"></script>
+<script>
+(function () {
+  var lead = window.ACA.store.read();
+  var path = new URLSearchParams(location.search).get("path") ||
+             (lead.consultation_status === "booked" ? "booked" : "lead");
+
+  var COPY = {
+    booked: {
+      eyebrow: "Call confirmed",
+      title: (lead.first_name ? lead.first_name + ", your call is booked" : "Your call is booked"),
+      sub: "Amanda will read your assessment and application before you speak, so the conversation can start somewhere useful.",
+      steps: [
+        "<strong>Check your inbox.</strong> A confirmation with the call link is on its way. If it isn&rsquo;t there in ten minutes, look in promotions or spam and mark it as safe.",
+        "<strong>Put it in your calendar.</strong> Twenty minutes, video or phone &mdash; whichever you chose.",
+        "<strong>Bring your real week.</strong> Not an idealised version of it. The plan has to work for the life you actually have.",
+        "<strong>Nothing to prepare.</strong> If you want to jot down what&rsquo;s been most frustrating lately, that helps. That&rsquo;s all."
+      ],
+      note: "<strong>If you need to move it,</strong> use the reschedule link in your confirmation email. No explanation needed."
+    },
+    nurture: {
+      eyebrow: "You're on the list",
+      title: "Take what's useful, leave the rest",
+      sub: "You said you&rsquo;re gathering information, so that&rsquo;s exactly what you&rsquo;ll get &mdash; short, practical emails about the area your assessment pointed to.",
+      steps: [
+        "<strong>Your results are in your inbox.</strong> Keep them somewhere you&rsquo;ll find them again.",
+        "<strong>A short email every week or so.</strong> One idea, explained properly, with something you can actually do.",
+        "<strong>No pressure sequence.</strong> When you want a conversation, the door is open &mdash; and until then, nobody will chase you.",
+        "<strong>Unsubscribe any time.</strong> One click at the bottom of any email."
+      ],
+      note: "<strong>Changed your mind?</strong> You can <a href=\"book.html\">book a complimentary call</a> whenever you&rsquo;re ready."
+    },
+    lead: {
+      eyebrow: "Confirmed",
+      title: "Thanks &mdash; that&rsquo;s come through",
+      sub: "Amanda or someone on her team will be in touch shortly.",
+      steps: [
+        "<strong>Check your inbox.</strong> A confirmation is on its way. Look in promotions or spam if you don&rsquo;t see it.",
+        "<strong>You&rsquo;ll hear back within one business day.</strong> Usually sooner.",
+        "<strong>In the meantime,</strong> there&rsquo;s nothing you need to do."
+      ],
+      note: "<strong>Urgent health concern?</strong> Please contact your healthcare provider directly &mdash; coaching is not medical care, and in an emergency you should call 911."
+    }
+  };
+
+  var c = COPY[path] || COPY.lead;
+  document.getElementById("ty-eyebrow").textContent = c.eyebrow;
+  document.getElementById("ty-title").innerHTML = c.title;
+  document.getElementById("ty-sub").innerHTML = c.sub;
+  document.getElementById("ty-note").innerHTML = c.note;
+
+  var ol = document.getElementById("ty-next");
+  c.steps.forEach(function (s) {
+    var li = document.createElement("li");
+    li.innerHTML = s;
+    li.style.marginBottom = "12px";
+    ol.appendChild(li);
+  });
+
+  var waBtn = document.getElementById("ty-whatsapp-btn");
+  if (waBtn && lead.first_name) {
+    var greeting = encodeURIComponent("Hi Dr. Amanda, this is " + lead.first_name + ". I just took the Metabolic Health Scorecard and wanted to connect!");
+    waBtn.href = "https://wa.me/19784003320?text=" + greeting;
+  }
+
+  window.ACA.track("thank_you_view", { path: path });
+})();
+</script>
+</body>
+</html>

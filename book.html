@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Your Strategy Call | Ask Coach Amanda</title>
+<meta name="description" content="Book a complimentary metabolic health strategy call with Dr. Amanda Romine-Nelson, PharmD, RPh.">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/brand.css?v=20260921_v3">
+<link rel="stylesheet" href="assets/css/funnel.css?v=20260921_v3">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brandmark" href="index.html">
+      <img src="assets/img/dr-amanda-avatar.webp" alt="Dr. Amanda Romine-Nelson, PharmD" width="40" height="40" style="border-radius:50%;border:2px solid var(--teal);display:block;">
+      <span>
+        <span class="brandmark__name">Ask Coach Amanda</span>
+        <span class="brandmark__sub">Strategy call</span>
+      </span>
+    </a>
+    <span class="pill" id="step-pill">Last step</span>
+  </div>
+</header>
+
+<style>
+.booking-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: var(--s5);
+  background: var(--cream);
+  padding: 5px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+}
+.booking-tab-btn {
+  flex: 1;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  border: none;
+  background: transparent;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--teal-ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+.booking-tab-btn.active {
+  background: var(--teal);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(20,58,61,0.18);
+}
+.booking-tab-btn:hover:not(.active) {
+  background: rgba(20,58,61,0.06);
+}
+</style>
+
+<main id="main" class="section section--tight">
+  <div class="wrap">
+
+    <div class="center" style="max-width:720px;margin:0 auto var(--s7)">
+      <p class="eyebrow">Complimentary &middot; 20 minutes</p>
+      <h1 id="book-title" style="font-size:clamp(1.85rem,4vw,2.6rem)">Pick a time to talk with Amanda</h1>
+      <p class="lede" id="book-sub">A real conversation, not a pitch. Amanda reviews what you&rsquo;ve shared, asks what she needs to ask, and tells you honestly whether coaching is the right move right now.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:var(--s7);align-items:start">
+
+      <div>
+        <!-- Booking View Switcher -->
+        <div class="booking-tabs" role="tablist">
+          <button type="button" class="booking-tab-btn active" id="tab-calendly-btn" role="tab" aria-selected="true">📅 Book on Dr. Amanda's Calendar (Live)</button>
+          <button type="button" class="booking-tab-btn" id="tab-form-btn" role="tab" aria-selected="false">📝 Direct Request / Alternate Hours</button>
+        </div>
+
+        <!-- TAB 1: Live Calendly Embed (PRIMARY ACTIVE VIEW) -->
+        <div id="booking-calendly-wrap">
+          <!-- Calendly Verified Event Bar -->
+          <div class="card" style="padding:16px 20px;background:var(--cream);border:1px solid var(--line);border-radius:var(--r-lg);margin-bottom:var(--s4);box-shadow:var(--shadow-sm)">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:8px">
+              <span class="pill" style="background:#E2F3EE;color:#1B5E4A;border:1px solid #72B7A6;font-size:0.78rem;font-weight:700">
+                🟢 Live Calendar Connected
+              </span>
+              <span class="small muted" style="font-weight:600">
+                ⏱️ 20–25 Minutes &bull; 100% Complimentary
+              </span>
+            </div>
+            <p style="margin:0 0 6px;font-size:0.95rem;color:var(--teal-ink);font-weight:600">
+              Select your preferred day and time on Dr. Amanda's live schedule below:
+            </p>
+            <p class="small muted" style="margin:0">
+              📞 Amanda will call you directly at your number (from Google Voice <strong style="color:var(--teal-ink)">978-400-3320</strong>) or meet on <strong>Zoom</strong>. Calendar invites are delivered instantly to your inbox.
+            </p>
+          </div>
+
+          <!-- Lead Sync Notice Banner (shown if user took assessment) -->
+          <div id="lead-sync-banner" class="note note--mint" style="display:none;margin-bottom:var(--s4);font-size:0.9rem">
+            <strong>Assessment results connected:</strong> Your scorecard responses (<span id="lead-score-text"></span>) are automatically attached so Dr. Amanda can review your profile before connecting.
+          </div>
+
+          <!-- Calendly Inline Container -->
+          <div class="calendly-wrap" id="calendly-inline" data-url="https://calendly.com/beagoodday-com/20-min-call-with-dr-amanda" style="min-height:950px;min-width:320px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);background:var(--white);box-shadow:var(--shadow-sm);">
+            <iframe id="calendly-frame"
+                    src="https://calendly.com/beagoodday-com/20-min-call-with-dr-amanda?hide_landing_page_details=1&hide_event_type_details=1&hide_gdpr_banner=1&primary_color=347c81&text_color=23292a"
+                    width="100%"
+                    height="950"
+                    frameborder="0"
+                    title="Schedule a 20-min Call with Dr. Amanda Romine-Nelson"
+                    style="width:100%;height:950px;min-height:950px;border:none;display:block;background:#ffffff;">
+            </iframe>
+          </div>
+
+          <div style="margin-top:var(--s4);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:12px 16px;background:var(--white);border:1px solid var(--line);border-radius:var(--r)">
+            <span class="small muted">Prefer to view Dr. Amanda's calendar in full screen?</span>
+            <a id="calendly-direct-btn" href="https://calendly.com/beagoodday-com/20-min-call-with-dr-amanda" target="_blank" rel="noopener" class="btn btn--outline btn--sm" style="font-size:0.86rem;padding:7px 16px;display:inline-flex;align-items:center;gap:6px">
+              ↗️ Open Calendly in New Tab
+            </a>
+          </div>
+        </div>
+
+        <!-- TAB 2: Direct Strategy Call Booking Form (FALLBACK / ALTERNATE HOURS) -->
+        <div id="booking-form-wrap" class="card" style="padding:var(--s6);background:var(--white);border-radius:var(--r-lg);border:1px solid var(--line);box-shadow:var(--shadow-sm)" hidden>
+          <div style="margin-bottom:var(--s5)">
+            <h2 style="font-size:1.35rem;margin-bottom:6px;color:var(--teal-ink)">Request a custom consultation time</h2>
+            <p class="small muted" style="margin:0">Don&rsquo;t see a Calendly slot that fits your schedule? Choose your preferred day and window below, and Amanda&rsquo;s team will confirm via email or SMS.</p>
+          </div>
+
+          <form id="booking-form" name="strategy-call-booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="strategy-call-booking">
+            <input type="hidden" name="bot-field">
+            <input type="hidden" name="total_score" id="b-score">
+            <input type="hidden" name="score_tier" id="b-tier">
+            <input type="hidden" name="primary_concern" id="b-concern">
+            <input type="hidden" name="lead_source" id="b-source">
+
+            <!-- Preferred Day & Date -->
+            <div class="grid grid-2" style="gap:var(--s4);margin-bottom:var(--s4)">
+              <div class="field">
+                <label for="b-date">Preferred Date</label>
+                <input class="input" type="date" id="b-date" name="preferred_date" required style="background:var(--white)">
+                <p class="field-error" hidden>Please choose a date for your call.</p>
+              </div>
+              <div class="field">
+                <label for="b-time">Preferred Time Window</label>
+                <select class="input" id="b-time" name="preferred_time_window" required style="background:var(--white)">
+                  <option value="">Select a time of day…</option>
+                  <option value="Morning (9:00 AM – 12:00 PM EST)">Morning (9:00 AM – 12:00 PM EST)</option>
+                  <option value="Afternoon (12:00 PM – 4:00 PM EST)">Afternoon (12:00 PM – 4:00 PM EST)</option>
+                  <option value="Late Afternoon / Evening (4:00 PM – 7:00 PM EST)">Late Afternoon / Evening (4:00 PM – 7:00 PM EST)</option>
+                </select>
+                <p class="field-error" hidden>Please pick your preferred time window.</p>
+              </div>
+            </div>
+
+            <!-- Meeting Format -->
+            <div class="field" style="margin-bottom:var(--s4)">
+              <label>How would you prefer to connect?</label>
+              <div class="grid grid-2" style="gap:var(--s3);margin-top:6px">
+                <label class="choice" style="cursor:pointer;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);display:flex;align-items:center;gap:10px;background:var(--cream)">
+                  <input type="radio" name="call_format" value="Phone Call (Amanda calls you)" checked style="accent-color:var(--teal)">
+                  <span style="font-size:0.92rem;font-weight:500">📞 Phone Call (Amanda calls you)</span>
+                </label>
+                <label class="choice" style="cursor:pointer;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r);display:flex;align-items:center;gap:10px;background:var(--cream)">
+                  <input type="radio" name="call_format" value="Zoom Video Meeting" style="accent-color:var(--teal)">
+                  <span style="font-size:0.92rem;font-weight:500">💻 Zoom Video Meeting</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="grid grid-2" style="gap:var(--s4);margin-bottom:var(--s4)">
+              <div class="field">
+                <label for="b-first">First Name</label>
+                <input class="input" type="text" id="b-first" name="first_name" autocomplete="given-name" required>
+                <p class="field-error" hidden>Please provide your first name.</p>
+              </div>
+              <div class="field">
+                <label for="b-last">Last Name</label>
+                <input class="input" type="text" id="b-last" name="last_name" autocomplete="family-name" required>
+                <p class="field-error" hidden>Please provide your last name.</p>
+              </div>
+            </div>
+
+            <div class="grid grid-2" style="gap:var(--s4);margin-bottom:var(--s4)">
+              <div class="field">
+                <label for="b-email">Email Address</label>
+                <input class="input" type="email" id="b-email" name="email" autocomplete="email" required>
+                <p class="field-error" hidden>Please provide a valid email.</p>
+              </div>
+              <div class="field">
+                <label for="b-phone">Mobile Phone</label>
+                <input class="input" type="tel" id="b-phone" name="phone" autocomplete="tel" required>
+                <p class="field-error" hidden>Please provide your phone number.</p>
+              </div>
+            </div>
+
+            <div class="field" style="margin-bottom:var(--s5)">
+              <label for="b-notes">What would you like Dr. Amanda to focus on? <span class="muted" style="font-weight:400">(Optional)</span></label>
+              <textarea class="input" id="b-notes" name="call_focus" rows="3" placeholder="E.g. reviewing my scorecard results, persistent midsection weight, blood sugar patterns, or medication questions..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--lg btn--block" id="booking-submit-btn">
+              Submit Direct Call Request &rarr;
+            </button>
+            <p class="cta-note" style="justify-content:center;margin-top:var(--s3)">
+              Amanda reviews your information personally. You&rsquo;ll receive email confirmation and a calendar invite.
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <aside class="stack">
+        <!-- Dr. Amanda Trust Card beside calendar -->
+        <div class="card" style="padding:16px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm)">
+          <img src="assets/img/dr-amanda-avatar.webp" alt="Dr. Amanda Romine-Nelson, PharmD" width="60" height="60" style="border-radius:50%;border:2px solid var(--teal);object-fit:cover;flex-shrink:0">
+          <div>
+            <h4 style="margin:0 0 2px;font-size:1.02rem;color:var(--teal-ink)">Dr. Amanda Romine-Nelson</h4>
+            <p class="small muted" style="margin:0">PharmD, RPh &bull; Founder &amp; Coach</p>
+            <p style="font-size:0.8rem;color:var(--teal);margin:4px 0 0;font-weight:600">20-Min Strategy Call &bull; Phone or Zoom</p>
+          </div>
+        </div>
+
+        <div class="card card--mint">
+          <h3>What happens on the call</h3>
+          <ul class="ticks">
+            <li>Amanda has already read your assessment and application</li>
+            <li>You talk through what you&rsquo;ve tried and what keeps getting in the way</li>
+            <li>She explains what working together would actually look like &mdash; and what&rsquo;s expected of you</li>
+            <li>You leave knowing whether it&rsquo;s a fit, either way</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Worth having handy</h3>
+          <ul class="ticks">
+            <li>A rough sense of your current medications and supplements</li>
+            <li>Any recent numbers you&rsquo;ve been told to watch &mdash; only if you have them</li>
+            <li>What your typical week genuinely looks like</li>
+          </ul>
+          <p class="small muted mt4 mb0">None of this is required. Come as you are &mdash; it&rsquo;s a conversation.</p>
+        </div>
+
+        <div class="note">
+          <strong>Need to reschedule?</strong> Use the link in your confirmation email, or reply to it. No awkwardness &mdash; life happens.
+        </div>
+
+        <div class="card card--gold">
+          <h4 style="margin-bottom:8px">Have questions or prefer direct contact?</h4>
+          <p class="small mb2">Reach Dr. Amanda directly via email, phone, or WhatsApp:</p>
+          <ul class="footer-list" style="font-size:0.92rem;margin-bottom:0">
+            <li><strong>Email:</strong> <a href="mailto:contact@AskCoachAmanda.com">contact@AskCoachAmanda.com</a></li>
+            <li><strong>Call / Text:</strong> <a href="tel:+19784003320">978-400-3320</a></li>
+            <li><strong>WhatsApp:</strong> <a href="https://wa.me/19784003320" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" style="margin-top:var(--s8)">
+  <div class="wrap">
+    <p class="disclaimer" style="margin-top:0;border-top:0;padding-top:0">
+      <strong>Medical disclaimer.</strong> A strategy call is a coaching conversation, not a medical appointment. Ask Coach Amanda does not diagnose conditions, interpret laboratory results as a medical service, or make changes to prescriptions. If you are experiencing new or concerning symptoms, contact your healthcare provider; in an emergency, call 911.
+      <br><br>&copy; <span data-year>2026</span> Ask Coach Amanda. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js?v=20260921e"></script>
+<script src="assets/js/app.js?v=20260921e"></script>
+<script>
+(function () {
+  var CFG = (window.ACA && window.ACA.config) || {};
+  var lead = window.ACA.store.read();
+  var LIVE_CALENDLY = "https://calendly.com/beagoodday-com/20-min-call-with-dr-amanda";
+
+  /* Route-aware copy: someone sent here by a red flag needs a
+     different frame than someone who just finished applying. */
+  if (lead.red_flag) {
+    document.getElementById("book-title").textContent = "Let's talk it through first";
+    document.getElementById("book-sub").innerHTML =
+      "Because you flagged something you haven't raised with a provider, a conversation is the right next step. Amanda will help you separate what belongs with your healthcare provider from what coaching can genuinely support.";
+    document.getElementById("step-pill").textContent = "Complimentary call";
+  } else if (lead.application_submitted_at) {
+    document.getElementById("step-pill").textContent = "Step 3 of 3";
+  }
+
+  /* ------------------------------------------------------------
+     CALENDLY RESPONDENT DATA PASSING
+     Takes the respondent's information (Name, Email, Phone,
+     Assessment Score, Tier, Focus Area) and injects it into Calendly
+     ------------------------------------------------------------ */
+  var fullName = [lead.first_name, lead.last_name].filter(Boolean).join(" ");
+  var calendlyParams = [];
+  if (fullName) calendlyParams.push("name=" + encodeURIComponent(fullName));
+  if (lead.first_name) calendlyParams.push("first_name=" + encodeURIComponent(lead.first_name));
+  if (lead.last_name) calendlyParams.push("last_name=" + encodeURIComponent(lead.last_name));
+  if (lead.email) calendlyParams.push("email=" + encodeURIComponent(lead.email));
+  if (lead.phone) calendlyParams.push("phone_number=" + encodeURIComponent(lead.phone));
+  
+  var notes = [];
+  if (lead.total_score !== undefined && lead.total_score !== "") {
+    notes.push("Score: " + lead.total_score + "/30 (" + (lead.score_tier || "") + ")");
+  }
+  if (lead.primary_concern) {
+    notes.push("Roadblock: " + lead.primary_concern);
+  }
+  if (notes.length) {
+    calendlyParams.push("a1=" + encodeURIComponent(notes.join(" | ")));
+  }
+  calendlyParams.push("hide_landing_page_details=1");
+  calendlyParams.push("hide_event_type_details=1");
+  calendlyParams.push("primary_color=347c81");
+  calendlyParams.push("hide_gdpr_banner=1");
+  calendlyParams.push("text_color=23292a");
+  /* Required for Calendly to postMessage booking events back to this page */
+  calendlyParams.push("embed_type=Inline");
+  calendlyParams.push("embed_domain=" + encodeURIComponent(location.hostname || "askcoachamanda.com"));
+  calendlyParams.push("utm_source=funnel");
+  calendlyParams.push("utm_campaign=" + encodeURIComponent(lead.score_tier || "metabolic_health"));
+
+  var fullCalendlyUrl = LIVE_CALENDLY + (calendlyParams.length ? "?" + calendlyParams.join("&") : "");
+  
+  var cFrame = document.getElementById("calendly-frame");
+  if (cFrame) cFrame.src = fullCalendlyUrl;
+  
+  var cDirect = document.getElementById("calendly-direct-btn");
+  if (cDirect) cDirect.href = fullCalendlyUrl.replace(/&?embed_(type|domain)=[^&]*/g, "");
+
+  var cWrap = document.getElementById("calendly-inline");
+  if (cWrap) cWrap.setAttribute("data-url", fullCalendlyUrl);
+
+  /* Lead Sync Banner UI */
+  var leadSyncBanner = document.getElementById("lead-sync-banner");
+  var leadScoreText = document.getElementById("lead-score-text");
+  if (leadSyncBanner && (lead.total_score !== undefined || lead.score_tier || lead.primary_concern)) {
+    leadSyncBanner.style.display = "block";
+    if (leadScoreText) {
+      var bits = [];
+      if (lead.total_score !== undefined && lead.total_score !== "") bits.push("Score: " + lead.total_score + "/30");
+      if (lead.score_tier) bits.push("Tier: " + lead.score_tier);
+      if (lead.primary_concern) bits.push("Focus: " + lead.primary_concern);
+      leadScoreText.textContent = bits.join(" · ");
+    }
+  }
+
+  /* ------------------------------------------------------------
+     TAB SWITCHER (Form vs Calendly)
+     ------------------------------------------------------------ */
+  var tabFormBtn = document.getElementById("tab-form-btn");
+  var tabCalendlyBtn = document.getElementById("tab-calendly-btn");
+  var formWrap = document.getElementById("booking-form-wrap");
+  var calendlyWrap = document.getElementById("booking-calendly-wrap");
+
+  if (tabFormBtn && tabCalendlyBtn) {
+    tabFormBtn.addEventListener("click", function () {
+      tabFormBtn.classList.add("active");
+      tabFormBtn.setAttribute("aria-selected", "true");
+      tabCalendlyBtn.classList.remove("active");
+      tabCalendlyBtn.setAttribute("aria-selected", "false");
+      formWrap.hidden = false;
+      calendlyWrap.hidden = true;
+    });
+
+    tabCalendlyBtn.addEventListener("click", function () {
+      tabCalendlyBtn.classList.add("active");
+      tabCalendlyBtn.setAttribute("aria-selected", "true");
+      tabFormBtn.classList.remove("active");
+      tabFormBtn.setAttribute("aria-selected", "false");
+      formWrap.hidden = true;
+      calendlyWrap.hidden = false;
+    });
+  }
+
+  /* ------------------------------------------------------------
+     FORM PRE-POPULATION & SUBMISSION
+     ------------------------------------------------------------ */
+  var form = document.getElementById("booking-form");
+  if (form) {
+    // Set minimum date to tomorrow
+    var dateInput = document.getElementById("b-date");
+    if (dateInput) {
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      // Skip to Monday if weekend
+      if (tomorrow.getDay() === 0) tomorrow.setDate(tomorrow.getDate() + 1);
+      if (tomorrow.getDay() === 6) tomorrow.setDate(tomorrow.getDate() + 2);
+      var yyyy = tomorrow.getFullYear();
+      var mm = String(tomorrow.getMonth() + 1).padStart(2, "0");
+      var dd = String(tomorrow.getDate()).padStart(2, "0");
+      dateInput.min = yyyy + "-" + mm + "-" + dd;
+      dateInput.value = yyyy + "-" + mm + "-" + dd;
+    }
+
+    // Prefill lead fields
+    if (lead.first_name && document.getElementById("b-first")) document.getElementById("b-first").value = lead.first_name;
+    if (lead.last_name && document.getElementById("b-last")) document.getElementById("b-last").value = lead.last_name;
+    if (lead.email && document.getElementById("b-email")) document.getElementById("b-email").value = lead.email;
+    if (lead.phone && document.getElementById("b-phone")) document.getElementById("b-phone").value = lead.phone;
+    if (document.getElementById("b-score")) document.getElementById("b-score").value = lead.total_score || "";
+    if (document.getElementById("b-tier")) document.getElementById("b-tier").value = lead.score_tier || "";
+    if (document.getElementById("b-concern")) document.getElementById("b-concern").value = lead.primary_concern || "";
+    if (document.getElementById("b-source")) document.getElementById("b-source").value = lead.lead_source || "funnel";
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!ACA.form.validate(form)) return;
+
+      var btn = document.getElementById("booking-submit-btn");
+      ACA.form.busy(btn, true, "Reserving your consultation…");
+
+      var fields = ACA.form.serialize(form);
+      var payload = Object.assign({}, fields, {
+        consultation_status: "booked",
+        consultation_booked_at: new Date().toISOString(),
+        preferred_date: fields.preferred_date,
+        preferred_time: fields.preferred_time_window,
+        call_format: fields.call_format,
+        call_focus: fields.call_focus || ""
+      });
+
+      window.ACA.track("booking_complete", {
+        preferred_date: fields.preferred_date,
+        time_window: fields.preferred_time_window,
+        format: fields.call_format
+      });
+
+      window.ACA.submit("booking", payload)
+        .catch(function (err) { console.warn("[ACA booking notice]", err); })
+        .then(function () {
+          setTimeout(function () {
+            location.href = "thank-you.html?path=booked";
+          }, 600);
+        });
+    });
+  }
+
+  /* ------------------------------------------------------------
+     CALENDLY POSTMESSAGE LISTENER
+     ------------------------------------------------------------ */
+  window.addEventListener("message", function (e) {
+    if (!/^https:\/\/([a-z0-9-]+\.)?calendly\.com$/.test(e.origin)) return;
+    if (!e.data || typeof e.data.event !== "string") return;
+    if (e.data.event !== "calendly.event_scheduled") return;
+    window.ACA.store.write({
+      consultation_status: "booked",
+      consultation_booked_at: new Date().toISOString()
+    });
+    window.ACA.track("booking_complete", {});
+    window.ACA.submit("lead", { consultation_status: "booked" });
+    setTimeout(function () { location.href = "thank-you.html?path=booked"; }, 1000);
+  });
+
+  window.ACA.track("booking_view", { route: lead.route, red_flag: !!lead.red_flag });
+})();
+</script>
+</body>
+</html>

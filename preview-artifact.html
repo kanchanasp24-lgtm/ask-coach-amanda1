@@ -1,0 +1,2517 @@
+<title>Metabolic Momentum Funnel</title>
+<style>
+/* ============================================================
+   ASK COACH AMANDA — Funnel Design System
+   Brand palette from the Brand, Audience, Funnel & Automation
+   Reference Guide (Aug 2026).
+   ============================================================ */
+
+:root {
+  /* --- Brand palette (exact, from the guide) --- */
+  --mint:        #72B7A6;
+  --teal:        #347C81;
+  --slate:       #595F5F;
+  --gold:        #E6BF5A;
+  --white:       #FFFFFF;
+
+  /* --- Derived tones (kept in the same family) --- */
+  --teal-deep:   #22585C;
+  --teal-ink:    #143A3D;
+  --mint-tint:   #EDF6F3;
+  --mint-tint-2: #DCEDE7;
+  --gold-tint:   #FBF3DF;
+  --cream:       #FAF8F4;
+
+  /* --- Text (contrast-checked on white) --- */
+  --ink:         #23292A;  /* body text        14.2:1 */
+  --ink-soft:    #4E5658;  /* secondary text    7.6:1 */
+  --ink-faint:   #798183;  /* meta / captions   4.6:1 */
+
+  /* --- Surfaces & lines --- */
+  --bg:          #FFFFFF;
+  --line:        #E2E8E6;
+  --line-strong: #C9D6D3;
+
+  /* --- Type --- */
+  --display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* --- Spacing scale --- */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
+  --s6: 32px; --s7: 48px; --s8: 64px; --s9: 88px; --s10: 120px;
+
+  /* --- Radius & shadow --- */
+  --r-sm: 8px; --r: 14px; --r-lg: 22px; --r-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(20,58,61,.06), 0 2px 8px rgba(20,58,61,.05);
+  --shadow:    0 2px 6px rgba(20,58,61,.06), 0 12px 32px rgba(20,58,61,.08);
+  --shadow-lg: 0 4px 12px rgba(20,58,61,.08), 0 28px 64px rgba(20,58,61,.14);
+
+  --maxw: 1120px;
+  --maxw-narrow: 760px;
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;          /* larger base — core audience is 40–65 */
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg, video { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: var(--teal); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--teal-deep); }
+[hidden] { display: none !important; }
+
+:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--teal); color: #fff; padding: 12px 20px;
+  border-radius: 0 0 var(--r-sm) 0; font-weight: 600;
+}
+.skip-link:focus { left: 0; color: #fff; }
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+   TYPE
+   ============================================================ */
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  color: var(--teal-ink);
+  margin: 0 0 var(--s4);
+}
+h1 { font-size: clamp(2.1rem, 4.6vw, 3.3rem); line-height: 1.1; letter-spacing: -0.018em; }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+h3 { font-size: clamp(1.2rem, 2vw, 1.44rem); font-weight: 600; line-height: 1.3; }
+h4 { font-size: 1.05rem; font-family: var(--sans); font-weight: 700; letter-spacing: 0; }
+p { margin: 0 0 var(--s4); }
+p:last-child { margin-bottom: 0; }
+
+.lede {
+  font-size: clamp(1.1rem, 1.7vw, 1.28rem);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.eyebrow {
+  font-family: var(--sans);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 var(--s3);
+}
+.eyebrow--on-dark { color: var(--mint); }
+.mark { color: var(--teal); }
+.underline-gold {
+  background-image: linear-gradient(transparent 62%, var(--gold) 62%, var(--gold) 92%, transparent 92%);
+  padding: 0 2px;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--s5); }
+.wrap--narrow { max-width: var(--maxw-narrow); }
+.section { padding: var(--s9) 0; }
+.section--tight { padding: var(--s8) 0; }
+.section--cream { background: var(--cream); }
+.section--mint { background: var(--mint-tint); }
+.section--teal { background: var(--teal-ink); color: #E8F1F0; }
+.section--teal h2, .section--teal h3 { color: var(--white); }
+.section--teal .lede { color: #B9D2D1; }
+
+.center { text-align: center; }
+.stack > * + * { margin-top: var(--s4); }
+.section-head { max-width: 660px; margin: 0 0 var(--s7); }
+.section-head.center { margin-left: auto; margin-right: auto; }
+
+.grid { display: grid; gap: var(--s5); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) { .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--sans); font-size: 1.02rem; font-weight: 600;
+  padding: 17px 32px; border-radius: var(--r-pill);
+  border: 2px solid transparent; cursor: pointer; text-decoration: none;
+  transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, border-color .16s ease;
+  line-height: 1.2; text-align: center;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn--primary { background: var(--teal); color: var(--white); box-shadow: var(--shadow); }
+.btn--primary:hover { background: var(--teal-deep); color: var(--white); box-shadow: var(--shadow-lg); }
+
+.btn--gold { background: var(--gold); color: var(--teal-ink); box-shadow: var(--shadow); }
+.btn--gold:hover { background: #DBB149; color: var(--teal-ink); box-shadow: var(--shadow-lg); }
+
+.btn--ghost { background: transparent; color: var(--teal); border-color: var(--line-strong); }
+.btn--ghost:hover { background: var(--mint-tint); border-color: var(--mint); color: var(--teal-deep); }
+
+.btn--on-dark { background: var(--white); color: var(--teal-ink); }
+.btn--on-dark:hover { background: var(--mint-tint); color: var(--teal-ink); }
+
+.btn--ghost-on-dark { background: transparent; color: #DCEDE7; border-color: rgba(255,255,255,.35); }
+.btn--ghost-on-dark:hover { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.6); }
+
+.btn--lg { font-size: 1.1rem; padding: 20px 40px; }
+.btn--block { display: flex; width: 100%; }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--s4); align-items: center; }
+.btn-row.center { justify-content: center; }
+
+.cta-note {
+  font-size: .88rem; color: var(--ink-faint); margin-top: var(--s3);
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.cta-note--on-dark { color: #9FBCBB; }
+.center .cta-note { justify-content: center; }
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s6);
+}
+.card--flat { box-shadow: none; }
+.card--raised { box-shadow: var(--shadow); border-color: transparent; }
+.card--mint { background: var(--mint-tint); border-color: var(--mint-tint-2); }
+.card--gold { background: var(--gold-tint); border-color: #F0E2BE; }
+.card__num {
+  font-family: var(--display); font-size: 1.55rem; font-weight: 600;
+  width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center; margin-bottom: var(--s4);
+  background: var(--mint-tint); color: var(--teal);
+}
+
+/* ============================================================
+   LISTS
+   ============================================================ */
+.ticks, .crosses { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.ticks li, .crosses li { position: relative; padding-left: 34px; line-height: 1.5; }
+.ticks li::before, .crosses li::before {
+  content: ""; position: absolute; left: 0; top: 4px;
+  width: 21px; height: 21px; border-radius: 50%;
+  background-repeat: no-repeat; background-position: center; background-size: 12px;
+}
+.ticks li::before {
+  background-color: var(--mint-tint-2);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23347C81' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+}
+.crosses li::before {
+  background-color: #F2E9E7;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238C5B52' stroke-width='3.2' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
+}
+.section--teal .ticks li::before { background-color: rgba(114,183,166,.22); }
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+.field { margin-bottom: var(--s5); }
+.field label, .field .label {
+  display: block; font-weight: 600; font-size: .95rem;
+  margin-bottom: 8px; color: var(--ink);
+}
+.field .hint { font-size: .85rem; color: var(--ink-faint); margin: -2px 0 8px; }
+.input, select.input, textarea.input {
+  width: 100%; padding: 15px 16px;
+  border: 1.5px solid var(--line-strong); border-radius: var(--r-sm);
+  background: var(--white); font-size: 1rem; transition: border-color .15s, box-shadow .15s;
+}
+.input:focus {
+  outline: none; border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(52,124,129,.14);
+}
+.input[aria-invalid="true"] { border-color: #B4544A; }
+textarea.input { min-height: 120px; resize: vertical; }
+.field-error { color: #A5453C; font-size: .86rem; margin-top: 6px; font-weight: 500; }
+
+.consent {
+  display: flex; gap: 12px; align-items: flex-start;
+  font-size: .9rem; color: var(--ink-soft); line-height: 1.5;
+}
+.consent input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--teal); flex: none; }
+
+/* Choice buttons (assessment + application) */
+.choices { display: grid; gap: 10px; }
+.choice {
+  display: flex; align-items: flex-start; gap: 13px;
+  padding: 15px 18px; border: 1.5px solid var(--line-strong);
+  border-radius: var(--r); background: var(--white);
+  cursor: pointer; text-align: left; width: 100%;
+  transition: border-color .14s, background-color .14s, box-shadow .14s;
+}
+.choice:hover { border-color: var(--mint); background: var(--mint-tint); }
+.choice__box {
+  flex: none; width: 22px; height: 22px; margin-top: 1px;
+  border: 2px solid var(--line-strong); border-radius: 50%;
+  display: grid; place-items: center; transition: border-color .14s, background-color .14s;
+}
+.choice--multi .choice__box { border-radius: 6px; }
+.choice__box::after {
+  content: ""; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--white); transform: scale(0); transition: transform .14s;
+}
+.choice--multi .choice__box::after { border-radius: 2px; }
+.choice[aria-pressed="true"], .choice.is-selected {
+  border-color: var(--teal); background: var(--mint-tint); box-shadow: 0 0 0 3px rgba(52,124,129,.1);
+}
+.choice[aria-pressed="true"] .choice__box, .choice.is-selected .choice__box {
+  border-color: var(--teal); background: var(--teal);
+}
+.choice[aria-pressed="true"] .choice__box::after, .choice.is-selected .choice__box::after { transform: scale(1); }
+.choice__text { font-size: 1rem; line-height: 1.45; }
+.choice__sub { display: block; font-size: .86rem; color: var(--ink-faint); margin-top: 3px; }
+
+/* ============================================================
+   MISC COMPONENTS
+   ============================================================ */
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--mint-tint); color: var(--teal-deep);
+  border: 1px solid var(--mint-tint-2);
+  padding: 7px 16px; border-radius: var(--r-pill);
+  font-size: .85rem; font-weight: 600; letter-spacing: .01em;
+}
+.pill--gold { background: var(--gold-tint); border-color: #F0E2BE; color: #6B551F; }
+.pill--on-dark { background: rgba(114,183,166,.16); border-color: rgba(114,183,166,.3); color: var(--mint); }
+
+.rule { height: 1px; background: var(--line); border: 0; margin: var(--s7) 0; }
+.rule--short { width: 56px; height: 3px; background: var(--gold); border-radius: 2px; margin: 0 0 var(--s5); }
+.center .rule--short { margin-left: auto; margin-right: auto; }
+
+.note {
+  background: var(--mint-tint); border-left: 4px solid var(--mint);
+  border-radius: 0 var(--r) var(--r) 0; padding: var(--s5) var(--s5);
+  font-size: .96rem; color: var(--ink-soft);
+}
+.note strong { color: var(--teal-ink); }
+.note--gold { background: var(--gold-tint); border-left-color: var(--gold); }
+.note--alert { background: #FBF1EF; border-left-color: #C1786D; }
+
+blockquote.pull {
+  font-family: var(--display); font-size: clamp(1.28rem, 2.5vw, 1.8rem);
+  line-height: 1.38; color: var(--teal-ink); margin: 0; font-weight: 500;
+}
+blockquote.pull cite { display: block; font-family: var(--sans); font-size: .95rem; font-style: normal; font-weight: 600; color: var(--ink-faint); margin-top: var(--s4); }
+
+/* ============================================================
+   PROGRESS
+   ============================================================ */
+.progress { margin-bottom: var(--s6); }
+.progress__meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: .85rem; color: var(--ink-faint); margin-bottom: 8px; font-weight: 500;
+}
+.progress__track { height: 7px; background: var(--mint-tint-2); border-radius: var(--r-pill); overflow: hidden; }
+.progress__bar { height: 100%; background: linear-gradient(90deg, var(--mint), var(--teal)); border-radius: var(--r-pill); transition: width .4s cubic-bezier(.4,0,.2,1); width: 0; }
+
+/* ============================================================
+   HEADER / FOOTER
+   ============================================================ */
+.site-header {
+  position: sticky; top: 0; z-index: 60;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s5); padding: 14px var(--s5); max-width: var(--maxw); margin: 0 auto; }
+.brandmark { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--teal-ink); }
+.brandmark__glyph {
+  width: 38px; height: 38px; border-radius: 50%; flex: none;
+  background: var(--teal); color: #fff;
+  display: grid; place-items: center;
+  font-family: var(--display); font-weight: 600; font-size: 1.1rem;
+}
+.brandmark__name { font-family: var(--display); font-weight: 600; font-size: 1.08rem; line-height: 1.1; letter-spacing: -.01em; }
+.brandmark__sub { display: block; font-family: var(--sans); font-size: .72rem; font-weight: 500; color: var(--ink-faint); letter-spacing: .04em; text-transform: uppercase; margin-top: 1px; }
+.site-header .btn { padding: 12px 24px; font-size: .95rem; }
+@media (max-width: 560px) { .brandmark__sub { display: none; } .site-header .btn { padding: 11px 18px; font-size: .88rem; } }
+
+.site-footer { background: var(--teal-ink); color: #A9C6C5; padding: var(--s8) 0 var(--s6); font-size: .92rem; }
+.site-footer a { color: #CBE2E0; }
+.site-footer a:hover { color: #fff; }
+.site-footer h4 { color: #fff; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: var(--s3); }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: var(--s7); }
+@media (max-width: 780px) { .footer-grid { grid-template-columns: 1fr; gap: var(--s6); } }
+.footer-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+.disclaimer {
+  margin-top: var(--s7); padding-top: var(--s5);
+  border-top: 1px solid rgba(255,255,255,.14);
+  font-size: .8rem; line-height: 1.6; color: #90AFAE;
+}
+
+/* ============================================================
+   UTIL
+   ============================================================ */
+.mt0 { margin-top: 0; } .mb0 { margin-bottom: 0; }
+.mt4 { margin-top: var(--s4); } .mt5 { margin-top: var(--s5); }
+.mt6 { margin-top: var(--s6); } .mt7 { margin-top: var(--s7); }
+.small { font-size: .88rem; }
+.muted { color: var(--ink-faint); }
+.nowrap { white-space: nowrap; }
+
+/* ============================================================
+   ASK COACH AMANDA — Page-level components
+   Depends on brand.css
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   HERO
+   ------------------------------------------------------------ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 520px at 88% -8%, rgba(114,183,166,.28), transparent 62%),
+    radial-gradient(700px 460px at 4% 108%, rgba(230,191,90,.15), transparent 60%),
+    var(--cream);
+  padding: var(--s8) 0 var(--s8);
+  border-bottom: 1px solid var(--line);
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+  gap: var(--s7);
+  align-items: center;
+}
+@media (max-width: 980px) {
+  .hero { padding: var(--s8) 0 var(--s7); }
+  .hero__grid { grid-template-columns: 1fr; gap: var(--s7); }
+}
+.hero h1 { margin-bottom: var(--s5); }
+.hero .lede { max-width: 40ch; }
+@media (max-width: 980px) { .hero .lede { max-width: none; } }
+.hero .btn-row { margin-top: var(--s6); }
+
+.credential-strip {
+  display: flex; flex-wrap: wrap; gap: 10px 12px;
+  margin-bottom: var(--s5);
+}
+.credential-strip .pill { font-size: .8rem; padding: 6px 14px; }
+
+.trust-row {
+  margin-top: var(--s7); padding-top: var(--s5);
+  border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: var(--s5) var(--s6);
+}
+.trust-row div { font-size: .88rem; color: var(--ink-soft); line-height: 1.35; }
+.trust-row strong { display: block; font-family: var(--display); font-size: 1.4rem; color: var(--teal); font-weight: 600; }
+
+/* ------------------------------------------------------------
+   VIDEO SLOT  →  swap the placeholder for the client's embed
+   ------------------------------------------------------------ */
+.video-slot { position: relative; }
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--teal-ink), var(--teal) 58%, var(--mint));
+  box-shadow: var(--shadow-lg);
+  border: 8px solid var(--white);
+}
+.video-frame iframe, .video-frame video {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block;
+}
+/* Placeholder shown until the real embed is dropped in */
+.video-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; text-align: center; padding: var(--s5); color: #fff;
+}
+.video-placeholder::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at 50% 50%, #000 20%, transparent 78%);
+}
+.video-placeholder__play {
+  position: relative;
+  width: 78px; height: 78px; border-radius: 50%;
+  background: rgba(255,255,255,.95);
+  display: grid; place-items: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,.22);
+}
+.video-placeholder__play::after {
+  content: ""; width: 0; height: 0; margin-left: 6px;
+  border-left: 24px solid var(--teal); border-top: 15px solid transparent; border-bottom: 15px solid transparent;
+}
+.video-placeholder__label {
+  position: relative;
+  font-family: var(--display); font-size: 1.28rem; font-weight: 500; line-height: 1.25;
+}
+.video-placeholder__hint {
+  position: relative;
+  font-size: .82rem; color: rgba(255,255,255,.8); max-width: 34ch; line-height: 1.5;
+}
+.video-caption {
+  display: flex; align-items: center; gap: 10px; justify-content: center;
+  margin-top: var(--s4); font-size: .88rem; color: var(--ink-faint);
+}
+.video-caption::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); flex: none;
+}
+
+/* ------------------------------------------------------------
+   SYMPTOM / RECOGNITION GRID
+   ------------------------------------------------------------ */
+.symptom-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+@media (max-width: 720px) { .symptom-grid { grid-template-columns: 1fr; } }
+.symptom {
+  display: flex; gap: 13px; align-items: flex-start;
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 17px 19px;
+  font-size: .98rem; line-height: 1.45;
+}
+.symptom__dot {
+  flex: none; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--mint); margin-top: 8px;
+  box-shadow: 0 0 0 4px rgba(114,183,166,.2);
+}
+
+/* ------------------------------------------------------------
+   CONNECT-THE-DOTS DIAGRAM
+   ------------------------------------------------------------ */
+.dots-figure { display: grid; place-items: center; }
+.dots-figure svg { width: 100%; max-width: 520px; height: auto; overflow: visible; }
+.dots-node text { font-family: var(--sans); font-size: 13px; font-weight: 600; fill: var(--teal-ink); }
+.dots-hub text { font-family: var(--display); font-weight: 600; fill: #fff; }
+.dots-link { stroke: var(--mint); stroke-width: 1.6; opacity: .55; }
+.dots-ring { fill: none; stroke: var(--mint-tint-2); stroke-width: 1.4; stroke-dasharray: 4 6; }
+
+/* Credential panel on the dark section */
+.cred-panel {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(114,183,166,.22);
+  border-radius: var(--r-lg);
+  padding: var(--s6);
+}
+.cred-panel h4 { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
+
+/* ------------------------------------------------------------
+   PATH / STEPS
+   ------------------------------------------------------------ */
+.path { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s5); counter-reset: step; }
+@media (max-width: 900px) { .path { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .path { grid-template-columns: 1fr; } }
+.path__item { position: relative; padding-top: var(--s5); border-top: 3px solid var(--mint-tint-2); }
+.path__item--active { border-top-color: var(--gold); }
+.path__k {
+  font-family: var(--sans); font-size: .74rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--teal);
+  margin-bottom: 10px;
+}
+.path__item h3 { font-size: 1.12rem; margin-bottom: 8px; }
+.path__item p { font-size: .94rem; color: var(--ink-soft); }
+
+.arrow-path {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  font-family: var(--sans); font-weight: 600; font-size: .82rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--teal);
+}
+.arrow-path span:not(:last-child)::after {
+  content: "→"; margin-left: 14px; color: var(--mint); font-weight: 400;
+}
+.section--teal .arrow-path { color: var(--mint); }
+
+/* ------------------------------------------------------------
+   IS / IS-NOT
+   ------------------------------------------------------------ */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+@media (max-width: 780px) { .compare { grid-template-columns: 1fr; } }
+.compare__col { padding: var(--s6); border-radius: var(--r-lg); }
+.compare__col--yes { background: var(--mint-tint); border: 1px solid var(--mint-tint-2); }
+.compare__col--no  { background: #FBF6F5; border: 1px solid #EFE2DF; }
+.compare__col h3 { font-size: 1.15rem; margin-bottom: var(--s4); }
+
+/* ------------------------------------------------------------
+   PROGRAM / PRICING
+   ------------------------------------------------------------ */
+.program-card {
+  background: var(--white); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg); overflow: hidden;
+  border: 1px solid var(--line);
+}
+.program-card__head {
+  background: linear-gradient(135deg, var(--teal-ink), var(--teal));
+  color: #fff; padding: var(--s7) var(--s7) var(--s6);
+}
+.program-card__head h3 { color: #fff; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 10px; }
+.program-card__head p { color: #C3DDDB; margin: 0; }
+.program-card__body { padding: var(--s7); display: grid; grid-template-columns: 1.25fr 1fr; gap: var(--s7); }
+@media (max-width: 860px) { .program-card__body { grid-template-columns: 1fr; gap: var(--s6); } .program-card__head, .program-card__body { padding: var(--s6); } }
+
+.includes { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s4); }
+.includes li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; }
+.includes b { display: block; font-size: 1rem; color: var(--teal-ink); }
+.includes span { font-size: .92rem; color: var(--ink-soft); line-height: 1.5; }
+.includes .ico {
+  width: 30px; height: 30px; border-radius: 9px; background: var(--mint-tint);
+  display: grid; place-items: center; color: var(--teal); font-size: .95rem; font-weight: 700;
+}
+
+.invest {
+  background: var(--cream); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: var(--s6);
+  position: sticky; top: 92px;
+}
+@media (max-width: 860px) { .invest { position: static; } }
+.invest__price { font-family: var(--display); font-size: 2.8rem; font-weight: 500; color: var(--teal-ink); line-height: 1; }
+.invest__price small { font-family: var(--sans); font-size: .95rem; font-weight: 500; color: var(--ink-faint); display: block; margin-top: 8px; letter-spacing: 0; }
+.invest__alt { font-size: .95rem; color: var(--ink-soft); margin: var(--s4) 0 var(--s5); padding-top: var(--s4); border-top: 1px dashed var(--line-strong); }
+
+/* ------------------------------------------------------------
+   TESTIMONIALS
+   ------------------------------------------------------------ */
+.quote-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: var(--s6);
+  display: flex; flex-direction: column; gap: var(--s4);
+}
+.quote-card__mark { font-family: var(--display); font-size: 3.2rem; font-weight: 700; line-height: .6; color: var(--mint); height: 26px; }
+.quote-card blockquote { margin: 0; font-size: 1.02rem; line-height: 1.6; color: var(--ink); }
+.quote-card__who { margin-top: auto; padding-top: var(--s4); border-top: 1px solid var(--line); }
+.quote-card__who b { display: block; color: var(--teal-ink); font-size: .98rem; }
+.quote-card__who span { font-size: .86rem; color: var(--ink-faint); }
+
+/* ------------------------------------------------------------
+   FAQ
+   ------------------------------------------------------------ */
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: var(--s5) 44px var(--s5) 0;
+  font-weight: 600; font-size: 1.06rem; color: var(--teal-ink);
+  position: relative; line-height: 1.4;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; position: absolute; right: 8px; top: 50%;
+  width: 12px; height: 12px; margin-top: -8px;
+  border-right: 2.4px solid var(--teal); border-bottom: 2.4px solid var(--teal);
+  transform: rotate(45deg); transition: transform .2s ease;
+}
+.faq details[open] summary::after { transform: rotate(-135deg); margin-top: -3px; }
+.faq details > div { padding: 0 var(--s6) var(--s6) 0; color: var(--ink-soft); }
+.faq details > div p { margin-bottom: var(--s3); }
+
+/* ------------------------------------------------------------
+   STICKY MOBILE CTA
+   ------------------------------------------------------------ */
+.sticky-cta {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
+  background: rgba(255,255,255,.97); backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  transform: translateY(110%); transition: transform .28s ease;
+  display: none;
+}
+.sticky-cta.is-visible { transform: translateY(0); }
+@media (max-width: 760px) { .sticky-cta { display: block; } body { padding-bottom: 0; } }
+
+/* ------------------------------------------------------------
+   ASSESSMENT
+   ------------------------------------------------------------ */
+.quiz-shell { max-width: 680px; margin: 0 auto; }
+.quiz-card {
+  background: var(--white); border: 1px solid var(--line);
+  border-radius: var(--r-lg); box-shadow: var(--shadow);
+  padding: var(--s7);
+}
+@media (max-width: 620px) { .quiz-card { padding: var(--s5); } }
+.quiz-q:focus, .quiz-q:focus-visible { outline: none; }
+.quiz-q { font-family: var(--display); font-size: clamp(1.32rem, 2.9vw, 1.72rem); font-weight: 500; line-height: 1.26; color: var(--teal-ink); margin: 0 0 8px; }
+.quiz-help { font-size: .93rem; color: var(--ink-faint); margin: 0 0 var(--s5); }
+.quiz-nav:not(:has(> :not([hidden]))) { display: none; }
+.quiz-nav { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); margin-top: var(--s6); }
+.link-btn {
+  background: none; border: 0; padding: 8px 4px; cursor: pointer;
+  color: var(--ink-faint); font-size: .93rem; font-weight: 500;
+}
+.link-btn:hover { color: var(--teal); text-decoration: underline; }
+
+/* Results */
+.result-hero {
+  background: linear-gradient(135deg, var(--teal-ink), var(--teal));
+  color: #fff; border-radius: var(--r-lg); padding: var(--s7);
+  margin-bottom: var(--s6);
+}
+.result-hero h2 { color: #fff; margin-bottom: var(--s3); }
+.result-hero p { color: #C7E0DE; margin: 0; }
+.score-bars { display: grid; gap: var(--s4); }
+.score-row { display: grid; grid-template-columns: 200px 1fr 52px; gap: var(--s4); align-items: center; }
+@media (max-width: 620px) { .score-row { grid-template-columns: 1fr; gap: 6px; } .score-row .score-val { text-align: left; } }
+.score-label { font-weight: 600; font-size: .95rem; color: var(--teal-ink); }
+.score-track { height: 12px; background: var(--mint-tint-2); border-radius: var(--r-pill); overflow: hidden; }
+.score-fill { height: 100%; border-radius: var(--r-pill); background: var(--mint); transition: width .8s cubic-bezier(.4,0,.2,1); width: 0; }
+.score-fill--top { background: linear-gradient(90deg, var(--gold), #D9A93F); }
+.score-val { font-variant-numeric: tabular-nums; font-weight: 600; font-size: .9rem; color: var(--ink-faint); text-align: right; }
+
+/* ------------------------------------------------------------
+   BOOKING
+   ------------------------------------------------------------ */
+.calendly-wrap {
+  min-height: 720px; border-radius: var(--r-lg); overflow: hidden;
+  border: 1px solid var(--line); background: var(--white);
+}
+@media (max-width: 640px) { .calendly-wrap { min-height: 1000px; } }
+
+/* ------------------------------------------------------------
+   PRINT
+   ------------------------------------------------------------ */
+@media print {
+  .site-header, .sticky-cta, .btn { display: none !important; }
+  body { font-size: 12pt; }
+}
+
+
+/* ---- preview-only chrome ---- */
+.preview-flag {
+  position: sticky; top: 0; z-index: 90;
+  background: var(--gold-tint); border-bottom: 1px solid #F0E2BE;
+  color: #6B551F; font-size: .82rem; font-weight: 600;
+  padding: 9px 20px; text-align: center;
+}
+.preview-flag a { color: #6B551F; }
+.pv-modal {
+  position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
+  background: rgba(20,58,61,.55); padding: 24px;
+}
+.pv-modal__box {
+  background: #fff; border-radius: var(--r-lg); padding: var(--s7);
+  max-width: 480px; box-shadow: var(--shadow-lg);
+}
+</style>
+
+<div class="preview-flag">
+  Design preview &mdash; the assessment is fully working. Booking and CRM delivery activate on deployment.
+</div>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brandmark" href="index.html">
+      <span class="brandmark__glyph" aria-hidden="true">A</span>
+      <span>
+        <span class="brandmark__name">Ask Coach Amanda</span>
+        <span class="brandmark__sub">Dr. Amanda Romine-Nelson, PharmD, RPh</span>
+      </span>
+    </a>
+    <a class="btn btn--primary" href="assessment.html"
+       data-track="cta_click" data-track-loc="header">Take the assessment</a>
+  </div>
+</header>
+
+<div id="view-landing">
+<main id="main">
+
+  <!-- ============================================================
+       HERO  +  CLIENT VIDEO SLOT
+       ============================================================ -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+
+      <div>
+        <div class="credential-strip">
+          <span class="pill">PharmD, RPh</span>
+          <span class="pill">Postdoctoral fellowship — medication safety</span>
+          <span class="pill">Pharmacogenomics trained</span>
+        </div>
+
+        <h1>You're doing the healthy things. Your body stopped <span class="underline-gold">responding</span> the way it used to.</h1>
+
+        <p class="lede">Pharmacist-led metabolic health coaching for women 40&ndash;65. We connect the dots between nutrition, blood sugar, sleep, stress, movement and your medications &mdash; then build changes that survive a real week.</p>
+
+        <div class="btn-row">
+          <a class="btn btn--primary btn--lg" href="assessment.html"
+             data-track="cta_click" data-track-loc="hero-primary">Take the 3-minute assessment</a>
+          <a class="btn btn--ghost" href="#method"
+             data-track="cta_click" data-track-loc="hero-secondary">See how it works</a>
+        </div>
+        <p class="cta-note">Free &middot; No diagnosis, no lecture &middot; You get your results immediately</p>
+      </div>
+
+      <!-- ==========================================================
+           ⬇⬇  CLIENT VIDEO GOES HERE  ⬇⬇
+           Amanda's welcome / "what this is" video.
+           To install it, DELETE the <div class="video-placeholder">
+           block below and paste ONE of these inside .video-frame:
+
+           YouTube:
+           <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID?rel=0"
+                   title="Meet Dr. Amanda" allowfullscreen
+                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+
+           Vimeo:
+           <iframe src="https://player.vimeo.com/video/VIDEO_ID"
+                   title="Meet Dr. Amanda" allowfullscreen
+                   allow="autoplay; fullscreen; picture-in-picture"></iframe>
+
+           Self-hosted:
+           <video controls playsinline poster="assets/img/video-poster.jpg">
+             <source src="assets/video/welcome.mp4" type="video/mp4">
+           </video>
+
+           Keep the file under ~1080p and compress it — the current
+           main site ships an 11.6 MB hero image; don't repeat that here.
+           ========================================================== -->
+      <div class="video-slot">
+        <div class="video-frame" id="video-frame">
+          <video controls playsinline preload="metadata" poster="assets/img/video-poster.webp" width="960" height="540">
+            <source src="assets/video/welcome.mp4" type="video/mp4">
+            <p>Your browser does not support HTML5 video.</p>
+          </video>
+        </div>
+        <p class="video-caption">Meet Dr. Amanda &mdash; 3-minute welcome &amp; method overview</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div data-sticky-after aria-hidden="true"></div>
+
+  <!-- ============================================================
+       RECOGNIZE
+       ============================================================ -->
+  <section class="section section--cream">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">Sound familiar?</p>
+        <h2>None of this is an emergency. All of it is exhausting.</h2>
+        <p class="lede">If several of these are true for you right now, you are not imagining it &mdash; and you are not the only one.</p>
+      </div>
+
+      <div class="symptom-grid">
+        <div class="symptom"><span class="symptom__dot"></span><span>Your clothes fit differently, especially around your waist &mdash; and the usual fixes aren&rsquo;t working.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>You hit a wall at 3&nbsp;p.m. and reach for coffee or something sweet just to get through.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>You eat a sensible lunch and you&rsquo;re starving again by late afternoon.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>You sleep seven hours and still wake up tired.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>Your last appointment mentioned blood sugar, A1C, cholesterol or blood pressure &mdash; nothing urgent, but &ldquo;let&rsquo;s keep an eye on it.&rdquo;</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>You&rsquo;ve tried fasting, cutting carbs, a new supplement, a new program. Something works for two weeks, then life happens.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>You already know what healthy food looks like. That&rsquo;s not the missing piece.</span></div>
+        <div class="symptom"><span class="symptom__dot"></span><span>You&rsquo;re taking a medication and quietly wondering what else you could be doing.</span></div>
+      </div>
+
+      <div class="note mt7" style="max-width:820px;margin-left:auto;margin-right:auto">
+        <strong>You don&rsquo;t need to try harder.</strong> You need to understand why what you&rsquo;re already doing isn&rsquo;t producing the result you expected &mdash; and what can actually be changed.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPLAIN — connect the dots
+       ============================================================ -->
+  <section class="section">
+    <div class="wrap grid grid-2" style="align-items:center;gap:var(--s9)">
+      <div>
+        <p class="eyebrow">The core idea</p>
+        <h2>Health rarely comes down to one isolated factor.</h2>
+        <div class="rule--short"></div>
+        <p>Weight is not just about weight. Energy is not just about sleep. Cravings are not simply a lack of willpower. Blood sugar doesn&rsquo;t exist independently from what you eat, how you move, how you sleep, how stressed you are, and what you take.</p>
+        <p>Most health advice hands you one piece at a time. Drink more water. Walk more. Eat less. Take this. What almost nobody does is sit down and look at how the pieces interact <em>in your life</em> &mdash; and then help you decide what deserves attention first.</p>
+        <p><strong>That&rsquo;s the whole job.</strong> Understand before you overhaul.</p>
+        <div class="btn-row mt6">
+          <a class="btn btn--primary" href="assessment.html"
+             data-track="cta_click" data-track-loc="explain">Find your starting point</a>
+        </div>
+      </div>
+
+      <div class="dots-figure">
+        <svg viewBox="0 0 520 440" role="img" aria-labelledby="dots-title dots-desc">
+          <title id="dots-title">Connect the dots</title>
+          <desc id="dots-desc">Eight interacting health factors — sleep, stress, movement, hydration, habits, medications, blood sugar and nutrition — all linked to a central hub.</desc>
+          <circle class="dots-ring" cx="260" cy="220" r="160"></circle>
+          <g class="dots-link">
+            <line x1="260" y1="220" x2="260" y2="60"></line>
+            <line x1="260" y1="220" x2="373" y2="107"></line>
+            <line x1="260" y1="220" x2="420" y2="220"></line>
+            <line x1="260" y1="220" x2="373" y2="333"></line>
+            <line x1="260" y1="220" x2="260" y2="380"></line>
+            <line x1="260" y1="220" x2="147" y2="333"></line>
+            <line x1="260" y1="220" x2="100" y2="220"></line>
+            <line x1="260" y1="220" x2="147" y2="107"></line>
+          </g>
+          <g class="dots-node" text-anchor="middle" dominant-baseline="middle">
+            <g><rect x="222" y="44"  width="76"  height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="260" y="61">Sleep</text></g>
+            <g><rect x="333" y="91"  width="80"  height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="373" y="108">Stress</text></g>
+            <g><rect x="366" y="204" width="108" height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="420" y="221">Movement</text></g>
+            <g><rect x="321" y="317" width="104" height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="373" y="334">Hydration</text></g>
+            <g><rect x="220" y="364" width="80"  height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="260" y="381">Habits</text></g>
+            <g><rect x="85"  y="317" width="124" height="32" rx="16" fill="#FBF3DF" stroke="#F0E2BE"></rect><text x="147" y="334">Medications</text></g>
+            <g><rect x="42"  y="204" width="116" height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="100" y="221">Blood sugar</text></g>
+            <g><rect x="97"  y="91"  width="100" height="32" rx="16" fill="#EDF6F3" stroke="#DCEDE7"></rect><text x="147" y="108">Nutrition</text></g>
+          </g>
+          <g class="dots-hub">
+            <circle cx="260" cy="220" r="58" fill="#347C81"></circle>
+            <text x="260" y="212" text-anchor="middle" font-size="17">Connect</text>
+            <text x="260" y="234" text-anchor="middle" font-size="17">the dots</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY DR. AMANDA
+       ============================================================ -->
+  <section class="section section--teal">
+    <div class="wrap">
+      <div class="grid grid-2" style="gap:var(--s9);align-items:center">
+        <div>
+          <p class="eyebrow eyebrow--on-dark">Why a pharmacist</p>
+          <h2>Most coaches can&rsquo;t talk about your medications. Most prescribers don&rsquo;t have 45 minutes to talk about your habits.</h2>
+          <p class="lede">Dr. Amanda Romine-Nelson sits in the gap. She trained on the medication side of healthcare &mdash; then spent years learning how to translate it into something a busy woman can act on before Thursday.</p>
+          <blockquote class="pull mt6" style="color:#fff">
+            &ldquo;Medication can be an important tool. Lifestyle can be an important tool. The question isn&rsquo;t which side you&rsquo;re on &mdash; it&rsquo;s what combination of appropriate tools best supports your health.&rdquo;
+            <cite style="color:#9FBCBB">Dr. Amanda Romine-Nelson, PharmD, RPh</cite>
+          </blockquote>
+        </div>
+        <div class="cred-panel">
+          <h4 style="color:#fff;margin-bottom:var(--s5)">Training behind the coaching</h4>
+          <ul class="ticks">
+            <li>Doctor of Pharmacy (PharmD) and licensed Registered Pharmacist (RPh)</li>
+            <li>Two-year postdoctoral fellowship in medication safety, quality &amp; informatics</li>
+            <li>Pharmacogenomics training and certification</li>
+            <li>Has taught pharmacy and nursing students; served as an adjunct professor</li>
+            <li>Healthcare consulting and corporate wellness education experience</li>
+            <li>Dual undergraduate degrees &mdash; chemical engineering and economics</li>
+            <li>Speaker and educator who translates complex health information into plain language</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       THE METHOD
+       ============================================================ -->
+  <section class="section" id="method">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">The Metabolic Momentum Method&trade;</p>
+        <h2>Six moves, ninety days, one plan that fits your actual life</h2>
+        <p class="lede">Not a protocol you follow until you fall off it. A sequence you and Amanda build together and adjust as real life happens.</p>
+      </div>
+
+      <div class="path">
+        <div class="path__item path__item--active">
+          <p class="path__k">01 &middot; Understand</p>
+          <h3>See the whole picture</h3>
+          <p>Baseline, patterns, what you&rsquo;ve already tried, what your body is telling you. Before anything gets added or removed.</p>
+        </div>
+        <div class="path__item path__item--active">
+          <p class="path__k">02 &middot; Personalize</p>
+          <h3>Decide what matters first</h3>
+          <p>Two people with the same goal often need different strategies. We pick the one or two changes most likely to move you &mdash; not fifteen.</p>
+        </div>
+        <div class="path__item">
+          <p class="path__k">03 &middot; Act</p>
+          <h3>Run it in a real week</h3>
+          <p>Workdays, restaurants, travel, family, the stressful stretch. If it can&rsquo;t survive those, it isn&rsquo;t the plan.</p>
+        </div>
+        <div class="path__item">
+          <p class="path__k">04 &middot; Adjust</p>
+          <h3>Treat setbacks as data</h3>
+          <p>A hard weekend doesn&rsquo;t erase a good week. We look at what happened, learn from it, and change the approach.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-2 mt7" style="gap:var(--s6)">
+        <div class="card card--mint">
+          <h3>05 &middot; Build momentum</h3>
+          <p class="mb0">Progress shows up in more than the scale &mdash; waist, energy, cravings, satiety, sleep, consistency, confidence, and the markers your care team already tracks.</p>
+        </div>
+        <div class="card card--gold">
+          <h3>06 &middot; Thrive</h3>
+          <p class="mb0">You finish knowing what works for you, why it works, and how to get back on track when life goes sideways &mdash; without starting over from zero.</p>
+        </div>
+      </div>
+
+      <div class="center mt7">
+        <p class="arrow-path" style="justify-content:center">
+          <span>Understand</span><span>Personalize</span><span>Act</span><span>Adjust</span><span>Momentum</span><span>Thrive</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROGRAM + INVESTMENT
+       ============================================================ -->
+  <section class="section section--cream" id="program">
+    <div class="wrap">
+      <div class="program-card">
+        <div class="program-card__head">
+          <p class="eyebrow eyebrow--on-dark" style="margin-bottom:10px">90-day coaching program</p>
+          <h3>The Metabolic Momentum Method&trade;</h3>
+          <p>Personalized metabolic health coaching for women approximately 40&ndash;65 who feel metabolically stuck.</p>
+        </div>
+
+        <div class="program-card__body">
+          <div>
+            <h4 style="margin-bottom:var(--s5)">What&rsquo;s included every month</h4>
+            <ul class="includes">
+              <li>
+                <span class="ico" aria-hidden="true">2&times;</span>
+                <span><b>45-minute coaching sessions</b><span>Virtual, one-to-one with Dr. Amanda. Where the strategy gets built and adjusted.</span></span>
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true">2&times;</span>
+                <span><b>15-minute check-in calls</b><span>Short, specific course corrections between sessions &mdash; so a bad week doesn&rsquo;t become a lost month.</span></span>
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true">4&times;</span>
+                <span><b>Text or voice-message support</b><span>For the questions that come up in a grocery aisle or a restaurant, not in a scheduled call.</span></span>
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true">&#9733;</span>
+                <span><b>Medication &amp; supplement education</b><span>Within a pharmacist&rsquo;s scope: understanding what you take, what to ask your prescriber, and whether a supplement has a reasonable purpose for you.</span></span>
+              </li>
+              <li>
+                <span class="ico" aria-hidden="true">&#9636;</span>
+                <span><b>A personalized plan you keep</b><span>Written, specific, and revised as you go &mdash; not a generic handout.</span></span>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="invest">
+            <p class="eyebrow" style="margin-bottom:var(--s3)">Program investment</p>
+            <p class="invest__price">$1,997<small>Paid in full &middot; 90-day program</small></p>
+            <p class="invest__alt">A 3-payment plan of <strong>$697</strong> is available on request.</p>
+            <a class="btn btn--primary btn--block" href="assessment.html"
+               data-track="cta_click" data-track-loc="pricing">Start with the assessment</a>
+            <p class="cta-note" style="justify-content:center;text-align:center">Assessment &rarr; results &rarr; short application &rarr; strategy call. Enrollment only happens after Amanda confirms it&rsquo;s a fit.</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IS / IS NOT
+       ============================================================ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">Straight answers</p>
+        <h2>What this is &mdash; and what it isn&rsquo;t</h2>
+        <p class="lede">Being clear about this up front saves everyone a call.</p>
+      </div>
+
+      <div class="compare">
+        <div class="compare__col compare__col--yes">
+          <h3>This is</h3>
+          <ul class="ticks">
+            <li>Pharmacist-guided health and wellness coaching</li>
+            <li>Metabolic health education you can actually use</li>
+            <li>A personalized strategy, adjusted as you go</li>
+            <li>Nutrition, blood sugar, sleep, stress, movement and habit support</li>
+            <li>Medication and supplement <em>education</em>, within professional scope</li>
+            <li>Collaborative &mdash; it encourages you to stay connected with your physician</li>
+            <li>A place to ask questions and understand the why</li>
+          </ul>
+        </div>
+        <div class="compare__col compare__col--no">
+          <h3>This is not</h3>
+          <ul class="crosses">
+            <li>Medical care, diagnosis, or a replacement for your physician</li>
+            <li>Prescribing &mdash; and never a promise you&rsquo;ll come off a medication</li>
+            <li>A restrictive diet or a quick-fix weight-loss program</li>
+            <li>A one-size-fits-all protocol</li>
+            <li>Anti-medication or anti-conventional-medicine</li>
+            <li>A promise to cure, fix or reverse a medical condition</li>
+            <li>A place where you get shamed, blamed or lectured</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note note--gold mt7" style="max-width:840px;margin-left:auto;margin-right:auto">
+        <strong>The positioning principle:</strong> use the right tools, for the right person, for the right reasons. Any medication change belongs with your prescribing healthcare professional &mdash; coaching helps you walk into that conversation better informed.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+       ============================================================ -->
+  <section class="section section--mint">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">In their words</p>
+        <h2>What clients say changed</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="quote-card">
+          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>Effectively and consistently create wins&hellip;</blockquote>
+          <div class="quote-card__who"><b>Lauren Martinez</b><span>Wife, mother and engineer</span></div>
+        </div>
+        <div class="quote-card">
+          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>I went from an &lsquo;I can&rsquo;t&rsquo; girl, to an &lsquo;I can&rsquo; girl&hellip;</blockquote>
+          <div class="quote-card__who"><b>Jessie Stephenson</b><span>Business owner and grandmother &middot; 90-day coaching</span></div>
+        </div>
+        <div class="quote-card">
+          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>She understands me and I trust her.</blockquote>
+          <div class="quote-card__who"><b>Kim Walker</b><span>Small business owner</span></div>
+        </div>
+      </div>
+      <p class="center small muted mt6">Individual experiences vary. Coaching outcomes depend on personal circumstances and participation, and no specific result is guaranteed.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FIT / NOT A FIT
+       ============================================================ -->
+  <section class="section">
+    <div class="wrap wrap--narrow">
+      <div class="section-head center">
+        <p class="eyebrow">Before you apply</p>
+        <h2>Is this a fit for you?</h2>
+        <p class="lede">Not every person who wants help is a good fit for this program, and saying so protects your time as much as Amanda&rsquo;s.</p>
+      </div>
+
+      <div class="card card--raised">
+        <h3>This is likely a strong fit if you</h3>
+        <ul class="ticks">
+          <li>Want to improve your metabolic health, not just drop weight this month</li>
+          <li>Are willing to look honestly at your nutrition, sleep, stress and movement patterns</li>
+          <li>Understand coaching requires your participation &mdash; and want accountability for it</li>
+          <li>Value personalization over a program someone else already wrote</li>
+          <li>Will stay appropriately connected with your physician and care team</li>
+          <li>Are ready to invest real time and attention for 90 days</li>
+        </ul>
+
+        <hr class="rule">
+
+        <h3>This is probably not the right fit if you</h3>
+        <ul class="crosses">
+          <li>Want guaranteed weight loss or a quick-fix diet</li>
+          <li>Want a medical diagnosis, treatment, or medication changes through coaching</li>
+          <li>Need medical evaluation or urgent care &mdash; please contact your provider</li>
+          <li>Aren&rsquo;t in a season where you can give this time and attention</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+       ============================================================ -->
+  <section class="section section--cream">
+    <div class="wrap wrap--narrow">
+      <div class="section-head center">
+        <p class="eyebrow">Questions</p>
+        <h2>The things people ask first</h2>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Will you tell me to stop taking my medications?</summary>
+          <div>
+            <p>No. Starting, stopping or changing a prescription is a decision for you and your prescribing healthcare professional &mdash; never something that happens inside a coaching relationship.</p>
+            <p>What a pharmacist&rsquo;s perspective does add: helping you understand why a medication may be used, what considerations could affect your health goals, and what questions are worth bringing to your next appointment. Many clients find they participate in those conversations with a lot more confidence.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Is this another diet?</summary>
+          <div><p>No. There is no meal plan you follow until you fall off it. We look at meal composition, protein, fiber, carbohydrates, timing, hunger and satiety &mdash; and build eating patterns that hold up at a restaurant, on a work trip and during a stressful week.</p></div>
+        </details>
+        <details>
+          <summary>I&rsquo;m already taking medication for blood sugar, blood pressure or cholesterol. Is this still relevant?</summary>
+          <div><p>Often, yes. Medication and lifestyle aren&rsquo;t opposing sides. Coaching focuses on the factors you can influence day to day &mdash; nutrition, movement, sleep, stress, hydration, habits &mdash; alongside whatever your care team has prescribed, and helps you stay a better-informed participant in your own care.</p></div>
+        </details>
+        <details>
+          <summary>Do I need lab work or a specific diagnosis to start?</summary>
+          <div><p>No. Bring whatever health information you already have and are comfortable sharing. Coaching does not diagnose conditions or interpret labs as a medical service, and nothing here replaces appropriate medical evaluation.</p></div>
+        </details>
+        <details>
+          <summary>How much time does this actually take?</summary>
+          <div><p>Two 45-minute sessions and two 15-minute check-ins per month, plus message support. The daily work is deliberately small &mdash; the goal is one or two changes at a time that you can genuinely maintain, not fifteen you abandon by week three.</p></div>
+        </details>
+        <details>
+          <summary>What happens on the strategy call?</summary>
+          <div><p>A real conversation, not a pitch. Amanda reviews your assessment and application, asks about what you&rsquo;ve already tried, what&rsquo;s getting in the way, and what you want to be different in 90 days. By the end you&rsquo;ll know whether this is a fit, what working together would look like, and what would be expected of you. If it isn&rsquo;t a fit, she&rsquo;ll say so and point you somewhere more useful.</p></div>
+        </details>
+        <details>
+          <summary>What does it cost?</summary>
+          <div><p>The Metabolic Momentum Method&trade; is $1,997 for the 90-day program, with a 3-payment plan of $697 available on request. Enrollment happens only after the strategy call confirms it&rsquo;s a genuine fit.</p></div>
+        </details>
+        <details>
+          <summary>Is this medical advice?</summary>
+          <div><p>No. Ask Coach Amanda provides health and wellness coaching and education. Nothing on this page or in the coaching relationship is intended to diagnose, treat, cure or prevent any disease, and it does not replace care from your physician or other treating healthcare professional. If you are experiencing new or concerning symptoms, please contact your healthcare provider &mdash; and if it is an emergency, call 911.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA
+       ============================================================ -->
+  <section class="section section--teal">
+    <div class="wrap wrap--narrow center">
+      <p class="eyebrow eyebrow--on-dark">Your next step</p>
+      <h2>Start by finding out where your dots aren&rsquo;t connecting</h2>
+      <p class="lede">Fourteen short questions, about three minutes. You&rsquo;ll get a personalized read on which area &mdash; fuel, recovery, movement or consistency &mdash; is most likely holding you back right now, and one specific place to start. It&rsquo;s educational, not diagnostic, and it&rsquo;s free.</p>
+      <div class="btn-row center mt6">
+        <a class="btn btn--gold btn--lg" href="assessment.html"
+           data-track="cta_click" data-track-loc="footer-cta">Take the assessment</a>
+        <a class="btn btn--ghost-on-dark" href="book.html"
+           data-track="cta_click" data-track-loc="footer-cta-book">Or book a strategy call</a>
+      </div>
+      <p class="cta-note cta-note--on-dark" style="justify-content:center">Prefer to just ask a question? Email <a href="mailto:contact@AskCoachAmanda.com" style="color:#DCEDE7">contact@AskCoachAmanda.com</a></p>
+    </div>
+  </section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p style="font-family:var(--display);font-size:1.25rem;color:#fff;margin-bottom:10px">Ask Coach Amanda</p>
+        <p style="max-width:44ch">Pharmacist-led health and wellness coaching, education and consulting. Founded by Dr. Amanda Romine-Nelson, PharmD, RPh.</p>
+        <p style="margin-top:var(--s4)"><em>Connect the dots. Create momentum. Build wellness that sticks.</em></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-list">
+          <li><a href="tel:+19784003320">978-400-3320</a></li>
+          <li><a href="mailto:contact@AskCoachAmanda.com">contact@AskCoachAmanda.com</a></li>
+          <li><a href="book.html">Book a strategy call</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul class="footer-list">
+          <li><a href="https://askcoachamanda.com/">Main website</a></li>
+          <li><a href="assessment.html">Metabolic assessment</a></li>
+          <li><a href="https://askcoachamanda.com/privacy-policy/">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      <strong>Medical disclaimer.</strong> Statements on this page should not be taken as medical advice. Ask Coach Amanda provides health and wellness coaching and education and is not primary, urgent or emergency medical care. Nothing here is intended to diagnose, treat, cure or prevent any disease, and no specific health or weight outcome is promised or guaranteed. Always consult your own physician or qualified healthcare professional before making changes to your medications, treatment or health plan. If you are experiencing a medical emergency, call 911.
+      <br><br>&copy; <span data-year>2026</span> Ask Coach Amanda. All rights reserved.
+    </p>
+  </div>
+</footer>
+</div>
+
+<div id="view-quiz" hidden>
+<main id="main" class="section section--tight">
+  <div class="wrap quiz-shell">
+
+    <div class="center" id="quiz-intro" style="margin-bottom:var(--s7)">
+      <p class="eyebrow">Free assessment</p>
+      <h1 style="font-size:clamp(1.9rem,4vw,2.7rem)">Why do I feel metabolically stuck?</h1>
+      <p class="lede">Fourteen short questions. At the end you&rsquo;ll see which of four areas is most likely worth your attention first &mdash; and one specific place to start.</p>
+    </div>
+
+    <div class="progress" id="progress-wrap">
+      <div class="progress__meta">
+        <span id="progress-now">Question 1 of 14</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress__track"><div class="progress__bar" id="progress-bar"></div></div>
+    </div>
+
+    <!-- ========================================================
+         STEP 1 — QUESTIONS
+         ======================================================== -->
+    <section id="step-questions" class="quiz-card">
+      <h2 class="quiz-q" id="q-text" tabindex="-1">&nbsp;</h2>
+      <p class="quiz-help" id="q-help" hidden></p>
+      <div class="choices" id="q-choices"></div>
+      <div class="quiz-nav">
+        <button type="button" class="link-btn" id="q-back" hidden>&larr; Back</button>
+        <button type="button" class="btn btn--primary" id="q-next" hidden>Continue</button>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         STEP 2 — RESULTS GATE
+         ======================================================== -->
+    <section id="step-gate" class="quiz-card" hidden>
+      <p class="eyebrow">Last step</p>
+      <h2 class="quiz-q">Where should we send your results?</h2>
+      <p class="quiz-help">
+        Your answers point to <strong id="gate-preview">&nbsp;</strong> as the area most likely worth your attention first.
+        Enter your details to see the full read-out &mdash; it appears on the next screen straight away, and a copy goes to your inbox.
+      </p>
+
+      <form id="gate-form" novalidate>
+        <div class="grid grid-2" style="gap:var(--s4)">
+          <div class="field">
+            <label for="lead-first">First name</label>
+            <input class="input" type="text" id="lead-first" name="first_name" autocomplete="given-name" required>
+            <p class="field-error" hidden>Please add your first name.</p>
+          </div>
+          <div class="field">
+            <label for="lead-last">Last name</label>
+            <input class="input" type="text" id="lead-last" name="last_name" autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="lead-email">Email</label>
+          <input class="input" type="email" id="lead-email" name="email" autocomplete="email" required>
+          <p class="field-error" hidden>Please enter a valid email address.</p>
+        </div>
+
+        <div class="field">
+          <label for="lead-phone">Mobile number <span class="muted" style="font-weight:400">(optional)</span></label>
+          <p class="hint">Only used if you ask for a call or a text reminder.</p>
+          <input class="input" type="tel" id="lead-phone" name="phone" autocomplete="tel">
+        </div>
+
+        <div class="field consent-field">
+          <label class="consent">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span data-aca="consent.smsText">I agree to receive occasional emails and texts from Ask Coach Amanda about my request.</span>
+          </label>
+          <p class="field-error" hidden>Please tick the box so we can send your results.</p>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg btn--block">Show my results</button>
+        <p class="cta-note" style="justify-content:center">We don&rsquo;t sell or share your information. Unsubscribe any time.</p>
+      </form>
+    </section>
+
+    <!-- ========================================================
+         STEP 3 — RESULTS
+         ======================================================== -->
+    <section id="step-results" hidden>
+
+      <div class="result-hero">
+        <p class="eyebrow eyebrow--on-dark">Your results</p>
+        <h2 id="r-name">Here&rsquo;s what stood out</h2>
+        <p id="r-headline">&nbsp;</p>
+      </div>
+
+      <div class="note note--alert" id="r-alert" hidden>
+        <strong>Please read this first.</strong> You indicated you&rsquo;re experiencing new or concerning symptoms you haven&rsquo;t discussed with a healthcare provider. Please contact your provider about those &mdash; coaching is not medical care and cannot evaluate symptoms. If this is an emergency, call 911. Everything below is general education only.
+      </div>
+
+      <div class="quiz-card mt5">
+        <h3>Where your answers point</h3>
+        <p class="small muted">Higher means more room for improvement in that area right now &mdash; not a score, a grade, or a diagnosis.</p>
+        <div class="score-bars mt5" id="r-bars"></div>
+      </div>
+
+      <div class="quiz-card mt5">
+        <h3>What that means</h3>
+        <p id="r-what">&nbsp;</p>
+
+        <h4 class="mt6">Worth looking at</h4>
+        <ul class="ticks" id="r-look"></ul>
+
+        <div class="note note--gold mt6">
+          <strong>One place to start this week.</strong>
+          <span id="r-first">&nbsp;</span>
+        </div>
+
+        <div id="r-notes"></div>
+      </div>
+
+      <div class="quiz-card mt5" id="r-second-block">
+        <h3>Your second area: <span id="r-second-label"></span></h3>
+        <p id="r-second-text" class="mb0">&nbsp;</p>
+        <p class="small muted mt4 mb0">These interact. Which one to work on first &mdash; and in what order &mdash; is exactly the kind of thing a strategy call sorts out.</p>
+      </div>
+
+      <div class="quiz-card card--mint mt5 center" id="r-cta"></div>
+
+      <p class="small muted center mt6" style="max-width:60ch;margin-left:auto;margin-right:auto">
+        This assessment is educational and is not a medical evaluation, diagnosis, or treatment recommendation. It does not assess or interpret any medical condition, laboratory value, or medication. Always consult your physician or qualified healthcare professional about your health and before changing any medication.
+      </p>
+
+    </section>
+
+  </div>
+</main>
+</div>
+
+<div class="sticky-cta">
+  <a class="btn btn--primary btn--block" href="assessment.html"
+     data-track="cta_click" data-track-loc="sticky-mobile">Take the 3-minute assessment</a>
+</div>
+
+<script>/* ============================================================
+   ASK COACH AMANDA — Funnel configuration
+   ------------------------------------------------------------
+   THIS IS THE ONLY FILE THE TEAM SHOULD NEED TO EDIT when links,
+   prices or tracking IDs change.  Per the Reference Guide §15/§16:
+   offer details live in one editable place, never hard-coded
+   through the funnel.
+   ============================================================ */
+
+window.ACA = window.ACA || {};
+
+window.ACA.config = {
+
+  /* --- Brand ------------------------------------------------ */
+  brand: {
+    name: "Ask Coach Amanda",
+    founder: "Dr. Amanda Romine-Nelson, PharmD, RPh",
+    phone: "978-400-3320",
+    phoneHref: "tel:+19784003320",
+    email: "contact@AskCoachAmanda.com",
+    site: "https://askcoachamanda.com/"
+  },
+
+  /* --- Destinations ----------------------------------------- */
+  links: {
+    home:        "index.html",
+    assessment:  "assessment.html",
+    apply:       "apply.html",
+    book:        "book.html",
+    thanks:      "thank-you.html",
+    notReady:    "thank-you.html?path=nurture",
+    privacy:     "https://askcoachamanda.com/privacy-policy/",
+    mainSite:    "https://askcoachamanda.com/",
+    whatsapp:    "https://wa.me/19784003320",
+    linkedin:    "https://www.linkedin.com/in/amandarominenelson/",
+    facebook:    "https://www.facebook.com/askcoachamanda",
+    instagram:   "https://www.instagram.com/AskCoachAmanda/",
+    twitter:     "https://twitter.com/AskCoachAmanda",
+    youtube:     "https://www.youtube.com/channel/UCBv82ApWEK8eegISUryBG9Q"
+  },
+
+  /* --- Scheduling ------------------------------------------- */
+  // Live verified Calendly URL for Dr. Amanda Romine-Nelson
+  calendly: {
+    url: "https://calendly.com/beagoodday-com/20-min-call-with-dr-amanda",
+    utmSource: "funnel"
+  },
+
+  /* --- Current offer (Reference Guide §16) ------------------- */
+  offer: {
+    name: "The Metabolic Momentum Method™",
+    category: "Personalized Metabolic Health Coaching",
+    duration: "90 days",
+    priceFull: "$1,997",
+    pricePlan: "3 payments of $697",
+    showPricing: true,          // set false to gate price behind the call
+    applicationRequired: true,
+    consultationRequired: true
+  },
+
+  /* --- Where leads are posted -------------------------------- */
+  // Point this at a Make.com / Zapier / GoHighLevel inbound webhook.
+  // It receives one JSON object per submission containing every
+  // field in docs/DATA-SCHEMA.md.  Leave empty to run the funnel in
+  // preview mode (submissions are logged to the console only).
+  endpoints: {
+    lead:        "",   // assessment email capture
+    assessment:  "",   // completed assessment + scores
+    application: "",   // coaching application
+    escalation:  ""    // red-flag / human-review notifications
+  },
+
+  /* --- Analytics -------------------------------------------- */
+  // The current site runs no analytics at all. Add the IDs here and
+  // the loader in app.js wires up GA4 + Meta automatically.
+  analytics: {
+    ga4:        "",   // e.g. "G-XXXXXXXXXX"
+    metaPixel:  "",   // e.g. "123456789012345"
+    debug:      true // true → log every tracked event to the console
+  },
+
+  /* --- Consent ---------------------------------------------- */
+  consent: {
+    smsText: "I agree to receive occasional emails and texts from Ask Coach Amanda about my request. Message and data rates may apply. Reply STOP to opt out."
+  }
+};
+</script>
+<script>/* ============================================================
+   ASK COACH AMANDA — Funnel core
+   Attribution · tracking · lead store · submissions
+   Requires config.js to be loaded first.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  var CFG = (window.ACA && window.ACA.config) || {};
+  var ACA = window.ACA = window.ACA || {};
+  var KEY = "aca_lead_v1";
+
+  /* ------------------------------------------------------------
+     1. LEAD STORE
+     One object follows the prospect across every step so nothing
+     has to be re-asked. (Reference Guide §29.3 "preserve the
+     doorway through which she entered".)
+     ------------------------------------------------------------ */
+  var Store = ACA.store = {
+    read: function () {
+      try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
+      catch (e) { return {}; }
+    },
+    write: function (patch) {
+      var next = Object.assign(Store.read(), patch, { updated_at: new Date().toISOString() });
+      try { localStorage.setItem(KEY, JSON.stringify(next)); } catch (e) {}
+      return next;
+    },
+    clear: function () { try { localStorage.removeItem(KEY); } catch (e) {} }
+  };
+
+  /* ------------------------------------------------------------
+     2. ATTRIBUTION
+     First touch is never overwritten; last touch always is.
+     ------------------------------------------------------------ */
+  var UTM = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+             "gclid", "fbclid", "ref"];
+
+  function captureAttribution() {
+    var qs = new URLSearchParams(location.search);
+    var last = {};
+    UTM.forEach(function (k) { if (qs.get(k)) last[k] = qs.get(k); });
+
+    var lead = Store.read();
+    var patch = {};
+
+    if (!lead.first_seen_at) {
+      patch.first_seen_at   = new Date().toISOString();
+      patch.landing_page    = location.pathname + location.search;
+      patch.referrer        = document.referrer || "direct";
+      patch.first_touch     = Object.keys(last).length ? last : { utm_source: inferSource() };
+    }
+    if (Object.keys(last).length) patch.last_touch = last;
+
+    // Flattened, human-readable lead source for the CRM
+    var src = (patch.first_touch || lead.first_touch || {}).utm_source || inferSource();
+    if (!lead.lead_source) patch.lead_source = src;
+
+    return Store.write(patch);
+  }
+
+  function inferSource() {
+    var r = document.referrer;
+    if (!r) return "direct";
+    try {
+      var h = new URL(r).hostname.replace(/^www\./, "");
+      if (/google|bing|duckduckgo|yahoo/.test(h)) return "organic-search";
+      if (/facebook|instagram|linkedin|twitter|x\.com|youtube|t\.co/.test(h)) return "social:" + h.split(".")[0];
+      if (/askcoachamanda/.test(h)) return "main-website";
+      return "referral:" + h;
+    } catch (e) { return "referral"; }
+  }
+
+  /* ------------------------------------------------------------
+     3. ANALYTICS LOADER
+     ------------------------------------------------------------ */
+  function loadAnalytics() {
+    var a = CFG.analytics || {};
+    window.dataLayer = window.dataLayer || [];
+
+    if (a.ga4) {
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(a.ga4);
+      document.head.appendChild(s);
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", a.ga4, { send_page_view: true });
+    }
+
+    if (a.metaPixel) {
+      /* eslint-disable */
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      /* eslint-enable */
+      window.fbq("init", a.metaPixel);
+      window.fbq("track", "PageView");
+    }
+  }
+
+  /* ------------------------------------------------------------
+     4. TRACK
+     One call fans out to dataLayer, GA4 and Meta.
+     ------------------------------------------------------------ */
+  var META_MAP = {
+    assessment_start:     "InitiateCheckout",
+    lead_captured:        "Lead",
+    assessment_complete:  "CompleteRegistration",
+    application_submit:   "SubmitApplication",
+    booking_view:         "Schedule"
+  };
+
+  ACA.track = function (event, props) {
+    props = props || {};
+    var lead = Store.read();
+    var payload = Object.assign({
+      event: event,
+      lead_source: lead.lead_source,
+      primary_concern: lead.primary_concern,
+      page: location.pathname
+    }, props);
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(payload);
+
+    if (window.gtag) window.gtag("event", event, payload);
+    if (window.fbq && META_MAP[event]) window.fbq("track", META_MAP[event], props);
+    if (CFG.analytics && CFG.analytics.debug) console.log("[ACA track]", event, payload);
+  };
+
+  /* ------------------------------------------------------------
+     5. SUBMIT
+     Posts the whole lead record so the CRM never receives an
+     orphaned fragment.
+     ------------------------------------------------------------ */
+  ACA.submit = function (type, fields) {
+    var lead = Store.write(fields || {});
+    var body = Object.assign({}, lead, {
+      submission_type: type,
+      submitted_at: new Date().toISOString(),
+      page_url: location.href,
+      user_agent: navigator.userAgent
+    });
+
+    var url = (CFG.endpoints || {})[type] || (CFG.endpoints || {}).lead;
+
+    if (!url) {
+      console.info("[ACA] Preview mode — no endpoint configured for '" + type + "'. Payload:", body);
+      return Promise.resolve({ preview: true, body: body });
+    }
+
+    return fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      if (!r.ok) throw new Error("Submission failed: " + r.status);
+      return r.json().catch(function () { return { ok: true }; });
+    });
+  };
+
+  /* Red-flag / human-review routing (Reference Guide §25) */
+  ACA.escalate = function (reason, detail) {
+    ACA.track("escalation_flagged", { reason: reason });
+    Store.write({ escalation_reason: reason, escalation_detail: detail || "" });
+    var url = (CFG.endpoints || {}).escalation;
+    if (!url) { console.warn("[ACA] Escalation (no endpoint):", reason, detail); return; }
+    try {
+      navigator.sendBeacon(url, new Blob(
+        [JSON.stringify(Object.assign({ reason: reason, detail: detail }, Store.read()))],
+        { type: "application/json" }
+      ));
+    } catch (e) { /* non-blocking by design */ }
+  };
+
+  /* ------------------------------------------------------------
+     6. CONFIG → DOM
+     Any element with data-aca="path.to.value" gets filled in, and
+     data-aca-href="links.book" sets an href. Keeps copy and links
+     in config.js only.
+     ------------------------------------------------------------ */
+  function dig(path) {
+    return path.split(".").reduce(function (o, k) { return (o || {})[k]; }, CFG);
+  }
+  function hydrate(root) {
+    (root || document).querySelectorAll("[data-aca]").forEach(function (el) {
+      var v = dig(el.getAttribute("data-aca"));
+      if (v != null) el.textContent = v;
+    });
+    (root || document).querySelectorAll("[data-aca-href]").forEach(function (el) {
+      var v = dig(el.getAttribute("data-aca-href"));
+      if (v) el.setAttribute("href", v);
+    });
+    (root || document).querySelectorAll("[data-year]").forEach(function (el) {
+      el.textContent = new Date().getFullYear();
+    });
+  }
+
+  /* ------------------------------------------------------------
+     7. UI BEHAVIOURS
+     ------------------------------------------------------------ */
+  function wireCtaTracking() {
+    document.addEventListener("click", function (e) {
+      var el = e.target.closest("[data-track]");
+      if (!el) return;
+      ACA.track(el.getAttribute("data-track"), {
+        cta_label: (el.textContent || "").trim().slice(0, 60),
+        cta_location: el.getAttribute("data-track-loc") || "unknown"
+      });
+    });
+  }
+
+  function wireStickyCta() {
+    var bar = document.querySelector(".sticky-cta");
+    if (!bar) return;
+    var trigger = document.querySelector("[data-sticky-after]") || document.querySelector(".hero");
+    if (!trigger) return;
+    var io = new IntersectionObserver(function (entries) {
+      bar.classList.toggle("is-visible", !entries[0].isIntersecting);
+    }, { rootMargin: "-120px 0px 0px 0px" });
+    io.observe(trigger);
+  }
+
+  function wireScrollDepth() {
+    var marks = [25, 50, 75, 100], hit = {};
+    var onScroll = throttle(function () {
+      var h = document.documentElement;
+      var pct = Math.round(((h.scrollTop + window.innerHeight) / h.scrollHeight) * 100);
+      marks.forEach(function (m) {
+        if (pct >= m && !hit[m]) { hit[m] = true; ACA.track("scroll_depth", { depth: m }); }
+      });
+    }, 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  function throttle(fn, ms) {
+    var last = 0, t;
+    return function () {
+      var now = Date.now(), args = arguments;
+      if (now - last >= ms) { last = now; fn.apply(null, args); }
+      else { clearTimeout(t); t = setTimeout(function () { last = Date.now(); fn.apply(null, args); }, ms); }
+    };
+  }
+
+  /* Shared form helpers ---------------------------------------- */
+  ACA.form = {
+    validate: function (form) {
+      var ok = true;
+      form.querySelectorAll("[required]").forEach(function (input) {
+        var bad = input.type === "checkbox" ? !input.checked : !String(input.value).trim();
+        if (!bad && input.type === "email") bad = !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(input.value);
+        if (!bad && input.type === "tel") bad = String(input.value).replace(/\D/g, "").length < 7;
+        input.setAttribute("aria-invalid", bad ? "true" : "false");
+        var msg = input.closest(".field, .consent-field");
+        var err = msg && msg.querySelector(".field-error");
+        if (err) err.hidden = !bad;
+        if (bad && ok) { input.focus(); ok = false; }
+      });
+      return ok;
+    },
+    serialize: function (form) {
+      var out = {};
+      new FormData(form).forEach(function (v, k) {
+        if (out[k] === undefined) out[k] = v;
+        else out[k] = [].concat(out[k], v);
+      });
+      form.querySelectorAll('input[type="checkbox"]').forEach(function (c) {
+        if (c.name && !(c.name in out)) out[c.name] = false;
+        else if (c.name && c.value === "on") out[c.name] = true;
+      });
+      return out;
+    },
+    busy: function (btn, on, busyLabel) {
+      if (!btn) return;
+      if (on) {
+        btn.dataset.label = btn.textContent;
+        btn.textContent = busyLabel || "One moment…";
+        btn.setAttribute("aria-disabled", "true");
+      } else {
+        if (btn.dataset.label) btn.textContent = btn.dataset.label;
+        btn.removeAttribute("aria-disabled");
+      }
+    }
+  };
+
+  /* ------------------------------------------------------------
+     8. BOOT
+     ------------------------------------------------------------ */
+  function boot() {
+    captureAttribution();
+    loadAnalytics();
+    hydrate();
+    wireCtaTracking();
+    wireStickyCta();
+    wireScrollDepth();
+    ACA.track("page_view", { title: document.title });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+
+  ACA.hydrate = hydrate;
+})();
+</script>
+<script>/* ============================================================
+   ASK COACH AMANDA — "Why do I feel metabolically stuck?"
+   Assessment engine.
+
+   IMPORTANT (Reference Guide §18, §25):
+   This assessment is EDUCATIONAL, NOT DIAGNOSTIC. It never names
+   a condition, never interprets a lab value, and never tells
+   anyone to change a medication. It surfaces which area is most
+   likely worth attention first, and routes to a human when the
+   answers say a human is needed.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  var ACA = window.ACA = window.ACA || {};
+  var CFG = ACA.config || {};
+
+  /* ------------------------------------------------------------
+     DIMENSIONS — the four "dot" areas we score
+     ------------------------------------------------------------ */
+  var DIMENSIONS = {
+    fuel: {
+      label: "Fuel &amp; blood sugar",
+      max: 11,
+      headline: "Your fuel pattern looks like the most useful place to start.",
+      what: "The way your meals are built and spaced through the day is one of the strongest levers you have over hunger, cravings and afternoon energy. When meals are light on protein and fiber, or when the first real meal comes late, many people find their appetite and energy get harder to manage later in the day &mdash; and it can feel like a willpower problem when it may be a fuel problem.",
+      look: [
+        "What the first real meal of the day actually contains &mdash; and when it happens.",
+        "Whether protein and fiber show up at every meal, not just at dinner.",
+        "The gap between meals, and what tends to fill it.",
+        "How you feel 90 minutes after eating &mdash; steady, or hunting for something else."
+      ],
+      first: "For one week, notice what you eat before 10&nbsp;a.m. and how you feel at 3&nbsp;p.m. Don't change anything yet. Just connect those two data points. Most people are surprised by the pattern."
+    },
+    recovery: {
+      label: "Sleep, stress &amp; recovery",
+      max: 8,
+      headline: "Sleep and stress look like the most useful place to start.",
+      what: "Sleep and stress aren't a separate category from nutrition &mdash; they shape it. After a short or broken night, or during a genuinely stressful stretch, hunger, cravings and the appeal of quick energy commonly shift. That's a physiological pattern many people experience, not a character flaw. Working on food while recovery is the actual constraint tends to be frustrating and slow.",
+      look: [
+        "How many hours you're actually asleep &mdash; not in bed.",
+        "Whether you're waking during the night, and roughly when.",
+        "What your evening looks like in the 90 minutes before bed.",
+        "Which specific stressors reliably change how you eat."
+      ],
+      first: "Pick the easier of these two: a consistent wake time for seven days, or a fixed point in the evening when screens and work stop. One, not both. Changing recovery often makes the food work noticeably easier."
+    },
+    movement: {
+      label: "Movement &amp; daily activity",
+      max: 6,
+      headline: "Daily movement looks like the most useful place to start.",
+      what: "This isn't about a gym program. Everyday movement &mdash; how much you're upright, how often you break up long stretches of sitting, whether anything you do asks something of your muscles &mdash; is one factor that can influence energy, appetite signals and how your body handles a meal. It's also usually the easiest thing to add to a full schedule, because it doesn't need an hour.",
+      look: [
+        "How many hours of the workday you're genuinely seated without a break.",
+        "Whether anything in your week is strength-based.",
+        "What happens in the 20 minutes after your largest meal.",
+        "Whether movement is currently something you schedule or something you hope for."
+      ],
+      first: "Attach a 10-minute walk to something that already happens every day &mdash; after lunch, after dinner, after the last call. Anchoring a new habit to an existing one is far more durable than relying on motivation."
+    },
+    consistency: {
+      label: "Consistency &amp; real life",
+      max: 14,
+      headline: "Consistency &mdash; not knowledge &mdash; looks like the real constraint.",
+      what: "Your answers suggest you already know a lot of the right things. The gap is between knowing and doing it repeatedly when a week gets hard. That's an extremely common place to be stuck, and it usually doesn't get solved by finding a better plan. It gets solved by building a smaller plan that survives travel, deadlines, family and a bad night's sleep &mdash; and by having a defined way back after an off day.",
+      look: [
+        "Which specific situations reliably break your routine.",
+        "Whether one off day tends to become an off week.",
+        "How many things you're currently trying to change at once.",
+        "What your plan is for the weeks you already know will be hard."
+      ],
+      first: "Name your single most reliable derailer, then decide the one thing you'd keep doing anyway during it. Not the full routine &mdash; the one thing. That's the difference between a setback and starting over."
+    }
+  };
+
+  /* Shown when nothing scores high enough to call a constraint.
+     Matches the "health optimization / clarity" segment in §20 —
+     she's doing a lot and wants to know if it's the right lot. */
+  var NO_CLEAR_CONSTRAINT = {
+    label: "No single obvious constraint",
+    headline: "Nothing here stands out as an obvious constraint &mdash; which is its own useful answer.",
+    what: "Based on what you told us, your fuel, recovery, movement and consistency patterns all look reasonably solid. That means the question worth asking isn't \"what am I doing wrong?\" &mdash; it's whether the right things are being done in the right order, and whether something outside these four areas deserves a look. That's a genuinely different conversation, and it's often the most interesting one.",
+    look: [
+      "Whether your results have plateaued despite the inputs staying good.",
+      "What changed &mdash; and when &mdash; relative to what used to work.",
+      "Anything you've been told to watch that hasn't been connected to your daily habits yet.",
+      "Whether the effort you're spending is proportionate to what it's returning."
+    ],
+    first: "Write down the three healthy things you're most consistent about, and next to each one, what you believe it's doing for you. The gaps in that second column are usually where the useful conversation starts.",
+    LOW: true
+  };
+
+  var LOW_THRESHOLD = 25; // percent
+
+  var DIM_PRIORITY = ["fuel", "recovery", "movement", "consistency"];
+
+  /* ------------------------------------------------------------
+     QUESTIONS
+     score: { dimension: points }
+     ------------------------------------------------------------ */
+  var QUESTIONS = [
+    {
+      id: "primary_concern",
+      type: "single",
+      q: "What's bothering you most right now?",
+      help: "There's no wrong answer &mdash; this just makes the rest of the questions more relevant.",
+      options: [
+        { v: "weight_waist",  t: "Weight, and especially my waistline", s: "Things settle around my middle in a way they didn't before." },
+        { v: "energy_cravings", t: "Energy, hunger and cravings", s: "I'm tired in the afternoon and reaching for something sweet." },
+        { v: "blood_sugar",   t: "Blood sugar or other health markers", s: "Something came up at an appointment that I'd like to get ahead of." },
+        { v: "prevention",    t: "Preventing a future problem", s: "It runs in my family and I don't want to wait." },
+        { v: "optimization",  t: "Knowing whether I'm doing the right things", s: "I'm doing a lot. I want someone to look at the whole picture." }
+      ]
+    },
+    {
+      id: "age_band",
+      type: "single",
+      q: "Which age range are you in?",
+      help: "This program is built around what tends to change for women in their 40s, 50s and 60s.",
+      options: [
+        { v: "under_40", t: "Under 40" },
+        { v: "40_49",    t: "40&ndash;49" },
+        { v: "50_59",    t: "50&ndash;59" },
+        { v: "60_69",    t: "60&ndash;69" },
+        { v: "70_plus",  t: "70 or older" }
+      ]
+    },
+    {
+      id: "breakfast",
+      type: "single",
+      q: "What does a typical morning look like, food-wise?",
+      options: [
+        { v: "skip",    t: "I usually skip it &mdash; coffee and go", score: { fuel: 3 } },
+        { v: "carb",    t: "Something quick and carb-based", s: "Toast, cereal, granola bar, fruit, a pastry.", score: { fuel: 3 } },
+        { v: "unsure",  t: "A mix &mdash; but I'm not sure it's balanced", score: { fuel: 2 } },
+        { v: "protein", t: "Protein-forward, and I feel steady afterwards", score: { fuel: 0 } }
+      ]
+    },
+    {
+      id: "afternoon",
+      type: "single",
+      q: "How do you feel around 3&nbsp;p.m. on a normal day?",
+      options: [
+        { v: "crash",  t: "I hit a wall &mdash; I need coffee or something sweet", score: { fuel: 3, recovery: 1 } },
+        { v: "snacky", t: "Noticeably hungry or snacky", score: { fuel: 2 } },
+        { v: "mixed",  t: "Some days fine, some days rough", score: { fuel: 1 } },
+        { v: "steady", t: "Generally steady", score: { fuel: 0 } }
+      ]
+    },
+    {
+      id: "satiety",
+      type: "single",
+      q: "After a normal meal, how long before you're genuinely hungry again?",
+      options: [
+        { v: "lt2", t: "Under 2 hours", score: { fuel: 3 } },
+        { v: "2_3", t: "About 2&ndash;3 hours", score: { fuel: 2 } },
+        { v: "3_4", t: "About 3&ndash;4 hours", score: { fuel: 1 } },
+        { v: "gt4", t: "4 hours or more", score: { fuel: 0 } }
+      ]
+    },
+    {
+      id: "sleep",
+      type: "single",
+      q: "What do most nights actually look like?",
+      options: [
+        { v: "short",  t: "Under 6 hours", score: { recovery: 3 } },
+        { v: "broken", t: "6&ndash;7 hours, but broken", score: { recovery: 3 } },
+        { v: "tired",  t: "7&ndash;8 hours, but I wake up tired", score: { recovery: 2 } },
+        { v: "rested", t: "7&ndash;8 hours and I wake up rested", score: { recovery: 0 } }
+      ]
+    },
+    {
+      id: "stress_eating",
+      type: "single",
+      q: "When a stressful stretch hits, what happens to your eating?",
+      help: "This is a pattern question, not a judgment. Almost everyone has one.",
+      options: [
+        { v: "more",   t: "I eat more, later at night, or more sugar", score: { recovery: 3, consistency: 1 } },
+        { v: "skip",   t: "I skip meals, then overeat later", score: { recovery: 3, fuel: 1 } },
+        { v: "unsure", t: "I haven't really noticed a pattern", score: { recovery: 1 } },
+        { v: "steady", t: "It doesn't change much", score: { recovery: 0 } }
+      ]
+    },
+    {
+      id: "movement",
+      type: "single",
+      q: "On a normal workday, how much are you actually moving?",
+      options: [
+        { v: "seated",   t: "Mostly seated &mdash; not much walking", score: { movement: 3 } },
+        { v: "some",     t: "Some walking, nothing structured", score: { movement: 2 } },
+        { v: "cardio",   t: "I move most days, but nothing strength-based", score: { movement: 1 } },
+        { v: "strength", t: "Regular movement including strength work", score: { movement: 0 } }
+      ]
+    },
+    {
+      id: "post_meal",
+      type: "single",
+      q: "Do you move at all after your largest meal of the day?",
+      options: [
+        { v: "never",     t: "Almost never &mdash; I sit down after eating", score: { movement: 2 } },
+        { v: "sometimes", t: "Sometimes", score: { movement: 1 } },
+        { v: "usually",   t: "Usually &mdash; a short walk or something active", score: { movement: 0 } }
+      ]
+    },
+    {
+      id: "derailers",
+      type: "multi",
+      q: "What usually knocks you off track?",
+      help: "Select everything that applies.",
+      options: [
+        { v: "work",     t: "A busy or stressful work stretch", score: { consistency: 1 } },
+        { v: "travel",   t: "Travel", score: { consistency: 1 } },
+        { v: "social",   t: "Weekends, restaurants and social events", score: { consistency: 1 } },
+        { v: "allnone",  t: "One off day turns into an off week", score: { consistency: 3 } },
+        { v: "fade",     t: "Nothing specific &mdash; I just lose momentum", score: { consistency: 3 } }
+      ]
+    },
+    {
+      id: "when_stalls",
+      type: "single",
+      q: "When something stops working, what do you usually do?",
+      options: [
+        { v: "restart", t: "Give up for a while, then start again later", score: { consistency: 3 } },
+        { v: "new",     t: "Look for a different approach", score: { consistency: 2 } },
+        { v: "harder",  t: "Push harder on the same thing", score: { consistency: 2 } },
+        { v: "adjust",  t: "Adjust based on what I noticed", score: { consistency: 0 } }
+      ]
+    },
+    {
+      id: "context",
+      type: "multi",
+      q: "Which of these are true for you right now?",
+      help: "Select everything that applies. This helps Amanda prepare, and nothing here changes whether you can work with her.",
+      options: [
+        { v: "on_medication",      t: "I take one or more prescription medications" },
+        { v: "supplement_question",t: "I take supplements and I'm not sure I need all of them" },
+        { v: "marker_flagged",     t: "A provider has told me a marker needs attention", s: "A1C, blood sugar, cholesterol, blood pressure or similar." },
+        { v: "none",               t: "None of these", exclusive: true }
+      ]
+    },
+    {
+      id: "readiness",
+      type: "single",
+      q: "How ready are you to work on this over the next 90 days?",
+      help: "Be honest &mdash; “not yet” is a completely valid answer and it changes what we send you.",
+      options: [
+        { v: "ready",   t: "Ready now &mdash; I want a plan and accountability" },
+        { v: "curious", t: "Interested, but I want to understand what's involved first" },
+        { v: "later",   t: "Gathering information for down the road" }
+      ]
+    },
+    {
+      id: "safety",
+      type: "single",
+      q: "Are you currently experiencing new or concerning symptoms you haven't discussed with a healthcare provider?",
+      help: "Coaching is not medical care. This question makes sure you get pointed to the right place.",
+      options: [
+        { v: "no",  t: "No" },
+        { v: "yes", t: "Yes &mdash; there's something I haven't raised with a provider yet" }
+      ]
+    }
+  ];
+
+  /* ------------------------------------------------------------
+     STATE
+     ------------------------------------------------------------ */
+  var state = { i: 0, answers: {}, scores: { fuel: 0, recovery: 0, movement: 0, consistency: 0 } };
+  var previewMode = false;
+
+  var el = {};
+  function $(id) { return document.getElementById(id); }
+
+  /* ------------------------------------------------------------
+     RENDER — question
+     ------------------------------------------------------------ */
+  function renderQuestion() {
+    var q = QUESTIONS[state.i];
+    var chosen = state.answers[q.id];
+
+    el.progressNow.textContent = "Question " + (state.i + 1) + " of " + QUESTIONS.length;
+    el.progressPct.textContent = Math.round((state.i / QUESTIONS.length) * 100) + "%";
+    el.progressBar.style.width = Math.max((state.i / QUESTIONS.length) * 100, 2.5) + "%";
+
+    el.qText.innerHTML = q.q;
+    el.qHelp.innerHTML = q.help || "";
+    el.qHelp.hidden = !q.help;
+
+    el.choices.innerHTML = "";
+    el.choices.setAttribute("role", q.type === "multi" ? "group" : "radiogroup");
+
+    q.options.forEach(function (opt) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "choice" + (q.type === "multi" ? " choice--multi" : "");
+      b.setAttribute("aria-pressed", isChosen(chosen, opt.v, q.type) ? "true" : "false");
+      b.dataset.value = opt.v;
+      b.innerHTML =
+        '<span class="choice__box" aria-hidden="true"></span>' +
+        '<span class="choice__text">' + opt.t +
+        (opt.s ? '<span class="choice__sub">' + opt.s + "</span>" : "") +
+        "</span>";
+      b.addEventListener("click", function () { choose(q, opt, b); });
+      el.choices.appendChild(b);
+    });
+
+    el.back.hidden = state.i === 0;
+    el.next.hidden = q.type !== "multi";
+    // :has() handles this in CSS; set it explicitly for older engines too
+    el.next.parentNode.hidden = el.back.hidden && el.next.hidden;
+    el.next.setAttribute("aria-disabled", (chosen && chosen.length) ? "false" : "true");
+    el.qText.focus();
+  }
+
+  function isChosen(chosen, v, type) {
+    return type === "multi" ? Array.isArray(chosen) && chosen.indexOf(v) > -1 : chosen === v;
+  }
+
+  function choose(q, opt, btn) {
+    if (q.type === "multi") {
+      var cur = state.answers[q.id] || [];
+      var exclusive = q.options.filter(function (o) { return o.exclusive; }).map(function (o) { return o.v; });
+
+      if (opt.exclusive) {
+        cur = cur.indexOf(opt.v) > -1 ? [] : [opt.v];
+      } else {
+        cur = cur.filter(function (v) { return exclusive.indexOf(v) === -1; });
+        cur = cur.indexOf(opt.v) > -1
+          ? cur.filter(function (v) { return v !== opt.v; })
+          : cur.concat(opt.v);
+      }
+      state.answers[q.id] = cur;
+
+      [].forEach.call(el.choices.children, function (c) {
+        c.setAttribute("aria-pressed", cur.indexOf(c.dataset.value) > -1 ? "true" : "false");
+      });
+      el.next.setAttribute("aria-disabled", cur.length ? "false" : "true");
+      return;
+    }
+
+    state.answers[q.id] = opt.v;
+    btn.setAttribute("aria-pressed", "true");
+    [].forEach.call(el.choices.children, function (c) {
+      if (c !== btn) c.setAttribute("aria-pressed", "false");
+    });
+    setTimeout(advance, 220);
+  }
+
+  function advance() {
+    if (state.i === 0) ACA.track("assessment_start", {});
+    if (state.i < QUESTIONS.length - 1) {
+      state.i++;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      finishQuestions();
+    }
+  }
+
+  function back() {
+    if (state.i > 0) { state.i--; renderQuestion(); }
+  }
+
+  /* ------------------------------------------------------------
+     SCORING
+     ------------------------------------------------------------ */
+  function computeScores() {
+    var s = { fuel: 0, recovery: 0, movement: 0, consistency: 0 };
+    QUESTIONS.forEach(function (q) {
+      var a = state.answers[q.id];
+      if (a == null) return;
+      var picked = q.type === "multi" ? a : [a];
+      picked.forEach(function (v) {
+        var opt = q.options.filter(function (o) { return o.v === v; })[0];
+        if (opt && opt.score) {
+          Object.keys(opt.score).forEach(function (k) { s[k] += opt.score[k]; });
+        }
+      });
+    });
+    state.scores = s;
+
+    // Normalised 0–100 so the four bars are comparable
+    var pct = {};
+    DIM_PRIORITY.forEach(function (k) {
+      pct[k] = Math.round((s[k] / DIMENSIONS[k].max) * 100);
+    });
+    state.percents = pct;
+
+    var ranked = DIM_PRIORITY.slice().sort(function (a, b) {
+      if (pct[b] !== pct[a]) return pct[b] - pct[a];
+      return DIM_PRIORITY.indexOf(a) - DIM_PRIORITY.indexOf(b);
+    });
+    state.primary = ranked[0];
+    state.secondary = ranked[1];
+    return state;
+  }
+
+  function routing() {
+    var a = state.answers;
+    var redFlag = a.safety === "yes";
+    var ctx = a.context || [];
+    var inBand = ["40_49", "50_59", "60_69"].indexOf(a.age_band) > -1;
+
+    var route;
+    if (redFlag) route = "human";                       // talk to a person first
+    else if (a.readiness === "ready") route = "apply";
+    else if (a.readiness === "curious") route = "call";
+    else route = "nurture";
+
+    return {
+      route: route,
+      red_flag: redFlag,
+      age_in_band: inBand,
+      on_medication: ctx.indexOf("on_medication") > -1,
+      supplement_question: ctx.indexOf("supplement_question") > -1,
+      marker_flagged: ctx.indexOf("marker_flagged") > -1
+    };
+  }
+
+  /* ------------------------------------------------------------
+     EMAIL GATE
+     ------------------------------------------------------------ */
+  function finishQuestions() {
+    computeScores();
+    var r = routing();
+
+    ACA.store.write({
+      primary_concern: state.answers.primary_concern,
+      age_band: state.answers.age_band,
+      readiness: state.answers.readiness,
+      assessment_answers: state.answers,
+      assessment_scores: state.scores,
+      assessment_percents: state.percents,
+      opportunity_primary: state.primary,
+      opportunity_secondary: state.secondary,
+      route: r.route,
+      red_flag: r.red_flag,
+      age_in_band: r.age_in_band,
+      on_medication: r.on_medication,
+      supplement_question: r.supplement_question,
+      marker_flagged: r.marker_flagged,
+      assessment_completed_at: new Date().toISOString()
+    });
+
+    ACA.track("assessment_questions_complete", {
+      opportunity_primary: state.primary,
+      route: r.route
+    });
+
+    el.progressNow.textContent = "Almost there";
+    el.progressPct.textContent = "100%";
+    el.progressBar.style.width = "100%";
+
+    el.stepQuestions.hidden = true;
+    el.stepGate.hidden = false;
+    $("gate-preview").innerHTML = DIMENSIONS[state.primary].label;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    $("lead-first").focus();
+  }
+
+  function submitGate(e) {
+    e.preventDefault();
+    var form = e.target;
+    if (!ACA.form.validate(form)) return;
+
+    var btn = form.querySelector("button[type=submit]");
+    ACA.form.busy(btn, true, "Building your results…");
+
+    var fields = ACA.form.serialize(form);
+    var payload = {
+      first_name: fields.first_name,
+      last_name: fields.last_name || "",
+      email: fields.email,
+      phone: fields.phone || "",
+      consent: !!fields.consent,
+      consent_at: new Date().toISOString()
+    };
+
+    ACA.track("lead_captured", { source_step: "assessment_gate" });
+
+    ACA.submit("assessment", payload)
+      .catch(function (err) { console.error("[ACA] assessment submit failed", err); })
+      .then(function () {
+        ACA.form.busy(btn, false);
+        showResults();
+      });
+  }
+
+  /* ------------------------------------------------------------
+     RESULTS
+     ------------------------------------------------------------ */
+  function showResults() {
+    var r = routing();
+    var lead = ACA.store.read();
+    var lowSignal = state.percents[state.primary] < LOW_THRESHOLD;
+    var primary = lowSignal ? NO_CLEAR_CONSTRAINT : DIMENSIONS[state.primary];
+    var secondary = DIMENSIONS[state.secondary];
+
+    el.stepGate.hidden = true;
+    el.stepResults.hidden = false;
+    el.progressWrap.hidden = true;
+    if (el.intro) el.intro.hidden = true;   // "fourteen short questions" no longer applies
+
+    $("r-name").textContent = lead.first_name ? lead.first_name + ", here's what stood out" : "Here's what stood out";
+    $("r-headline").innerHTML = primary.headline;
+    $("r-what").innerHTML = primary.what;
+
+    var lookList = $("r-look");
+    lookList.innerHTML = "";
+    primary.look.forEach(function (t) {
+      var li = document.createElement("li");
+      li.innerHTML = t;
+      lookList.appendChild(li);
+    });
+
+    $("r-first").innerHTML = primary.first;
+    var secondBlock = $("r-second-block");
+    if (lowSignal) {
+      secondBlock.hidden = true;
+    } else {
+      secondBlock.hidden = false;
+      $("r-second-label").innerHTML = secondary.label;
+      $("r-second-text").innerHTML = secondary.what.split(". ").slice(0, 2).join(". ") + ".";
+    }
+
+    // Score bars
+    var bars = $("r-bars");
+    bars.innerHTML = "";
+    DIM_PRIORITY.forEach(function (k) {
+      var pct = state.percents[k];
+      var row = document.createElement("div");
+      row.className = "score-row";
+      row.innerHTML =
+        '<div class="score-label">' + DIMENSIONS[k].label + "</div>" +
+        '<div class="score-track"><div class="score-fill' + (k === state.primary ? " score-fill--top" : "") + '"></div></div>' +
+        '<div class="score-val">' + pct + "%</div>";
+      bars.appendChild(row);
+      requestAnimationFrame(function () {
+        row.querySelector(".score-fill").style.width = Math.max(pct, 3) + "%";
+      });
+    });
+
+    // Context notes
+    var notes = $("r-notes");
+    notes.innerHTML = "";
+    if (r.on_medication || r.supplement_question) {
+      notes.insertAdjacentHTML("beforeend",
+        '<div class="note mt5"><strong>You mentioned medications or supplements.</strong> That&rsquo;s exactly the kind of thing a pharmacist&rsquo;s perspective is useful for &mdash; understanding what you take, whether a supplement has a reasonable purpose for you, and what&rsquo;s worth asking at your next appointment. Any actual medication change stays between you and your prescriber.</div>');
+    }
+    if (r.marker_flagged) {
+      notes.insertAdjacentHTML("beforeend",
+        '<div class="note mt5"><strong>A marker has been flagged for you.</strong> Keep working with the provider who raised it. Coaching focuses on the daily factors you can influence alongside their care &mdash; it doesn&rsquo;t interpret or manage lab results.</div>');
+    }
+    if (!r.age_in_band) {
+      notes.insertAdjacentHTML("beforeend",
+        '<div class="note mt5">This program is built around what tends to change for women roughly 40&ndash;65. That doesn&rsquo;t rule you out &mdash; it just means the strategy call should confirm it&rsquo;s the right fit before anything else.</div>');
+    }
+
+    // Safety escalation
+    if (r.red_flag) {
+      $("r-alert").hidden = false;
+      if (!previewMode) {
+        ACA.escalate("self_reported_new_symptoms", "Assessment safety question answered 'yes'.");
+      }
+    }
+
+    renderCta(r);
+
+    ACA.store.write({ no_clear_constraint: lowSignal });
+
+    if (!previewMode) ACA.track("assessment_complete", {
+      no_clear_constraint: lowSignal,
+      opportunity_primary: state.primary,
+      opportunity_secondary: state.secondary,
+      route: r.route,
+      score_fuel: state.percents.fuel,
+      score_recovery: state.percents.recovery,
+      score_movement: state.percents.movement,
+      score_consistency: state.percents.consistency
+    });
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderCta(r) {
+    var box = $("r-cta");
+    var L = (CFG.links || {});
+    var html;
+
+    if (r.red_flag) {
+      html =
+        "<h3>Let&rsquo;s talk before anything else</h3>" +
+        "<p>Because of what you flagged above, the right next step is a conversation rather than an application. Book a complimentary call and Amanda will help you figure out what belongs with your healthcare provider and what coaching can genuinely support.</p>" +
+        '<a class="btn btn--primary btn--lg" href="' + L.book + '" data-track="cta_click" data-track-loc="results-human">Book a complimentary call</a>';
+    } else if (r.route === "apply") {
+      html =
+        "<h3>You said you&rsquo;re ready. Here&rsquo;s the next step.</h3>" +
+        "<p>The Metabolic Momentum Method&trade; is a 90-day program and Amanda takes a limited number of clients at a time, so it starts with a short application &mdash; about four minutes &mdash; followed by a strategy call to confirm it&rsquo;s a genuine fit.</p>" +
+        '<a class="btn btn--primary btn--lg" href="' + L.apply + '" data-track="cta_click" data-track-loc="results-apply">Apply for the program</a>' +
+        '<p class="cta-note" style="justify-content:center">Applying doesn&rsquo;t commit you to anything. No payment is taken before the call.</p>';
+    } else if (r.route === "call") {
+      html =
+        "<h3>Want to understand what this would actually look like?</h3>" +
+        "<p>That&rsquo;s what the complimentary strategy call is for. Twenty minutes, no pitch &mdash; Amanda reviews your results with you, answers what you want to ask, and tells you honestly whether coaching is the right move right now.</p>" +
+        '<a class="btn btn--primary btn--lg" href="' + L.book + '" data-track="cta_click" data-track-loc="results-call">Book a complimentary call</a>' +
+        '<p class="cta-note" style="justify-content:center">Or <a href="' + L.apply + '">skip ahead to the application</a> if you already know.</p>';
+    } else {
+      html =
+        "<h3>No pressure &mdash; take what&rsquo;s useful</h3>" +
+        "<p>You said you&rsquo;re gathering information, so that&rsquo;s what we&rsquo;ll send: short, practical emails about the area your results pointed to. No sequence of sales pressure. When you&rsquo;re ready for a conversation, the door is open.</p>" +
+        '<a class="btn btn--primary" href="' + L.book + '" data-track="cta_click" data-track-loc="results-nurture">Book a call when you\'re ready</a>' +
+        '<p class="cta-note" style="justify-content:center">Your results are on their way to your inbox too.</p>';
+    }
+
+    box.innerHTML = html;
+  }
+
+  /* ------------------------------------------------------------
+     BOOT
+     ------------------------------------------------------------ */
+  /* ------------------------------------------------------------
+     PREVIEW MODE  —  ?preview=fuel|recovery|movement|consistency|none|flag
+     Jumps straight to a rendered results screen with sample answers so
+     Amanda (and QA) can review every variant without retaking the quiz.
+     Nothing is submitted and no tracking conversion is counted.
+     ------------------------------------------------------------ */
+  var PREVIEW_ANSWERS = {
+    fuel:        { breakfast:"skip", afternoon:"crash", satiety:"lt2", sleep:"rested", stress_eating:"steady", movement:"strength", post_meal:"usually", derailers:[], when_stalls:"adjust" },
+    recovery:    { breakfast:"protein", afternoon:"steady", satiety:"gt4", sleep:"broken", stress_eating:"more", movement:"cardio", post_meal:"sometimes", derailers:["work"], when_stalls:"adjust" },
+    movement:    { breakfast:"protein", afternoon:"steady", satiety:"gt4", sleep:"rested", stress_eating:"steady", movement:"seated", post_meal:"never", derailers:[], when_stalls:"adjust" },
+    consistency: { breakfast:"unsure", afternoon:"mixed", satiety:"3_4", sleep:"tired", stress_eating:"unsure", movement:"cardio", post_meal:"sometimes", derailers:["work","travel","social","allnone","fade"], when_stalls:"restart" },
+    none:        { breakfast:"protein", afternoon:"steady", satiety:"gt4", sleep:"rested", stress_eating:"steady", movement:"strength", post_meal:"usually", derailers:[], when_stalls:"adjust" }
+  };
+
+  function runPreview(which) {
+    previewMode = true;
+    var flag = which === "flag";
+    var key = flag ? "recovery" : (PREVIEW_ANSWERS[which] ? which : "fuel");
+    state.answers = Object.assign({
+      primary_concern: "weight_waist",
+      age_band: "50_59",
+      readiness: flag ? "ready" : "ready",
+      context: ["on_medication"],
+      safety: flag ? "yes" : "no"
+    }, PREVIEW_ANSWERS[key]);
+
+    computeScores();
+    ACA.store.write({ first_name: "Preview", assessment_answers: state.answers });
+    el.progressWrap.hidden = true;
+    el.stepQuestions.hidden = true;
+    el.stepGate.hidden = true;
+    showResults();
+
+    var banner = document.createElement("div");
+    banner.className = "note note--gold";
+    banner.style.margin = "0 0 24px";
+    banner.innerHTML = "<strong>Preview mode &mdash; sample answers, nothing submitted.</strong> " +
+      'Variants: <a href="?preview=fuel">fuel</a> &middot; <a href="?preview=recovery">recovery</a> &middot; ' +
+      '<a href="?preview=movement">movement</a> &middot; <a href="?preview=consistency">consistency</a> &middot; ' +
+      '<a href="?preview=none">no clear constraint</a> &middot; <a href="?preview=flag">safety flag</a> &middot; ' +
+      '<a href="assessment.html">take it properly</a>';
+    el.stepResults.insertBefore(banner, el.stepResults.firstChild);
+  }
+
+  function boot() {
+    el = {
+      intro: $("quiz-intro"),
+      progressWrap: $("progress-wrap"),
+      progressNow: $("progress-now"),
+      progressPct: $("progress-pct"),
+      progressBar: $("progress-bar"),
+      stepQuestions: $("step-questions"),
+      stepGate: $("step-gate"),
+      stepResults: $("step-results"),
+      qText: $("q-text"),
+      qHelp: $("q-help"),
+      choices: $("q-choices"),
+      back: $("q-back"),
+      next: $("q-next")
+    };
+    if (!el.stepQuestions) return;
+
+    el.back.addEventListener("click", back);
+    el.next.addEventListener("click", function () {
+      if (el.next.getAttribute("aria-disabled") === "true") return;
+      advance();
+    });
+    $("gate-form").addEventListener("submit", submitGate);
+
+    var preview = new URLSearchParams(location.search).get("preview");
+    if (preview) { runPreview(preview); return; }
+
+    renderQuestion();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+
+  ACA.assessment = { QUESTIONS: QUESTIONS, DIMENSIONS: DIMENSIONS, state: state };
+})();
+</script>
+<script>
+/* Single-file preview router: swap views instead of loading pages. */
+(function () {
+  var landing = document.getElementById("view-landing");
+  var quiz    = document.getElementById("view-quiz");
+  var flag    = document.querySelector(".preview-flag");
+
+  function show(which) {
+    landing.hidden = which !== "landing";
+    quiz.hidden    = which !== "quiz";
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  function note(title, body) {
+    var m = document.createElement("div");
+    m.className = "pv-modal";
+    m.innerHTML = '<div class="pv-modal__box"><h3>' + title + "</h3><p>" + body +
+      '</p><button class="btn btn--primary mt4" type="button">Back to the preview</button></div>';
+    m.addEventListener("click", function (e) {
+      if (e.target === m || e.target.tagName === "BUTTON") m.remove();
+    });
+    document.body.appendChild(m);
+  }
+
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href");
+
+    if (href === "assessment.html") { e.preventDefault(); show("quiz"); return; }
+    if (href === "index.html")      { e.preventDefault(); show("landing"); return; }
+    if (href === "apply.html") { return; }
+    if (href === "book.html") { return; }
+    if (href === "thank-you.html") { return; }
+  });
+
+  // Hide the sticky mobile CTA while the quiz is open
+  new MutationObserver(function () {
+    var bar = document.querySelector(".sticky-cta");
+    if (bar) bar.style.display = quiz.hidden ? "" : "none";
+  }).observe(quiz, { attributes: true, attributeFilter: ["hidden"] });
+})();
+</script>
