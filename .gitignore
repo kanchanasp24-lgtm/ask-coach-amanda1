@@ -12,3 +12,6 @@ about_section_crop.png
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Testimonial video over GitHub's 100 MB file limit (page streams it from askcoachamanda.com)
+assets/video/testimonials/joshua-tate.mp4

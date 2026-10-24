@@ -212,6 +212,8 @@ p:last-child { margin-bottom: 0; }
 .card--raised { box-shadow: var(--shadow); border-color: transparent; }
 .card--mint { background: var(--mint-tint); border-color: var(--mint-tint-2); }
 .card--gold { background: var(--gold-tint); border-color: #F0E2BE; }
+.card--teal { background: var(--teal-ink); border-color: var(--teal-ink); color: rgba(255,255,255,.88); }
+.card--teal h3 { color: #fff; }
 .card__num {
   font-family: var(--display); font-size: 1.55rem; font-weight: 600;
   width: 46px; height: 46px; border-radius: 50%;

@@ -226,6 +226,12 @@
 .quote-card__who { margin-top: auto; padding-top: var(--s4); border-top: 1px solid var(--line); }
 .quote-card__who b { display: block; color: var(--teal-ink); font-size: .98rem; }
 .quote-card__who span { font-size: .86rem; color: var(--ink-faint); }
+.quote-card--video { padding: var(--s5); }
+.quote-card__video {
+  aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden;
+  background: var(--teal-ink);
+}
+.quote-card__video video { width: 100%; height: 100%; object-fit: contain; }
 
 /* ------------------------------------------------------------
    FAQ
