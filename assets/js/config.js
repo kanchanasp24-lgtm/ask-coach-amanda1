@@ -64,8 +64,10 @@ window.ACA.config = {
   // It receives one JSON object per submission containing every
   // field in docs/DATA-SCHEMA.md.  Leave empty to run the funnel in
   // preview mode (submissions are logged to the console only).
+  // One GoHighLevel (Pinnacle Ai) inbound webhook receives every type;
+  // the empty entries below fall back to `lead`.
   endpoints: {
-    lead:        "",   // assessment email capture
+    lead:        "https://services.leadconnectorhq.com/hooks/2cbBqmn8tNkrS8sYoyNi/webhook-trigger/ed58d8a7-4b92-4b7d-bd44-8c3cae8e20da",   // assessment email capture
     assessment:  "",   // completed assessment + scores
     application: "",   // coaching application
     escalation:  ""    // red-flag / human-review notifications
