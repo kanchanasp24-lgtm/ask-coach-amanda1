@@ -67,7 +67,7 @@ window.ACA.config = {
   // One GoHighLevel (Pinnacle Ai) inbound webhook receives every type;
   // the empty entries below fall back to `lead`.
   endpoints: {
-    lead:        "https://services.leadconnectorhq.com/hooks/2cbBqmn8tNkrS8sYoyNi/webhook-trigger/ed58d8a7-4b92-4b7d-bd44-8c3cae8e20da",   // assessment email capture
+    lead:        "https://services.leadconnectorhq.com/hooks/2cbBqmn8tNkrS8sYoyNi/webhook-trigger/5293ef71-711f-42a6-8cad-3e5098bdbff8",   // assessment email capture
     assessment:  "",   // completed assessment + scores
     application: "",   // coaching application
     escalation:  ""    // red-flag / human-review notifications
