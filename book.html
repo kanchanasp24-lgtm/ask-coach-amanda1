@@ -63,6 +63,10 @@
 .booking-tab-btn:hover:not(.active) {
   background: rgba(20,58,61,0.06);
 }
+/* Calendar beside the info cards on desktop; stacked on tablets and phones */
+.book-layout { grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); }
+@media (max-width: 900px) { .book-layout { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .booking-tabs { flex-direction: column; border-radius: var(--r-lg); } }
 </style>
 
 <main id="main" class="section section--tight">
@@ -74,7 +78,7 @@
       <p class="lede" id="book-sub">A real conversation, not a pitch. Amanda reviews what you&rsquo;ve shared, asks what she needs to ask, and tells you honestly whether coaching is the right move right now.</p>
     </div>
 
-    <div class="grid" style="grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:var(--s7);align-items:start">
+    <div class="grid book-layout" style="gap:var(--s7);align-items:start">
 
       <div>
         <!-- Booking View Switcher -->
@@ -108,6 +112,44 @@
             <strong>Assessment results connected:</strong> Your scorecard responses (<span id="lead-score-text"></span>) are automatically attached so Dr. Amanda can review your profile before connecting.
           </div>
 
+          <!-- Details step: only shown to visitors the funnel doesn't know yet,
+               so every Calendly booking also reaches the CRM -->
+          <form id="calendar-gate" class="card" style="padding:var(--s6);background:var(--white);border-radius:var(--r-lg);border:1px solid var(--line);box-shadow:var(--shadow-sm)" novalidate hidden>
+            <h2 style="font-size:1.35rem;margin-bottom:6px;color:var(--teal-ink)">First, where should Amanda send your confirmation?</h2>
+            <p class="small muted" style="margin:0 0 var(--s5)">Takes ten seconds. Then you&rsquo;ll see her live calendar with your details already filled in.</p>
+            <div class="grid grid-2" style="gap:var(--s4)">
+              <div class="field">
+                <label for="g-first">First name</label>
+                <input class="input" type="text" id="g-first" name="first_name" autocomplete="given-name" required>
+                <p class="field-error" hidden>Please add your first name.</p>
+              </div>
+              <div class="field">
+                <label for="g-last">Last name</label>
+                <input class="input" type="text" id="g-last" name="last_name" autocomplete="family-name">
+              </div>
+            </div>
+            <div class="grid grid-2" style="gap:var(--s4)">
+              <div class="field">
+                <label for="g-email">Email</label>
+                <input class="input" type="email" id="g-email" name="email" autocomplete="email" required>
+                <p class="field-error" hidden>Please enter a valid email address.</p>
+              </div>
+              <div class="field">
+                <label for="g-phone">Mobile number <span class="muted" style="font-weight:400">(optional)</span></label>
+                <input class="input" type="tel" id="g-phone" name="phone" autocomplete="tel">
+              </div>
+            </div>
+            <div class="field consent-field">
+              <label class="consent">
+                <input type="checkbox" name="consent" value="yes" required>
+                <span>I agree to receive emails and texts from Ask Coach Amanda about my call.</span>
+              </label>
+              <p class="field-error" hidden>Please tick the box so Amanda can confirm your call.</p>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg btn--block">Show available times &rarr;</button>
+          </form>
+
+          <div id="calendly-area">
           <!-- Calendly Inline Container -->
           <div class="calendly-wrap" id="calendly-inline" data-url="https://calendly.com/beagoodday-com/20-min-call-with-dr-amanda" style="min-height:950px;min-width:320px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);background:var(--white);box-shadow:var(--shadow-sm);">
             <iframe id="calendly-frame"
@@ -125,6 +167,7 @@
             <a id="calendly-direct-btn" href="https://calendly.com/beagoodday-com/20-min-call-with-dr-amanda" target="_blank" rel="noopener" class="btn btn--outline btn--sm" style="font-size:0.86rem;padding:7px 16px;display:inline-flex;align-items:center;gap:6px">
               ↗️ Open Calendly in New Tab
             </a>
+          </div>
           </div>
         </div>
 
@@ -302,45 +345,72 @@
      Takes the respondent's information (Name, Email, Phone,
      Assessment Score, Tier, Focus Area) and injects it into Calendly
      ------------------------------------------------------------ */
-  var fullName = [lead.first_name, lead.last_name].filter(Boolean).join(" ");
-  var calendlyParams = [];
-  if (fullName) calendlyParams.push("name=" + encodeURIComponent(fullName));
-  if (lead.first_name) calendlyParams.push("first_name=" + encodeURIComponent(lead.first_name));
-  if (lead.last_name) calendlyParams.push("last_name=" + encodeURIComponent(lead.last_name));
-  if (lead.email) calendlyParams.push("email=" + encodeURIComponent(lead.email));
-  if (lead.phone) calendlyParams.push("phone_number=" + encodeURIComponent(lead.phone));
+  function applyCalendly(lead) {
+    var fullName = [lead.first_name, lead.last_name].filter(Boolean).join(" ");
+    var calendlyParams = [];
+    if (fullName) calendlyParams.push("name=" + encodeURIComponent(fullName));
+    if (lead.first_name) calendlyParams.push("first_name=" + encodeURIComponent(lead.first_name));
+    if (lead.last_name) calendlyParams.push("last_name=" + encodeURIComponent(lead.last_name));
+    if (lead.email) calendlyParams.push("email=" + encodeURIComponent(lead.email));
+    if (lead.phone) calendlyParams.push("phone_number=" + encodeURIComponent(lead.phone));
   
-  var notes = [];
-  if (lead.total_score !== undefined && lead.total_score !== "") {
-    notes.push("Score: " + lead.total_score + "/30 (" + (lead.score_tier || "") + ")");
-  }
-  if (lead.primary_concern) {
-    notes.push("Roadblock: " + lead.primary_concern);
-  }
-  if (notes.length) {
-    calendlyParams.push("a1=" + encodeURIComponent(notes.join(" | ")));
-  }
-  calendlyParams.push("hide_landing_page_details=1");
-  calendlyParams.push("hide_event_type_details=1");
-  calendlyParams.push("primary_color=347c81");
-  calendlyParams.push("hide_gdpr_banner=1");
-  calendlyParams.push("text_color=23292a");
-  /* Required for Calendly to postMessage booking events back to this page */
-  calendlyParams.push("embed_type=Inline");
-  calendlyParams.push("embed_domain=" + encodeURIComponent(location.hostname || "askcoachamanda.com"));
-  calendlyParams.push("utm_source=funnel");
-  calendlyParams.push("utm_campaign=" + encodeURIComponent(lead.score_tier || "metabolic_health"));
+    var notes = [];
+    if (lead.total_score !== undefined && lead.total_score !== "") {
+      notes.push("Score: " + lead.total_score + "/30 (" + (lead.score_tier || "") + ")");
+    }
+    if (lead.primary_concern) {
+      notes.push("Roadblock: " + lead.primary_concern);
+    }
+    if (notes.length) {
+      calendlyParams.push("a1=" + encodeURIComponent(notes.join(" | ")));
+    }
+    calendlyParams.push("hide_landing_page_details=1");
+    calendlyParams.push("hide_event_type_details=1");
+    calendlyParams.push("primary_color=347c81");
+    calendlyParams.push("hide_gdpr_banner=1");
+    calendlyParams.push("text_color=23292a");
+    /* Required for Calendly to postMessage booking events back to this page */
+    calendlyParams.push("embed_type=Inline");
+    calendlyParams.push("embed_domain=" + encodeURIComponent(location.hostname || "askcoachamanda.com"));
+    calendlyParams.push("utm_source=funnel");
+    calendlyParams.push("utm_campaign=" + encodeURIComponent(lead.score_tier || "metabolic_health"));
 
-  var fullCalendlyUrl = LIVE_CALENDLY + (calendlyParams.length ? "?" + calendlyParams.join("&") : "");
+    var fullCalendlyUrl = LIVE_CALENDLY + (calendlyParams.length ? "?" + calendlyParams.join("&") : "");
   
-  var cFrame = document.getElementById("calendly-frame");
-  if (cFrame) cFrame.src = fullCalendlyUrl;
+    var cFrame = document.getElementById("calendly-frame");
+    if (cFrame) cFrame.src = fullCalendlyUrl;
   
-  var cDirect = document.getElementById("calendly-direct-btn");
-  if (cDirect) cDirect.href = fullCalendlyUrl.replace(/&?embed_(type|domain)=[^&]*/g, "");
+    var cDirect = document.getElementById("calendly-direct-btn");
+    if (cDirect) cDirect.href = fullCalendlyUrl.replace(/&?embed_(type|domain)=[^&]*/g, "");
 
-  var cWrap = document.getElementById("calendly-inline");
-  if (cWrap) cWrap.setAttribute("data-url", fullCalendlyUrl);
+    var cWrap = document.getElementById("calendly-inline");
+    if (cWrap) cWrap.setAttribute("data-url", fullCalendlyUrl);
+  }
+  applyCalendly(lead);
+
+  /* Details step: visitors who skipped the assessment and application
+     give their details here first, so the booking isn't invisible to the CRM */
+  var gate = document.getElementById("calendar-gate");
+  var calendlyArea = document.getElementById("calendly-area");
+  function showCalendar(show) {
+    gate.hidden = show;
+    calendlyArea.hidden = !show;
+  }
+  showCalendar(!!lead.email);
+  gate.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!ACA.form.validate(gate)) return;
+    var f = ACA.form.serialize(gate);
+    window.ACA.submit("lead", {
+      first_name: f.first_name, last_name: f.last_name || "", email: f.email,
+      phone: f.phone || "", consent: "yes", consent_at: new Date().toISOString(),
+      lead_source: lead.lead_source || "book-page", route: "book-direct"
+    }).catch(function (err) { console.warn("[ACA booking details notice]", err); });
+    lead = window.ACA.store.read();
+    applyCalendly(lead);
+    showCalendar(true);
+    calendlyArea.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
   /* Lead Sync Banner UI */
   var leadSyncBanner = document.getElementById("lead-sync-banner");

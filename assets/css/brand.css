@@ -364,6 +364,16 @@ blockquote.pull cite { display: block; font-family: var(--sans); font-size: .95r
 .brandmark__sub { display: block; font-family: var(--sans); font-size: .72rem; font-weight: 500; color: var(--ink-faint); letter-spacing: .04em; text-transform: uppercase; margin-top: 1px; }
 .site-header .btn { padding: 12px 24px; font-size: .95rem; }
 @media (max-width: 560px) { .brandmark__sub { display: none; } .site-header .btn { padding: 11px 18px; font-size: .88rem; } }
+/* Phones: keep the brand name and the header's right-hand button/badge on one line each */
+@media (max-width: 480px) {
+  .site-header__inner { padding: 12px 14px; gap: 10px; }
+  .brandmark { gap: 8px; flex-shrink: 0; }
+  .brandmark img { width: 34px; height: 34px; }
+  .brandmark__name { font-size: .98rem; white-space: nowrap; }
+  .site-header .btn { white-space: nowrap; font-size: .76rem; padding: 8px 12px; }
+  /* Longer badges ("Educational, not diagnostic") wrap to a tidy centred two-liner */
+  .site-header .pill { font-size: .72rem; padding: 6px 12px; line-height: 1.25; text-align: center; max-width: 150px; }
+}
 
 .site-footer { background: var(--teal-ink); color: #A9C6C5; padding: var(--s8) 0 var(--s6); font-size: .92rem; }
 .site-footer a { color: #CBE2E0; }
